@@ -18,6 +18,7 @@
 		ED76DE061F46398500F8CB70 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DE051F46398500F8CB70 /* Result.swift */; };
 		ED76DE081F463B3500F8CB70 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DE071F463B3500F8CB70 /* NetworkManager.swift */; };
 		ED76DE0B1F46481300F8CB70 /* RestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DE0A1F46481300F8CB70 /* RestProtocol.swift */; };
+		ED76DE0D1F46494000F8CB70 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DE0C1F46494000F8CB70 /* RestClient.swift */; };
 		EDC7EA8C1F44A0520048E8EF /* PocketCastsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */; };
 		EDC7EA911F44A0520048E8EF /* PocketCastsKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7EA901F44A0520048E8EF /* PocketCastsKitTests.swift */; };
 		EDC7EA931F44A0520048E8EF /* PocketCastsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -45,6 +46,7 @@
 		ED76DE051F46398500F8CB70 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		ED76DE071F463B3500F8CB70 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		ED76DE0A1F46481300F8CB70 /* RestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestProtocol.swift; sourceTree = "<group>"; };
+		ED76DE0C1F46494000F8CB70 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
 		EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PocketCastsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PocketCastsKit.h; sourceTree = "<group>"; };
 		EDC7EA861F44A0520048E8EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			children = (
 				ED76DE031F4638B000F8CB70 /* NetworkManagerProtocol.swift */,
 				ED76DE0A1F46481300F8CB70 /* RestProtocol.swift */,
+				ED76DE0C1F46494000F8CB70 /* RestClient.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED76DE0D1F46494000F8CB70 /* RestClient.swift in Sources */,
 				ED76DE081F463B3500F8CB70 /* NetworkManager.swift in Sources */,
 				ED76DDF51F45CEB900F8CB70 /* PCKEpisode.swift in Sources */,
 				ED76DE061F46398500F8CB70 /* Result.swift in Sources */,
