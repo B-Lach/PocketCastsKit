@@ -13,6 +13,7 @@
 		ED76DDF81F45CF5E00F8CB70 /* PCKPodcastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DDF71F45CF5E00F8CB70 /* PCKPodcastTests.swift */; };
 		ED76DDFA1F45D36800F8CB70 /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DDF91F45D36800F8CB70 /* TestHelper.swift */; };
 		ED76DDFC1F45D8C100F8CB70 /* PCKEpisodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DDFB1F45D8C100F8CB70 /* PCKEpisodeTests.swift */; };
+		ED76DDFF1F45E12900F8CB70 /* JSONParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DDFE1F45E12900F8CB70 /* JSONParserTests.swift */; };
 		EDC7EA8C1F44A0520048E8EF /* PocketCastsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */; };
 		EDC7EA911F44A0520048E8EF /* PocketCastsKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7EA901F44A0520048E8EF /* PocketCastsKitTests.swift */; };
 		EDC7EA931F44A0520048E8EF /* PocketCastsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -35,6 +36,7 @@
 		ED76DDF71F45CF5E00F8CB70 /* PCKPodcastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKPodcastTests.swift; sourceTree = "<group>"; };
 		ED76DDF91F45D36800F8CB70 /* TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
 		ED76DDFB1F45D8C100F8CB70 /* PCKEpisodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKEpisodeTests.swift; sourceTree = "<group>"; };
+		ED76DDFE1F45E12900F8CB70 /* JSONParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParserTests.swift; sourceTree = "<group>"; };
 		EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PocketCastsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PocketCastsKit.h; sourceTree = "<group>"; };
 		EDC7EA861F44A0520048E8EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -88,6 +90,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		ED76DDFD1F45E0B600F8CB70 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				ED76DDFE1F45E12900F8CB70 /* JSONParserTests.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		EDC7EA781F44A0520048E8EF = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +130,7 @@
 		EDC7EA8F1F44A0520048E8EF /* PocketCastsKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				ED76DDFD1F45E0B600F8CB70 /* Helper */,
 				ED76DDF61F45CF3900F8CB70 /* Model */,
 				EDC7EA901F44A0520048E8EF /* PocketCastsKitTests.swift */,
 				EDC7EA921F44A0520048E8EF /* Info.plist */,
@@ -249,6 +260,7 @@
 			files = (
 				ED76DDFA1F45D36800F8CB70 /* TestHelper.swift in Sources */,
 				EDC7EA911F44A0520048E8EF /* PocketCastsKitTests.swift in Sources */,
+				ED76DDFF1F45E12900F8CB70 /* JSONParserTests.swift in Sources */,
 				ED76DDFC1F45D8C100F8CB70 /* PCKEpisodeTests.swift in Sources */,
 				ED76DDF81F45CF5E00F8CB70 /* PCKPodcastTests.swift in Sources */,
 			);
