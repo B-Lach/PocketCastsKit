@@ -2,3 +2,5 @@ language: objective-c
 osx_image: xcode9
 xcode_project: PocketCastsKit.xcodeproj
 xcode_scheme: PocketCastsKit
+
+script:  xcodebuild clean && xcodebuild test -project PocketCastsKit.xcodeproj -scheme PocketCastsKit -destination 'platform=iOS Simulator,name=iPhone 7,OS=latest'
