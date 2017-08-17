@@ -121,6 +121,7 @@
 			children = (
 				ED76DE091F46477300F8CB70 /* Protocol */,
 				ED76DE051F46398500F8CB70 /* Result.swift */,
+				ED76DE0C1F46494000F8CB70 /* RestClient.swift */,
 				ED76DE071F463B3500F8CB70 /* NetworkManager.swift */,
 			);
 			path = NetworkManager;
@@ -131,7 +132,6 @@
 			children = (
 				ED76DE031F4638B000F8CB70 /* NetworkManagerProtocol.swift */,
 				ED76DE0A1F46481300F8CB70 /* RestProtocol.swift */,
-				ED76DE0C1F46494000F8CB70 /* RestClient.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
