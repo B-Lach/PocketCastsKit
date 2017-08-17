@@ -20,7 +20,7 @@ struct NetworkManager: NetworkManagerProtocol {
         self.session = session
     }
     
-    func makeRequest(url: URL, options: [RequestOption], method: MethodType, completion: @escaping ((Result<Data>) -> Void)) {
+    func makeRequest(url: URL, options: [RequestOption] = [], method: MethodType, completion: @escaping ((Result<Data>) -> Void)) {
         guard let request = getRequest(for: url, options: options, method: method) else {
             completion(Result.error(NetworkManagerErrors.canNotBuildRequest))
             return
