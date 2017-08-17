@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		ED76DDF01F45CD5200F8CB70 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DDEF1F45CD5200F8CB70 /* JSONParser.swift */; };
+		ED76DDF31F45CDF800F8CB70 /* PCKPodcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DDF21F45CDF800F8CB70 /* PCKPodcast.swift */; };
 		EDC7EA8C1F44A0520048E8EF /* PocketCastsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */; };
 		EDC7EA911F44A0520048E8EF /* PocketCastsKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7EA901F44A0520048E8EF /* PocketCastsKitTests.swift */; };
 		EDC7EA931F44A0520048E8EF /* PocketCastsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		ED76DDEF1F45CD5200F8CB70 /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
+		ED76DDF21F45CDF800F8CB70 /* PCKPodcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKPodcast.swift; sourceTree = "<group>"; };
 		EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PocketCastsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PocketCastsKit.h; sourceTree = "<group>"; };
 		EDC7EA861F44A0520048E8EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,6 +62,14 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		ED76DDF11F45CDE400F8CB70 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ED76DDF21F45CDF800F8CB70 /* PCKPodcast.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		EDC7EA781F44A0520048E8EF = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +91,7 @@
 		EDC7EA841F44A0520048E8EF /* PocketCastsKit */ = {
 			isa = PBXGroup;
 			children = (
+				ED76DDF11F45CDE400F8CB70 /* Model */,
 				ED76DDEE1F45CD4500F8CB70 /* Helper */,
 				EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */,
 				EDC7EA861F44A0520048E8EF /* Info.plist */,
@@ -207,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED76DDF01F45CD5200F8CB70 /* JSONParser.swift in Sources */,
+				ED76DDF31F45CDF800F8CB70 /* PCKPodcast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
