@@ -15,6 +15,44 @@ struct TestHelper {
 // MARK: - Model test data
 extension TestHelper {
     struct TestData {
+        // Episode test data
+        static var episideDataOptionalPresent: Data {
+            return """
+                {
+                    "id": 1,
+                    "uuid": "8a788c1e-332b-4e9f-8d0a-3043276e6cb1",
+                    "url": "https://www.gamespodcast.de/podlove/file/1371/s/feed/c/premium5/Anekdoten_Thomas_Lindemann_Enthuellungen.mp3",
+                    "published_at": "2017-08-16 22:00:01",
+                    "duration": 2546,
+                    "file_type": "audio/mp3",
+                    "title": "Anekdoten: Enthüllungsjournalismus in der Spielebranche",
+                    "podcast_id": 867908,
+                    "size": 37094736,
+                    "podcast_uuid": "c251cdb0-4a81-0135-902b-63f4b61a9224",
+                    "playing_status": 2,
+                    "played_up_to": 195,
+                    "is_deleted": false,
+                    "starred": false
+                }
+            """.data(using: .utf8)!
+        }
+        
+        static var episodeDataOptionalNotPresent: Data {
+            return """
+                {
+                    "id": null,
+                    "uuid": "8a788c1e-332b-4e9f-8d0a-3043276e6cb1",
+                    "url": "https://www.gamespodcast.de/podlove/file/1371/s/feed/c/premium5/Anekdoten_Thomas_Lindemann_Enthuellungen.mp3",
+                    "published_at": "2017-08-16 22:00:01",
+                    "duration": null,
+                    "file_type": "audio/mp3",
+                    "title": "Anekdoten: Enthüllungsjournalismus in der Spielebranche",
+                    "podcast_id": 867908,
+                    "size": 37094736,
+                    "podcast_uuid": "c251cdb0-4a81-0135-902b-63f4b61a9224",
+                }
+            """.data(using: .utf8)!
+        }
         // Podcast test data
         static var podcastDataWithAuthor: Data {
             return """
@@ -28,7 +66,7 @@ extension TestHelper {
                     "author": "Ninjalooter.de",
                     "episodes_sort_order": 3
                 }
-                """.data(using: .utf8)!
+            """.data(using: .utf8)!
         }
         
         static var podcastDataWithoutAuthor: Data {
