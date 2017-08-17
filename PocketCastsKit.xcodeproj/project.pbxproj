@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED76DDF01F45CD5200F8CB70 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DDEF1F45CD5200F8CB70 /* JSONParser.swift */; };
 		EDC7EA8C1F44A0520048E8EF /* PocketCastsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */; };
 		EDC7EA911F44A0520048E8EF /* PocketCastsKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7EA901F44A0520048E8EF /* PocketCastsKitTests.swift */; };
 		EDC7EA931F44A0520048E8EF /* PocketCastsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ED76DDEF1F45CD5200F8CB70 /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PocketCastsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PocketCastsKit.h; sourceTree = "<group>"; };
 		EDC7EA861F44A0520048E8EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,6 +52,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED76DDEE1F45CD4500F8CB70 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				ED76DDEF1F45CD5200F8CB70 /* JSONParser.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		EDC7EA781F44A0520048E8EF = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +81,7 @@
 		EDC7EA841F44A0520048E8EF /* PocketCastsKit */ = {
 			isa = PBXGroup;
 			children = (
+				ED76DDEE1F45CD4500F8CB70 /* Helper */,
 				EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */,
 				EDC7EA861F44A0520048E8EF /* Info.plist */,
 			);
@@ -148,6 +159,7 @@
 				TargetAttributes = {
 					EDC7EA811F44A0520048E8EF = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 					};
 					EDC7EA8A1F44A0520048E8EF = {
 						CreatedOnToolsVersion = 9.0;
@@ -194,6 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED76DDF01F45CD5200F8CB70 /* JSONParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +345,7 @@
 		EDC7EA971F44A0520048E8EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4ZHCQJ2SCM;
@@ -344,6 +358,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.dev-kiste.PocketCastsKit";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -352,6 +367,7 @@
 		EDC7EA981F44A0520048E8EF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4ZHCQJ2SCM;
@@ -372,6 +388,7 @@
 		EDC7EA9A1F44A0520048E8EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 4ZHCQJ2SCM;
 				INFOPLIST_FILE = PocketCastsKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -385,6 +402,7 @@
 		EDC7EA9B1F44A0520048E8EF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 4ZHCQJ2SCM;
 				INFOPLIST_FILE = PocketCastsKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
