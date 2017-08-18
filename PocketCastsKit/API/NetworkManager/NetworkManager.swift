@@ -14,9 +14,9 @@ enum NetworkManagerErrors: Error {
     case noSuccessResponse(statusCode: Int, data: Data)
 }
 struct NetworkManager: NetworkManagerProtocol {
-    private let session: URLSession
+    private let session: URLSessionProtocol
     
-    internal init(session: URLSession = URLSession.shared) {
+    init(session: URLSessionProtocol = URLSession.shared) {
         self.session = session
     }
     

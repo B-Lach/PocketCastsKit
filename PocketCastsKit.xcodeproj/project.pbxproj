@@ -22,6 +22,7 @@
 		ED76DE101F464C9900F8CB70 /* RestClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DE0F1F464C9900F8CB70 /* RestClientTests.swift */; };
 		EDA6C9C11F4672E7007617B5 /* NetworkManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DE111F464CC100F8CB70 /* NetworkManagerMock.swift */; };
 		EDA6C9CB1F47265B007617B5 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9CA1F47265B007617B5 /* URLSessionProtocol.swift */; };
+		EDA6C9CD1F4781F3007617B5 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9CC1F4781F3007617B5 /* URLSessionMock.swift */; };
 		EDC7EA8C1F44A0520048E8EF /* PocketCastsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */; };
 		EDC7EA911F44A0520048E8EF /* PocketCastsKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7EA901F44A0520048E8EF /* PocketCastsKitTests.swift */; };
 		EDC7EA931F44A0520048E8EF /* PocketCastsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -53,6 +54,7 @@
 		ED76DE0F1F464C9900F8CB70 /* RestClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClientTests.swift; sourceTree = "<group>"; };
 		ED76DE111F464CC100F8CB70 /* NetworkManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerMock.swift; sourceTree = "<group>"; };
 		EDA6C9CA1F47265B007617B5 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		EDA6C9CC1F4781F3007617B5 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
 		EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PocketCastsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PocketCastsKit.h; sourceTree = "<group>"; };
 		EDC7EA861F44A0520048E8EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				ED76DE111F464CC100F8CB70 /* NetworkManagerMock.swift */,
+				EDA6C9CC1F4781F3007617B5 /* URLSessionMock.swift */,
 			);
 			path = Mocking;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				ED76DDF51F45CEB900F8CB70 /* PCKEpisode.swift in Sources */,
 				ED76DE061F46398500F8CB70 /* Result.swift in Sources */,
 				ED76DDF01F45CD5200F8CB70 /* JSONParser.swift in Sources */,
+				EDA6C9CD1F4781F3007617B5 /* URLSessionMock.swift in Sources */,
 				ED76DE041F4638B000F8CB70 /* NetworkManagerProtocol.swift in Sources */,
 				ED76DE0B1F46481300F8CB70 /* RestProtocol.swift in Sources */,
 				ED76DDF31F45CDF800F8CB70 /* PCKPodcast.swift in Sources */,
