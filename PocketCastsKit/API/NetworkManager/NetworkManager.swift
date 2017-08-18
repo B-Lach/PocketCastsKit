@@ -52,7 +52,6 @@ struct NetworkManager: NetworkManagerProtocol {
     private func getRequest(for url: URL, options: [RequestOption], method: MethodType ) -> URLRequest? {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         for o in  options {
             switch o {
