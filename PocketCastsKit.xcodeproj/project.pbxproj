@@ -19,6 +19,8 @@
 		ED76DE081F463B3500F8CB70 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DE071F463B3500F8CB70 /* NetworkManager.swift */; };
 		ED76DE0B1F46481300F8CB70 /* RestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DE0A1F46481300F8CB70 /* RestProtocol.swift */; };
 		ED76DE0D1F46494000F8CB70 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DE0C1F46494000F8CB70 /* RestClient.swift */; };
+		ED76DE101F464C9900F8CB70 /* RestClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DE0F1F464C9900F8CB70 /* RestClientTests.swift */; };
+		EDA6C9C11F4672E7007617B5 /* NetworkManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DE111F464CC100F8CB70 /* NetworkManagerMock.swift */; };
 		EDC7EA8C1F44A0520048E8EF /* PocketCastsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */; };
 		EDC7EA911F44A0520048E8EF /* PocketCastsKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7EA901F44A0520048E8EF /* PocketCastsKitTests.swift */; };
 		EDC7EA931F44A0520048E8EF /* PocketCastsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -47,6 +49,8 @@
 		ED76DE071F463B3500F8CB70 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		ED76DE0A1F46481300F8CB70 /* RestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestProtocol.swift; sourceTree = "<group>"; };
 		ED76DE0C1F46494000F8CB70 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
+		ED76DE0F1F464C9900F8CB70 /* RestClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClientTests.swift; sourceTree = "<group>"; };
+		ED76DE111F464CC100F8CB70 /* NetworkManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerMock.swift; sourceTree = "<group>"; };
 		EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PocketCastsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PocketCastsKit.h; sourceTree = "<group>"; };
 		EDC7EA861F44A0520048E8EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 		ED76DE021F46389A00F8CB70 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
+				EDA6C9BE1F467178007617B5 /* Mocking */,
 				ED76DE091F46477300F8CB70 /* Protocol */,
 				ED76DE051F46398500F8CB70 /* Result.swift */,
 				ED76DE0C1F46494000F8CB70 /* RestClient.swift */,
@@ -134,6 +139,22 @@
 				ED76DE0A1F46481300F8CB70 /* RestProtocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		EDA6C9BE1F467178007617B5 /* Mocking */ = {
+			isa = PBXGroup;
+			children = (
+				ED76DE111F464CC100F8CB70 /* NetworkManagerMock.swift */,
+			);
+			path = Mocking;
+			sourceTree = "<group>";
+		};
+		EDA6C9C21F46731D007617B5 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				ED76DE0F1F464C9900F8CB70 /* RestClientTests.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		EDC7EA781F44A0520048E8EF = {
@@ -169,6 +190,7 @@
 		EDC7EA8F1F44A0520048E8EF /* PocketCastsKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				EDA6C9C21F46731D007617B5 /* Network */,
 				ED76DDFD1F45E0B600F8CB70 /* Helper */,
 				ED76DDF61F45CF3900F8CB70 /* Model */,
 				EDC7EA901F44A0520048E8EF /* PocketCastsKitTests.swift */,
@@ -295,6 +317,7 @@
 				ED76DE041F4638B000F8CB70 /* NetworkManagerProtocol.swift in Sources */,
 				ED76DE0B1F46481300F8CB70 /* RestProtocol.swift in Sources */,
 				ED76DDF31F45CDF800F8CB70 /* PCKPodcast.swift in Sources */,
+				EDA6C9C11F4672E7007617B5 /* NetworkManagerMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +327,7 @@
 			files = (
 				ED76DDFA1F45D36800F8CB70 /* TestHelper.swift in Sources */,
 				EDC7EA911F44A0520048E8EF /* PocketCastsKitTests.swift in Sources */,
+				ED76DE101F464C9900F8CB70 /* RestClientTests.swift in Sources */,
 				ED76DDFF1F45E12900F8CB70 /* JSONParserTests.swift in Sources */,
 				ED76DDFC1F45D8C100F8CB70 /* PCKEpisodeTests.swift in Sources */,
 				ED76DDF81F45CF5E00F8CB70 /* PCKPodcastTests.swift in Sources */,

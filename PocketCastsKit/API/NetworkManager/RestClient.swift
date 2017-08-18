@@ -26,7 +26,7 @@ struct RestClient: RestProtocol {
     }
 
     func get(path: String, options: [RequestOption] = [], completion: @escaping ((Result<Data>) -> Void)) {
-        guard let url = URL(string: path, relativeTo: baseURL) else {
+        guard let url = URL(string: path, relativeTo: baseURL)?.absoluteURL else {
             completion(Result.error(RestClientErrors.pathNotValid(path: path)))
             
             return
@@ -35,7 +35,7 @@ struct RestClient: RestProtocol {
     }
     
     func post(path: String, options: [RequestOption] = [], completion: @escaping ((Result<Data>) -> Void)) {
-        guard let url = URL(string: path, relativeTo: baseURL) else {
+        guard let url = URL(string: path, relativeTo: baseURL)?.absoluteURL else {
             completion(Result.error(RestClientErrors.pathNotValid(path: path)))
             
             return
