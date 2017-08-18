@@ -24,7 +24,6 @@
 		EDA6C9C51F467581007617B5 /* PCKClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9C41F467581007617B5 /* PCKClientProtocol.swift */; };
 		EDA6C9C71F4676AF007617B5 /* PCKClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9C61F4676AF007617B5 /* PCKClient.swift */; };
 		EDC7EA8C1F44A0520048E8EF /* PocketCastsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */; };
-		EDC7EA911F44A0520048E8EF /* PocketCastsKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7EA901F44A0520048E8EF /* PocketCastsKitTests.swift */; };
 		EDC7EA931F44A0520048E8EF /* PocketCastsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -59,7 +58,6 @@
 		EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PocketCastsKit.h; sourceTree = "<group>"; };
 		EDC7EA861F44A0520048E8EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDC7EA8B1F44A0520048E8EF /* PocketCastsKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketCastsKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EDC7EA901F44A0520048E8EF /* PocketCastsKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketCastsKitTests.swift; sourceTree = "<group>"; };
 		EDC7EA921F44A0520048E8EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,7 +197,6 @@
 				EDA6C9C21F46731D007617B5 /* Network */,
 				ED76DDFD1F45E0B600F8CB70 /* Helper */,
 				ED76DDF61F45CF3900F8CB70 /* Model */,
-				EDC7EA901F44A0520048E8EF /* PocketCastsKitTests.swift */,
 				EDC7EA921F44A0520048E8EF /* Info.plist */,
 				ED76DDF91F45D36800F8CB70 /* TestHelper.swift */,
 			);
@@ -334,7 +331,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED76DDFA1F45D36800F8CB70 /* TestHelper.swift in Sources */,
-				EDC7EA911F44A0520048E8EF /* PocketCastsKitTests.swift in Sources */,
 				ED76DE101F464C9900F8CB70 /* RestClientTests.swift in Sources */,
 				ED76DDFF1F45E12900F8CB70 /* JSONParserTests.swift in Sources */,
 				ED76DDFC1F45D8C100F8CB70 /* PCKEpisodeTests.swift in Sources */,
