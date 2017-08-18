@@ -13,6 +13,12 @@ enum MethodType: String {
     case POST = "POST"
 }
 
+extension MethodType: Equatable {
+    static func ==(lhs: MethodType, rhs: MethodType) -> Bool {
+        return lhs.rawValue == rhs.rawValue
+    }
+}
+
 enum RequestOption {
     case headerField([(key: String, value: String)])
     case bodyData(data: Data)
