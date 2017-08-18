@@ -9,31 +9,7 @@
 import XCTest
 
 @testable import PocketCastsKit
-class NetworkManagerTests: XCTestCase {
-    private let url = URL(string: "http://localhost")!
-    
-    private var expec: XCTestExpectation!
-    private var mock: URLSessionMock!
-    private var manager: NetworkManager!
-    
-    override func setUp() {
-        expec = expectation(description: "NetworkManager Testing")
-        mock = URLSessionMock(data: nil, response: nil, error: nil)
-        manager = NetworkManager(session: mock)
-    }
-    
-    private func getRequest() -> URLRequest? {
-        if let request = mock.request {
-            return request
-        }
-        XCTFail()
-        return nil
-    }
-    
-    private func wait() {
-        wait(for: [expec], timeout: 2)
-    }
-}
+class NetworkManagerTests: PCKTestCase {}
 
 // MARK: - Testing MethodTypes
 extension NetworkManagerTests {
