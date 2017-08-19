@@ -14,10 +14,10 @@ enum RestClientErrors: Error {
 }
 
 struct RestClient: RestProtocol {
-    private let manager: NetworkManagerProtocol
+    private let manager: NetworkManager
     private(set) var baseURL: URL
     
-    init(baseURLString: String, manager: NetworkManagerProtocol = NetworkManager()) throws {
+    init(baseURLString: String, manager: NetworkManager = NetworkManager()) throws {
         guard let url = URL(string: baseURLString) else {
             throw RestClientErrors.baseURLStringNotValid(stirng: baseURLString)
         }

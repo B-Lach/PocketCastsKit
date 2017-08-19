@@ -65,6 +65,7 @@ class PCKEpisodeTests: XCTestCase {
     func testInitFromDecoder() throws {
         let decoder = TestHelper.Decoding.jsonDecoder
         
+        // Test with all data present
         var episode = try decoder.decode(PCKEpisode.self, from: TestHelper.TestData.episideDataOptionalPresent)
         
         XCTAssertEqual(episode.id, id)
@@ -81,23 +82,19 @@ class PCKEpisodeTests: XCTestCase {
         XCTAssertEqual(episode.playedUpTo, playedUpTo)
         XCTAssertEqual(episode.isDeleted, isDeleted)
         XCTAssertEqual(episode.starred, starred)
-        
+        // Test with optional data not present
         episode = try decoder.decode(PCKEpisode.self, from: TestHelper.TestData.episodeDataOptionalNotPresent)
         
         XCTAssertEqual(episode.id, -1)
-        XCTAssertEqual(episode.uuid, uuid)
-        XCTAssertEqual(episode.url, url)
-        XCTAssertEqual(episode.publishedAt, published)
         XCTAssertEqual(episode.duration, -1)
-        XCTAssertEqual(episode.fileType, fileType)
-        XCTAssertEqual(episode.title, title)
-        XCTAssertEqual(episode.podcastId, podcastId)
-        XCTAssertEqual(episode.size, size)
-        XCTAssertEqual(episode.podcastUUID, podcastUUID)
         XCTAssertEqual(episode.playingStatus, -1)
         XCTAssertEqual(episode.playedUpTo, -1)
         XCTAssertEqual(episode.isDeleted, nil)
         XCTAssertEqual(episode.starred, nil)
+        // Test with duration is string
+        episode = try decoder.decode(PCKEpisode.self, from: TestHelper.TestData.episodeDataDurationIsString)
+        
+        XCTAssertEqual(episode.duration, duration)
     }
     
 }
