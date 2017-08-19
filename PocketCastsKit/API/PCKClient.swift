@@ -24,14 +24,10 @@ public enum PCKClientError: Error {
 public struct PCKClient {
     static let shared = PCKClient()
     
-    private let client: RestProtocol
+    private let client: RestClient
     
-    internal init(client: RestProtocol? = nil) {
-        if let client = client {
-            self.client = client
-        } else {
-            self.client = try! RestClient(baseURLString: baseURLString)
-        }
+    internal init(client: RestClient = try! RestClient(baseURLString: baseURLString)) {
+        self.client = client
     }
 }
 
