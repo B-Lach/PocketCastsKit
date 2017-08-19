@@ -13,43 +13,40 @@ enum TestErrors: Error {
 }
 
 @testable import PocketCastsKit
-class PCKClientTests: XCTestCase {
-    private var mock: NetworkManagerMock!
-    private var rest: RestClient!
-    private var api: PCKClient!
-    private var expec: XCTestExpectation!
-    private var restClient: RestClient!
+class PCKClientTests: PCKTestCase {
+    var rest: RestClient!
+    var api: PCKClient!
     
     override func setUp() {
-        expec = expectation(description: "API Client")
+        super.setUp()
+        rest = try! RestClient(baseURLString: baseURLString, manager: manager)
+        api = PCKClient(client: rest)
     }
+}
+
+// MARK: - Authentication Testing
+extension PCKClientTests {
     
     func testAuthenticateCheckProperties() {
-        mock = NetworkManagerMock()
-        mock.injectTestCode { (url, options, method, handler) in
-            XCTAssertEqual(url, URL(string: "http://localhost/users/sign_in")!)
-            XCTAssertEqual(options.count, 1)
-            XCTAssertEqual(method, .POST)
-            
-            handler(Result.success(Data()))
-        }
-        
-        rest = try! RestClient(baseURLString: "http://localhost", manager: mock)
-        api = PCKClient(client: rest)
-        
         api.authenticate(username: "user", password: "pass") { (result) in
             self.expec.fulfill()
         }
-        wait(for: [expec], timeout: 2)
+        let data = "[user]email=user&[user]password=pass"
+            .addingPercentEncoding(withAllowedCharacters: .urlEncoded)!
+            .data(using: .utf8)!
+        let request = getRequest()!
+        
+        XCTAssertEqual(request.url, URL(string: "http://localhost/users/sign_in")!)
+        XCTAssertEqual(request.httpBody, data)
+        XCTAssertEqual(request.httpMethod, MethodType.POST.rawValue)
+        
+        wait()
     }
     
-    func testAuthenticateResponseError() {
-        mock = NetworkManagerMock()
-        mock.injectTestCode { (url, options, method, handler) in
-            handler(Result.error(TestErrors.injectedError))
-        }
-        
-        rest = try! RestClient(baseURLString: "http://localhost", manager: mock)
+    func testAuthenticateWithErrorResponse() {
+        mock = URLSessionMock(data: nil, response: nil, error: TestErrors.injectedError)
+        manager = NetworkManager(session: mock)
+        rest = try! RestClient(baseURLString: "http://localhost", manager: manager)
         api = PCKClient(client: rest)
         
         api.authenticate(username: "user", password: "pass") { (result) in
@@ -61,6 +58,6 @@ class PCKClientTests: XCTestCase {
             }
             self.expec.fulfill()
         }
-        wait(for: [expec], timeout: 2)
+        wait()
     }
 }
