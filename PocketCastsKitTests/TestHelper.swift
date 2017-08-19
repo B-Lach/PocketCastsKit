@@ -15,6 +15,94 @@ struct TestHelper {
 // MARK: - Model test data
 extension TestHelper {
     struct TestData {
+        static var starredEpisodesData: Data {
+            return """
+            {
+                "episodes": []
+            }
+            """.data(using: .utf8)!
+        }
+        
+        // New Episodes data
+        static var newEpisodesData: Data {
+            return """
+            {
+                "episodes": [{
+                    "id": null,
+                    "uuid": "127a8068-a5a1-4b02-87d8-fcc51a26a741",
+                    "url": "http://www.gamespodcast.de/podlove/file/1389/s/feed/c/premium5/Runde_124_Gute_Belohnungen.mp3",
+                    "published_at": "2017-08-19 22:00:25",
+                    "duration": "5893",
+                    "file_type": "audio/mp3",
+                    "title": "Runde #124: Wir wollen anständig belohnt werden",
+                    "podcast_id": 867908,
+                    "size": 82630896,
+                    "podcast_uuid": "c251cdb0-4a81-0135-902b-63f4b61a9224"
+                }]
+            }
+            """.data(using: .utf8)!
+        }
+        // Episodes in Progress data
+        static var episodesInProgressSuccess: Data {
+            return """
+            {
+                "episodes": [
+                    {
+                        "id": null,
+                        "uuid": "a90d2c1d-b00f-46be-bee8-bb0aa3efcac2",
+                        "url": "http://feeds.soundcloud.com/stream/338397807-martinpittenauer-fan300.mp3",
+                        "published_at": "2017-08-18 08:26:14",
+                        "duration": "6324",
+                        "file_type": "audio/mp3",
+                        "title": "Episode #300 - Puttenbrust",
+                        "size": 50652726,
+                        "playing_status": 2,
+                        "played_up_to": 3624,
+                        "is_deleted": false,
+                        "starred": false,
+                        "podcast_uuid": "ab1bdc40-6fb4-012f-1af4-525400c11844"
+                    }]
+            }
+            """.data(using: .utf8)!
+        }
+        
+        // Subscription response data
+        static var unauthorizedError: Data {
+            return """
+            {
+                "status": "error",
+                "message": "Authentication error.",
+                "result": {
+                    "redirect_url": "https://play.pocketcasts.com/users/sign_in"
+                }
+            }
+            """.data(using: .utf8)!
+        }
+        
+        static var subscriptionsSuccessData: Data {
+            return """
+            {
+                "podcasts": [
+                {
+                    "id": 132469,
+                    "uuid": "11ab9ae0-b49c-012f-4f9b-525400c11844",
+                    "url": "http://www.wrint.de/kommt-reden-wir-zusammen/",
+                    "title": "WRINT: Realitätsabgleich",
+                    "description": "Worin Holger Klein und Tobias Baier ihre Realitäten abgleichen.",
+                    "thumbnail_url": "http://www.wrint.de/wp-content/uploads/powerpress/wrint_realitaetsabgleich_1400.jpg",
+                    "author": "Holger Klein",
+                    "episodes_sort_order": 3
+                }],
+                "app": {
+                    "userVersionCode": 3,
+                    "versionCode": 3,
+                    "versionName": 1.2,
+                    "versionSummary": "Sharing is caring, be daring."
+                }
+            }
+            """.data(using: .utf8)!
+
+        }
         // Episode test data
         static var episideDataOptionalPresent: Data {
             return """
