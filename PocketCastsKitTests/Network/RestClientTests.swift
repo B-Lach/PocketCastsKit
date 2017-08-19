@@ -9,14 +9,19 @@
 import XCTest
 
 @testable import PocketCastsKit
-class RestClientTests: XCTestCase {}
+class RestClientTests: PCKTestCase {
+    
+    private func fulfill() {
+        expec.fulfill()
+        wait()
+    }
+}
 
-private let baseURLString = "http://localhoast"
-
-// MARK: - Init
+// MARK: - Testing initializing
 extension RestClientTests {
     func testRestClientWithInvalidURL() {
         XCTAssertThrowsError(try RestClient(baseURLString: ""))
+        fulfill()
     }
     
     func testRestClientWithValidURL() {
@@ -25,15 +30,14 @@ extension RestClientTests {
             return
         }
         XCTAssertEqual(client.baseURL, URL(string: baseURLString)!)
+        fulfill()
     }
 }
 
-// MARK: - GET
+// MARK: - Testing GET
 @testable import PocketCastsKit
 extension RestClientTests {
     func testGETInvalidPath() {
-        let expec = expectation(description: "check for invalid path")
-        
         let client = try! RestClient(baseURLString: baseURLString)
         client.get(path: "") { (result) in
             switch result {
@@ -42,36 +46,31 @@ extension RestClientTests {
             default:
             break
             }
-            expec.fulfill()
+            self.expec.fulfill()
         }
-        waitForExpectations(timeout: 2, handler: nil)
+        wait()
     }
     
     func testGETValidPath() {
-        let expec = expectation(description: "GET unit testing")
-        
-        var manager = NetworkManagerMock()
-        manager.injectTestCode { (url, options, methodType, completion) in
-            XCTAssertEqual(url, URL(string: "\(baseURLString)/get")!)
-            XCTAssertEqual(options.count, 0)
-            XCTAssertEqual(methodType, .GET)
-            
-            completion(Result.success(Data()))
-        }
-        
         let client = try! RestClient(baseURLString: baseURLString, manager: manager)
+        
         client.get(path: "/get") { (res) in
-            expec.fulfill()
+            self.expec.fulfill()
         }
-        waitForExpectations(timeout: 2, handler: nil)
+        
+        let request = getRequest()!
+        XCTAssertEqual(request.url, URL(string: "\(self.baseURLString)/get")!)
+        XCTAssertEqual(request.allHTTPHeaderFields!, [String:String]())
+        XCTAssertEqual(request.httpBody, nil)
+        XCTAssertEqual(request.httpMethod, MethodType.GET.rawValue)
+        
+        wait()
     }
 }
 
 // MARK: - POST
 extension RestClientTests {
     func testPOSTInvalidPath() {
-        let expec = expectation(description: "check for invalid path")
-        
         let client = try! RestClient(baseURLString: baseURLString)
         client.post(path: "") { (result) in
             switch result {
@@ -80,27 +79,23 @@ extension RestClientTests {
             default:
                 break
             }
-            expec.fulfill()
+            self.expec.fulfill()
         }
-        waitForExpectations(timeout: 2, handler: nil)
+        wait()
     }
     
     func testPOSTValidPath() {
-        let expec = expectation(description: "GET unit testing")
-        
-        var manager = NetworkManagerMock()
-        manager.injectTestCode { (url, options, methodType, completion) in
-            XCTAssertEqual(url, URL(string: "\(baseURLString)/post")!)
-            XCTAssertEqual(options.count, 0)
-            XCTAssertEqual(methodType, .POST)
-            
-            completion(Result.success(Data()))
-        }
-        
         let client = try! RestClient(baseURLString: baseURLString, manager: manager)
         client.post(path: "/post") { (res) in
-            expec.fulfill()
+            self.expec.fulfill()
         }
-        waitForExpectations(timeout: 2, handler: nil)
+        let request = getRequest()!
+        
+        XCTAssertEqual(request.url, URL(string: "\(self.baseURLString)/post")!)
+        XCTAssertEqual(request.allHTTPHeaderFields!, [String:String]())
+        XCTAssertEqual(request.httpBody, nil)
+        XCTAssertEqual(request.httpMethod, MethodType.POST.rawValue)
+        
+        wait()
     }
 }
