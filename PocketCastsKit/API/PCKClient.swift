@@ -21,6 +21,14 @@ public enum PCKClientError: Error {
     case invalidCredentials
 }
 
+private struct EpisodeContainer: Decodable {
+    let episodes: [PCKEpisode]
+}
+
+private struct PodcastContainer: Decodable {
+    let podcasts: [PCKPodcast]
+}
+
 public struct PCKClient {
     static let shared = PCKClient()
     
@@ -60,9 +68,9 @@ extension PCKClient {
     }
 }
 
-// MARK: - Authentication
+
 extension PCKClient: PCKClientProtocol {
-    
+    // MARK: - Authentication
     public func authenticate(username: String, password: String, completion: @escaping ((Result<Bool>) -> Void)) {
         guard let data = parseBodyDictionary(dict: ["[user]email": username,"[user]password": password]) else {
             completion(Result.error(PCKClientError.bodyDataBuildingFailed))
@@ -93,4 +101,58 @@ extension PCKClient: PCKClientProtocol {
             })
         }
     }
+    
+    // MARK: - User Podcast feeds
+    func getStarredEpisodes(completion: @escaping ((Result<[PCKEpisode]>) -> Void)) {
+        client.post(path: "/web/episodes/starred_episodes.json") { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+                if let container = JSONParser.shared.decode(data, type: EpisodeContainer.self) {
+                    print("starred: ", container)
+                    completion(Result.success(container.episodes))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
+    func getNewEpisodes(completion: @escaping ((Result<[PCKEpisode]>) -> Void)) {
+        client.post(path: "/web/episodes/new_releases_episodes.json") { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+                if let container = JSONParser.shared.decode(data, type: EpisodeContainer.self) {
+                    completion(Result.success(container.episodes))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
+    func getEpisodesInProgress(completion: @escaping ((Result<[PCKEpisode]>) -> Void)) {
+        client.post(path: "/web/episodes/in_progress_episodes.json") { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+                if let container = JSONParser.shared.decode(data, type: EpisodeContainer.self) {
+                    print("in progress: ", container)
+                    completion(Result.success(container.episodes))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
+    func getSubscriptions(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
+        client.post(path: "/web/podcasts/all.json") { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+                if let container = JSONParser.shared.decode(data, type: PodcastContainer.self) {
+                    completion(Result.success(container.podcasts))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
 }
+
+
+
