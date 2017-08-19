@@ -60,4 +60,88 @@ extension PCKClientTests {
         }
         wait()
     }
+    
+    func testAuthenticateIsLoggedIn() {
+        let loginURL = URL(string: "https://play.pocketcasts.com/web/podcasts/index")!
+        let response = HTTPURLResponse(url: loginURL, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        mock = URLSessionMock(data: Data(), response: response, error: nil)
+        manager = NetworkManager(session: mock)
+        rest = try! RestClient(baseURLString: "http://localhost", manager: manager)
+        api = PCKClient(client: rest)
+        
+        api.authenticate(username: "user", password: "pass") { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testAuthenticateNotLoggedIn() {
+        let loginURL = URL(string: "https://play.pocketcasts.com/users/sign_in")!
+        let response = HTTPURLResponse(url: loginURL, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        mock = URLSessionMock(data: Data(), response: response, error: nil)
+        manager = NetworkManager(session: mock)
+        rest = try! RestClient(baseURLString: "http://localhost", manager: manager)
+        api = PCKClient(client: rest)
+        
+        api.authenticate(username: "user", password: "pass") { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testIsAuthenticatedLoggedIn() {
+        let loginURL = URL(string: "https://play.pocketcasts.com/web/podcasts/index")!
+        let response = HTTPURLResponse(url: loginURL, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        mock = URLSessionMock(data: Data(), response: response, error: nil)
+        manager = NetworkManager(session: mock)
+        rest = try! RestClient(baseURLString: "http://localhost", manager: manager)
+        api = PCKClient(client: rest)
+        
+        api.isAuthenticated { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testIsAuthenticatedNotLoggedIn() {
+        let loginURL = URL(string: "https://play.pocketcasts.com/users/sign_in")!
+        let response = HTTPURLResponse(url: loginURL, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        mock = URLSessionMock(data: Data(), response: response, error: nil)
+        manager = NetworkManager(session: mock)
+        rest = try! RestClient(baseURLString: "http://localhost", manager: manager)
+        api = PCKClient(client: rest)
+        
+        api.authenticate(username: "user", password: "pass") { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
 }
