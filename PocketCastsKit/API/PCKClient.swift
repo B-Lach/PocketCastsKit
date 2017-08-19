@@ -73,16 +73,11 @@ extension PCKClient: PCKClientProtocol {
         client.post(path: "/users/sign_in", options: [option]) { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 
-                guard let htmlString = String(data: data, encoding: .utf8) else {
-                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
-                    return
-                }
-                
-                if !htmlString.contains("var USER_PODCASTS_UUIDS") {
+                if response.url == URL(string: "https://play.pocketcasts.com/web/podcasts/index") {
+                    completion(Result.success(true))
+                } else {
                     completion(Result.error(PCKClientError.invalidCredentials))
-                    return
                 }
-                completion(Result.success(true))
             })
         }
     }
@@ -90,11 +85,11 @@ extension PCKClient: PCKClientProtocol {
     public func isAuthenticated(completion: @escaping ((Result<Bool>) -> Void)) {
         client.get(path: "/", options: []) { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
-                guard let htmlString = String(data: data, encoding: .utf8) else {
-                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
-                    return
+                if response.url == URL(string: "https://play.pocketcasts.com/web/podcasts/index") {
+                    completion(Result.success(true))
+                } else {
+                    completion(Result.error(PCKClientError.invalidCredentials))
                 }
-                completion(Result.success(htmlString.contains("var USER_PODCASTS_UUIDS")))
             })
         }
     }
