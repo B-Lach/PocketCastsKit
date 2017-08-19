@@ -9,6 +9,6 @@
 import Foundation
 
 protocol RestProtocol {
-    func get(path: String, options: [RequestOption], completion: @escaping completion<Data>)
-    func post(path: String, options: [RequestOption], completion: @escaping completion<Data>)
+    func get(path: String, options: [RequestOption], completion: @escaping completion<(Data, HTTPURLResponse)>)
+    func post(path: String, options: [RequestOption], completion: @escaping completion<(Data, HTTPURLResponse)>)
 }

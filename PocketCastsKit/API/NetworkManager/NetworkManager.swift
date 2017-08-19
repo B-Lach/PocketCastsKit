@@ -20,7 +20,7 @@ struct NetworkManager: NetworkManagerProtocol {
         self.session = session
     }
     
-    func makeRequest(url: URL, options: [RequestOption] = [], method: MethodType, completion: @escaping ((Result<Data>) -> Void)) {
+    func makeRequest(url: URL, options: [RequestOption] = [], method: MethodType, completion: @escaping ((Result<(Data, HTTPURLResponse)>) -> Void)) {
         guard let request = getRequest(for: url, options: options, method: method) else {
             completion(Result.error(NetworkManagerErrors.canNotBuildRequest))
             return
@@ -30,7 +30,7 @@ struct NetworkManager: NetworkManagerProtocol {
         }.resume()
     }
     
-    private func handleResponse(data: Data?, response: URLResponse?, error: Error?, completion: @escaping ((Result<Data>) -> Void)) {
+    private func handleResponse(data: Data?, response: URLResponse?, error: Error?, completion: @escaping ((Result<(Data, HTTPURLResponse)>) -> Void)) {
         if let error = error {
             completion(Result.error(error))
             return
@@ -45,7 +45,7 @@ struct NetworkManager: NetworkManagerProtocol {
             completion(Result.error(NetworkManagerErrors.noSuccessResponse(statusCode: response.statusCode, data: data)))
             return
         }
-        completion(Result.success(data))
+        completion(Result.success((data, response)))
 
     }
     

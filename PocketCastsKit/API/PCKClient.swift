@@ -33,12 +33,14 @@ public struct PCKClient {
 
 //MARK: - Response handling
 extension PCKClient {
-    private func handleResponse<T>(response: Result<Data>, completion: completion<T>, successHandler: ((_ data: Data)  -> Void)) {
+    private func handleResponse<T>(response: Result<(Data, HTTPURLResponse)>,
+                                   completion: completion<T>,
+                                   successHandler: ((_ data: Data, _ response: HTTPURLResponse)  -> Void)) {
         switch response {
         case .error(let error):
             completion(Result.error(error))
-        case .success(let data):
-            successHandler(data)
+        case .success(let response):
+            successHandler(response.0, response.1)
         }
     }
     
@@ -69,7 +71,8 @@ extension PCKClient: PCKClientProtocol {
         let option = RequestOption.bodyData(data: data)
         
         client.post(path: "/users/sign_in", options: [option]) { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+                
                 guard let htmlString = String(data: data, encoding: .utf8) else {
                     completion(Result.error(PCKClientError.invalidResponse(data: data)))
                     return
@@ -86,7 +89,7 @@ extension PCKClient: PCKClientProtocol {
     
     public func isAuthenticated(completion: @escaping ((Result<Bool>) -> Void)) {
         client.get(path: "/", options: []) { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 guard let htmlString = String(data: data, encoding: .utf8) else {
                     completion(Result.error(PCKClientError.invalidResponse(data: data)))
                     return

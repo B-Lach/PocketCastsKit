@@ -28,5 +28,5 @@ enum RequestOption {
 internal typealias completion<T> = ((Result<T>) -> Void)
 
 protocol NetworkManagerProtocol {
-    func makeRequest(url: URL, options: [RequestOption], method: MethodType, completion: @escaping completion<Data>)
+    func makeRequest(url: URL, options: [RequestOption], method: MethodType, completion: @escaping completion<(Data, HTTPURLResponse)>)
 }

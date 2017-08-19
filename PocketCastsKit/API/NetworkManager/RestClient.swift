@@ -25,7 +25,7 @@ struct RestClient: RestProtocol {
         self.manager = manager
     }
 
-    func get(path: String, options: [RequestOption] = [], completion: @escaping ((Result<Data>) -> Void)) {
+    func get(path: String, options: [RequestOption] = [], completion: @escaping ((Result<(Data, HTTPURLResponse)>) -> Void)) {
         guard let url = URL(string: path, relativeTo: baseURL)?.absoluteURL else {
             completion(Result.error(RestClientErrors.pathNotValid(path: path)))
             
@@ -34,7 +34,7 @@ struct RestClient: RestProtocol {
         manager.makeRequest(url: url, options: options, method: .GET, completion: completion)
     }
     
-    func post(path: String, options: [RequestOption] = [], completion: @escaping ((Result<Data>) -> Void)) {
+    func post(path: String, options: [RequestOption] = [], completion: @escaping ((Result<(Data, HTTPURLResponse)>) -> Void)) {
         guard let url = URL(string: path, relativeTo: baseURL)?.absoluteURL else {
             completion(Result.error(RestClientErrors.pathNotValid(path: path)))
             
