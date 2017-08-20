@@ -25,4 +25,5 @@ protocol PCKClientProtocol {
     func getStarredEpisodes(completion: @escaping completion<[PCKEpisode]>)
     // MARK: - Episode Actions
     func setStarred(for episode: UUID, podcast: UUID, starred: Bool, completion: @escaping completion<Bool>)
+    func setPlayingStatus(for episode: UUID, podcast: UUID, status: PlayingStatus, completion: @escaping completion<Bool>)
 }

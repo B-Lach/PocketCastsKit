@@ -281,6 +281,66 @@ extension PCKClientTests {
 
 // MARK: - Episode action tests
 extension PCKClientTests {
+    func testUpdatePlayingStatusCheckProperties() {
+        let url = URL(string: baseURLString + "/web/episodes/update_episode_position.json")!
+        let uuidP = UUID(uuidString: "f803fde0-7b18-0132-e4c4-5f4c86fd3263")!
+        let uuidE = UUID(uuidString: "151a34fa-63cc-4bb7-9476-bcbc3e1dd640")!
+        let status = PlayingStatus.playing
+        let data = "podcast_uuid=\(uuidP.uuidString)&playing_status=\(status.rawValue)&uuid=\(uuidE.uuidString)"
+            .addingPercentEncoding(withAllowedCharacters: .urlEncoded)!
+            .data(using: .utf8)!
+        
+        api.setPlayingStatus(for: uuidE, podcast: uuidP, status: status) { (_) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+
+        XCTAssertEqual(request.httpBody, data)
+        XCTAssertEqual(request.url, url)
+        
+        wait()
+    }
+    
+    func testUpdatePlayingStatusErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuidP = UUID(uuidString: "f803fde0-7b18-0132-e4c4-5f4c86fd3263")!
+        let uuidE = UUID(uuidString: "151a34fa-63cc-4bb7-9476-bcbc3e1dd640")!
+        let status = PlayingStatus.playing
+        
+        buildNewMock(data: TestHelper.TestData.setStarredErrorResponseData, response: response, error: nil)
+        
+        api.setPlayingStatus(for: uuidE, podcast: uuidP, status: status) { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testUpdatePlayingStatusSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuidP = UUID(uuidString: "f803fde0-7b18-0132-e4c4-5f4c86fd3263")!
+        let uuidE = UUID(uuidString: "151a34fa-63cc-4bb7-9476-bcbc3e1dd640")!
+        let status = PlayingStatus.playing
+        
+        buildNewMock(data: TestHelper.TestData.setStarredSuccessResponseData, response: response, error: nil)
+        
+        api.setPlayingStatus(for: uuidE, podcast: uuidP, status: status) { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
     func testUpdateStarredCheckProperties() {
         let url = URL(string: baseURLString + "/web/episodes/update_episode_star.json")!
         let uuidP = UUID(uuidString: "f803fde0-7b18-0132-e4c4-5f4c86fd3263")!
@@ -293,7 +353,7 @@ extension PCKClientTests {
             self.expec.fulfill()
         }
         let request = getRequest()!
-
+        
         XCTAssertEqual(request.httpBody, data)
         XCTAssertEqual(request.url, url)
         

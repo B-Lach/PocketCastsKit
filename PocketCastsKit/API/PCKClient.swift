@@ -29,7 +29,7 @@ private struct EpisodeContainer: Decodable {
 private struct PodcastContainer: Decodable {
     let podcasts: [PCKPodcast]
 }
-private struct StarredContainer: Decodable {
+private struct ResultContainer: Decodable {
     let status: String
 }
 
@@ -74,6 +74,28 @@ extension PCKClient {
 
 
 extension PCKClient: PCKClientProtocol {
+    func setPlayingStatus(for episode: UUID, podcast: UUID, status: PlayingStatus, completion: @escaping completion<Bool>) {
+        guard let data = parseBodyDictionary(dict: [
+            "playing_status": "\(status.rawValue)",
+            "uuid": episode.uuidString,
+            "podcast_uuid": podcast.uuidString
+            ]) else {
+                completion(Result.error(PCKClientError.bodyDataBuildingFailed))
+                return
+        }
+        let option = RequestOption.bodyData(data: data)
+        client.post(path: "/web/episodes/update_episode_position.json", options: [option]) { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+                if let container = JSONParser.shared.decode(data, type: ResultContainer.self) {
+                    let result: Result = container.status == "ok" ? .success(true) : .error(PCKClientError.updateStarredFailed)
+                    completion(result)
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
     func setStarred(for episode: UUID, podcast: UUID, starred: Bool, completion: @escaping ((Result<Bool>) -> Void)) {
         guard let data = parseBodyDictionary(dict: [
             "starred" : (starred) ? "1" : "0",
@@ -86,7 +108,7 @@ extension PCKClient: PCKClientProtocol {
         
         client.post(path: "/web/episodes/update_episode_star.json", options: [option]) { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
-                if let container = JSONParser.shared.decode(data, type: StarredContainer.self) {
+                if let container = JSONParser.shared.decode(data, type: ResultContainer.self) {
                     let result: Result = container.status == "ok" ? .success(true) : .error(PCKClientError.updateStarredFailed)
                     completion(result)
                 } else {
