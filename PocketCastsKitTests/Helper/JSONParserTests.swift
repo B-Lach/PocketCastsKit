@@ -10,17 +10,38 @@ import XCTest
 
 @testable import PocketCastsKit
 
-class JSONParserTests: XCTestCase {
-    let id = 5810
-    let uuid = UUID(uuidString: "00414e50-2610-012e-05ba-00163e1b201c")!
-    let url = URL(string: "https://ninjalooter.de")!
-    let title = "Ninjalooter.de"
-    let desc =  "Der Podcast der Ninjalooter befasst sich mit Spielen jeglicher Art. Insbesondere MMOs, Beta-Eindrücke und PC-Rollen- und Strategiespiele stehen auf der Debattierliste."
-    let thumbnail = URL(string: "http://ninjalooter.de/blog/wp-content/uploads/NinjaCast_Logo.jpg")!
-    let author = "Ninjalooter.de"
-    let sortOrder = 3
-    
+class JSONParserTests: XCTestCase {}
+
+// MARK: - JSON encoding
+extension JSONParserTests {
+    func testValidJSONEncoding() {
+        let dict: [String: Any] = ["foo": "bar","int": 3023]
+        
+        guard let data = JSONParser.shared.encode(dictionary: dict) else {
+            XCTFail()
+            return
+        }
+        guard let resDict = try! JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(resDict["foo"] as? String, "bar")
+        XCTAssertEqual(resDict["int"] as? Int, 3023)
+    }
+}
+// MARK: - Object decoding
+extension JSONParserTests {
     func testValidObjectDecoding() {
+        let id = 5810
+        let uuid = UUID(uuidString: "00414e50-2610-012e-05ba-00163e1b201c")!
+        let url = URL(string: "https://ninjalooter.de")!
+        let title = "Ninjalooter.de"
+        let desc =  "Der Podcast der Ninjalooter befasst sich mit Spielen jeglicher Art. Insbesondere MMOs, Beta-Eindrücke und PC-Rollen- und Strategiespiele stehen auf der Debattierliste."
+        let thumbnail = URL(string: "http://ninjalooter.de/blog/wp-content/uploads/NinjaCast_Logo.jpg")!
+        let author = "Ninjalooter.de"
+        let sortOrder = 3
+        
         guard let podcast = JSONParser.shared.decode(TestHelper.TestData.podcastDataWithAuthor, type: PCKPodcast.self) else {
             XCTFail()
             return

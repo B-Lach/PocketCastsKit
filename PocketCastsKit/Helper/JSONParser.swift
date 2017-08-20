@@ -41,3 +41,9 @@ extension JSONParser {
         return object
     }
 }
+
+extension JSONParser {
+    func encode(dictionary: [String: Any]) -> Data? {
+        return try? JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted)
+    }
+}
