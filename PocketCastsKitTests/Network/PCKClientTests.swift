@@ -278,3 +278,63 @@ extension PCKClientTests {
         wait()
     }
 }
+
+// MARK: - Episode action tests
+extension PCKClientTests {
+    func testUpdateStarredCheckProperties() {
+        let url = URL(string: baseURLString + "/web/episodes/update_episode_star.json")!
+        let uuidP = UUID(uuidString: "f803fde0-7b18-0132-e4c4-5f4c86fd3263")!
+        let uuidE = UUID(uuidString: "151a34fa-63cc-4bb7-9476-bcbc3e1dd640")!
+        let data = "podcast_uuid=\(uuidP.uuidString)&starred=1&uuid=\(uuidE.uuidString)"
+            .addingPercentEncoding(withAllowedCharacters: .urlEncoded)!
+            .data(using: .utf8)!
+        
+        api.setStarred(for: uuidE, podcast: uuidP, starred: true) { (_) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+
+        XCTAssertEqual(request.httpBody, data)
+        XCTAssertEqual(request.url, url)
+        
+        wait()
+    }
+    
+    func testUpdateStarredErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuidP = UUID(uuidString: "f803fde0-7b18-0132-e4c4-5f4c86fd3263")!
+        let uuidE = UUID(uuidString: "151a34fa-63cc-4bb7-9476-bcbc3e1dd640")!
+        
+        buildNewMock(data: TestHelper.TestData.setStarredErrorResponseData, response: response, error: nil)
+        
+        api.setStarred(for: uuidE, podcast: uuidP, starred: true) { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testUpdateStarredSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuidP = UUID(uuidString: "f803fde0-7b18-0132-e4c4-5f4c86fd3263")!
+        let uuidE = UUID(uuidString: "151a34fa-63cc-4bb7-9476-bcbc3e1dd640")!
+        
+        buildNewMock(data: TestHelper.TestData.setStarredSuccessResponseData, response: response, error: nil)
+        
+        api.setStarred(for: uuidE, podcast: uuidP, starred: true) { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+}

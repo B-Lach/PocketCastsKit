@@ -19,6 +19,7 @@ public enum PCKClientError: Error {
     case bodyDataBuildingFailed
     case invalidResponse(data: Data?)
     case invalidCredentials
+    case updateStarredFailed
 }
 
 private struct EpisodeContainer: Decodable {
@@ -27,6 +28,9 @@ private struct EpisodeContainer: Decodable {
 
 private struct PodcastContainer: Decodable {
     let podcasts: [PCKPodcast]
+}
+private struct StarredContainer: Decodable {
+    let status: String
 }
 
 public struct PCKClient {
@@ -70,6 +74,28 @@ extension PCKClient {
 
 
 extension PCKClient: PCKClientProtocol {
+    func setStarred(for episode: UUID, podcast: UUID, starred: Bool, completion: @escaping ((Result<Bool>) -> Void)) {
+        guard let data = parseBodyDictionary(dict: [
+            "starred" : (starred) ? "1" : "0",
+            "podcast_uuid": podcast.uuidString,
+            "uuid": episode.uuidString]) else {
+                completion(Result.error(PCKClientError.bodyDataBuildingFailed))
+                return
+        }
+        let option = RequestOption.bodyData(data: data)
+        
+        client.post(path: "/web/episodes/update_episode_star.json", options: [option]) { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+                if let container = JSONParser.shared.decode(data, type: StarredContainer.self) {
+                    let result: Result = container.status == "ok" ? .success(true) : .error(PCKClientError.updateStarredFailed)
+                    completion(result)
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }    
+    
     // MARK: - Authentication
     public func authenticate(username: String, password: String, completion: @escaping ((Result<Bool>) -> Void)) {
         guard let data = parseBodyDictionary(dict: ["[user]email": username,"[user]password": password]) else {
@@ -107,7 +133,6 @@ extension PCKClient: PCKClientProtocol {
         client.post(path: "/web/episodes/starred_episodes.json") { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: EpisodeContainer.self) {
-                    print("starred: ", container)
                     completion(Result.success(container.episodes))
                 } else {
                     completion(Result.error(PCKClientError.invalidResponse(data: data)))
@@ -132,7 +157,6 @@ extension PCKClient: PCKClientProtocol {
         client.post(path: "/web/episodes/in_progress_episodes.json") { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: EpisodeContainer.self) {
-                    print("in progress: ", container)
                     completion(Result.success(container.episodes))
                 } else {
                     completion(Result.error(PCKClientError.invalidResponse(data: data)))

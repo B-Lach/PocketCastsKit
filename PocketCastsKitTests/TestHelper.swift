@@ -15,6 +15,29 @@ struct TestHelper {
 // MARK: - Model test data
 extension TestHelper {
     struct TestData {
+        // Updated starred status data
+        static var setStarredSuccessResponseData: Data {
+            return """
+            {
+                "status": "ok",
+                "token": null,
+                "copyright": "Shifty Jelly - Pocket Casts",
+                "result": {}
+            }
+            """.data(using: .utf8)!
+        }
+        
+        static var setStarredErrorResponseData: Data {
+            return """
+            {
+                "status": "error",
+                "token": null,
+                "copyright": "Shifty Jelly - Pocket Casts",
+                "result": null
+            }
+            """.data(using: .utf8)!
+        }
+        // Starred Episodes data
         static var starredEpisodesData: Data {
             return """
             {
