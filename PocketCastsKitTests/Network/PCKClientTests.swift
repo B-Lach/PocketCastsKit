@@ -281,6 +281,69 @@ extension PCKClientTests {
 
 // MARK: - Episode action tests
 extension PCKClientTests {
+    func testUpdatePlayingPositionCheckProperties() {
+        let url = URL(string: baseURLString + "/web/episodes/update_episode_position.json")!
+        let uuidP = UUID(uuidString: "f803fde0-7b18-0132-e4c4-5f4c86fd3263")!
+        let uuidE = UUID(uuidString: "151a34fa-63cc-4bb7-9476-bcbc3e1dd640")!
+        let position = 3000
+        
+        api.setPlayingPosition(for: uuidE, podcast: uuidP, position: position) { (_) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+        
+        let dict = try! JSONSerialization.jsonObject(with: request.httpBody!) as? [String: Any]
+        
+        XCTAssertNotNil(dict)
+        XCTAssertEqual(dict!["uuid"] as? String, uuidE.uuidString)
+        XCTAssertEqual(dict!["podcast_uuid"] as? String, uuidP.uuidString)
+        XCTAssertEqual(dict!["played_up_to"] as? Int, position)
+        XCTAssertEqual(dict!["playing_status"] as? Int, PlayingStatus.playing.rawValue)
+        XCTAssertEqual(request.url, url)
+        
+        wait()
+    }
+    
+    func testUpdatePlayingPositionErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuidP = UUID(uuidString: "f803fde0-7b18-0132-e4c4-5f4c86fd3263")!
+        let uuidE = UUID(uuidString: "151a34fa-63cc-4bb7-9476-bcbc3e1dd640")!
+        let position = 3000
+        
+        buildNewMock(data: TestHelper.TestData.setStarredErrorResponseData, response: response, error: nil)
+        
+        api.setPlayingPosition(for: uuidE, podcast: uuidP, position: position) { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testUpdatePlayingPositionSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuidP = UUID(uuidString: "f803fde0-7b18-0132-e4c4-5f4c86fd3263")!
+        let uuidE = UUID(uuidString: "151a34fa-63cc-4bb7-9476-bcbc3e1dd640")!
+        let position = 3000
+        
+        buildNewMock(data: TestHelper.TestData.setStarredSuccessResponseData, response: response, error: nil)
+        
+        api.setPlayingPosition(for: uuidE, podcast: uuidP, position: position) { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
     func testUpdatePlayingStatusCheckProperties() {
         let url = URL(string: baseURLString + "/web/episodes/update_episode_position.json")!
         let uuidP = UUID(uuidString: "f803fde0-7b18-0132-e4c4-5f4c86fd3263")!

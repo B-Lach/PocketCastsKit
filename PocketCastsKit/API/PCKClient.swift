@@ -20,6 +20,7 @@ public enum PCKClientError: Error {
     case invalidResponse(data: Data?)
     case invalidCredentials
     case updateStarredFailed
+    case updatePositionFailed
 }
 
 private struct EpisodeContainer: Decodable {
@@ -34,7 +35,7 @@ private struct ResultContainer: Decodable {
 }
 
 public struct PCKClient {
-    static let shared = PCKClient()
+    public static let shared = PCKClient()
     
     private let client: RestClient
     
@@ -74,7 +75,31 @@ extension PCKClient {
 
 
 extension PCKClient: PCKClientProtocol {
-    func setPlayingStatus(for episode: UUID, podcast: UUID, status: PlayingStatus, completion: @escaping completion<Bool>) {
+    public func setPlayingPosition(for episode: UUID, podcast: UUID, position: Int, completion: @escaping ((Result<Bool>) -> Void)) {
+        guard let data = JSONParser.shared.encode(dictionary: [
+            "uuid": episode.uuidString,
+            "podcast_uuid": podcast.uuidString,
+            "playing_status": 2,
+            "played_up_to": position
+            ]) else {
+                completion(Result.error(PCKClientError.bodyDataBuildingFailed))
+                return
+        }
+        let body = RequestOption.bodyData(data: data)
+        let header = RequestOption.headerField([("Content-Type", "application/json")])
+        client.post(path: "/web/episodes/update_episode_position.json", options: [body, header]) { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+                if let container = JSONParser.shared.decode(data, type: ResultContainer.self) {
+                    let result: Result = container.status == "ok" ? .success(true) : .error(PCKClientError.updatePositionFailed)
+                    completion(result)
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
+    public func setPlayingStatus(for episode: UUID, podcast: UUID, status: PlayingStatus, completion: @escaping ((Result<Bool>) -> Void)) {
         guard let data = parseBodyDictionary(dict: [
             "playing_status": "\(status.rawValue)",
             "uuid": episode.uuidString,
@@ -96,7 +121,7 @@ extension PCKClient: PCKClientProtocol {
         }
     }
     
-    func setStarred(for episode: UUID, podcast: UUID, starred: Bool, completion: @escaping ((Result<Bool>) -> Void)) {
+    public func setStarred(for episode: UUID, podcast: UUID, starred: Bool, completion: @escaping ((Result<Bool>) -> Void)) {
         guard let data = parseBodyDictionary(dict: [
             "starred" : (starred) ? "1" : "0",
             "podcast_uuid": podcast.uuidString,
@@ -151,7 +176,7 @@ extension PCKClient: PCKClientProtocol {
     }
     
     // MARK: - User Podcast feeds
-    func getStarredEpisodes(completion: @escaping ((Result<[PCKEpisode]>) -> Void)) {
+    public func getStarredEpisodes(completion: @escaping ((Result<[PCKEpisode]>) -> Void)) {
         client.post(path: "/web/episodes/starred_episodes.json") { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: EpisodeContainer.self) {
@@ -163,7 +188,7 @@ extension PCKClient: PCKClientProtocol {
         }
     }
     
-    func getNewEpisodes(completion: @escaping ((Result<[PCKEpisode]>) -> Void)) {
+    public func getNewEpisodes(completion: @escaping ((Result<[PCKEpisode]>) -> Void)) {
         client.post(path: "/web/episodes/new_releases_episodes.json") { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: EpisodeContainer.self) {
@@ -175,7 +200,7 @@ extension PCKClient: PCKClientProtocol {
         }
     }
     
-    func getEpisodesInProgress(completion: @escaping ((Result<[PCKEpisode]>) -> Void)) {
+    public func getEpisodesInProgress(completion: @escaping ((Result<[PCKEpisode]>) -> Void)) {
         client.post(path: "/web/episodes/in_progress_episodes.json") { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: EpisodeContainer.self) {
@@ -187,7 +212,7 @@ extension PCKClient: PCKClientProtocol {
         }
     }
     
-    func getSubscriptions(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
+    public func getSubscriptions(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
         client.post(path: "/web/podcasts/all.json") { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: PodcastContainer.self) {
