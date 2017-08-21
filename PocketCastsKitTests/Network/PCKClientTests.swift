@@ -281,6 +281,42 @@ extension PCKClientTests {
 
 // MARK: - Episode action tests
 extension PCKClientTests {
+    func testGetShowNotesCheckProperties() {
+        let url = URL(string: baseURLString + "/web/episodes/show_notes.json")!
+        let uuid = UUID(uuidString: "151a34fa-63cc-4bb7-9476-bcbc3e1dd640")!
+        
+        api.getShowNotes(for: uuid) { (_) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+        
+        let dict = try! JSONSerialization.jsonObject(with: request.httpBody!) as? [String: Any]
+        
+        XCTAssertNotNil(dict)
+        XCTAssertEqual(dict!["uuid"] as? String, uuid.uuidString)
+        XCTAssertEqual(request.url, url)
+        
+        wait()
+    }
+    
+    func testGetShowNotesSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuid = UUID(uuidString: "151a34fa-63cc-4bb7-9476-bcbc3e1dd640")!
+        
+        buildNewMock(data: TestHelper.TestData.getShowNotesResponseData, response: response, error: nil)
+        
+        api.getShowNotes(for: uuid) { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            case .success(let notes):
+                XCTAssertEqual(notes, "This is a test message")
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
     func testUpdatePlayingPositionCheckProperties() {
         let url = URL(string: baseURLString + "/web/episodes/update_episode_position.json")!
         let uuidP = UUID(uuidString: "f803fde0-7b18-0132-e4c4-5f4c86fd3263")!

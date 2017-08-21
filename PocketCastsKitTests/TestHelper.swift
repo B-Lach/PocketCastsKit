@@ -50,6 +50,14 @@ extension TestHelper {
             }
             """.data(using: .utf8)!
         }
+        // Show Notes data
+        static var getShowNotesResponseData: Data {
+            return """
+            {
+            "show_notes": "This is a test message"
+            }
+            """.data(using: .utf8)!
+        }
         // Updated starred status data
         static var setStarredSuccessResponseData: Data {
             return """
