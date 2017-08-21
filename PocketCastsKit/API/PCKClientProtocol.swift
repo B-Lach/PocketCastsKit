@@ -49,4 +49,5 @@ protocol PCKClientProtocol {
     func getCategoriesAndCountries(completion: @escaping completion<(categories: [PCKCategory], countries: [PCKCountry])>)
     func getNetworks(completion: @escaping completion<[PCKNetwork]>)
     func getNetworkGroups(networkId: Int, completion: @escaping completion<[PCKNetworkGroup]>)
+    func getCategoryContent(categoryId: Int, countryCode: String, completion: @escaping completion<[PCKCategoryContent]>)
 }

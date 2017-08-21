@@ -284,6 +284,23 @@ extension TestHelper {
 
         }
         
+        static var categoryContentSuccessData: Data {
+            return """
+            {
+                "status": "ok",
+                "result": [
+                {
+                    "author": "Deutschlandfunk Nova",
+                    "title": "Eine Stunde History  - Deutschlandfunk Nova",
+                    "collection_id": 1111594074,
+                    "description": "Karl der Große, die Nürnberger Prozesse, Boat People und Flüchtlinge: Was hat Gestern mit Heute zu tun? Wie Vergangenheit und Zukunft miteinander zusammenhängen, erfahrt ihr in Eine Stunde History.",
+                    "thumbnail_url": "http://is2.mzstatic.com/image/thumb/Podcasts111/v4/fe/90/f3/fe90f38f-7da6-5378-d267-f8fd542dca67/mza_3728404983197295416.jpg/170x170bb-85.jpg",
+                    "uuid": "0e0d6bf0-f610-0133-9c6b-59d98c6b72b8"
+                }]
+            }
+            """.data(using: .utf8)!
+        }
+        
         static var networkGroupsSuccessData: Data {
             return """
             {
