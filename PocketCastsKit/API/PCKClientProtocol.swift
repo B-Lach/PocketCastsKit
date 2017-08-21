@@ -14,6 +14,11 @@ public enum PlayingStatus: Int {
     case played = 3
 }
 
+public enum SortOrder: Int {
+    case ascending = 2
+    case descending = 3
+}
+
 protocol PCKClientProtocol {
     // MARK: - Authentication
     func authenticate(username: String, password: String, completion: @escaping completion<Bool>)
@@ -32,6 +37,9 @@ protocol PCKClientProtocol {
     // MARK: - Podcast Actions
     func subscribe(podcast: UUID, completion: @escaping completion<Bool>)
     func unsubscribe(podcast: UUID, completion: @escaping completion<Bool>)
+    func getEpisodes(for podcast: UUID,
+                     page: Int, order: SortOrder,
+                     completion: @escaping completion<(episodes:[PCKEpisode], order: SortOrder, nextPage: Int)>)
     // MARK: - Global Actions
     func getTop100(completion: @escaping completion<[PCKPodcast]>)
     func getFeatured(completion: @escaping completion<[PCKPodcast]>)

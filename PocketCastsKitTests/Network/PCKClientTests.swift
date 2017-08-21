@@ -557,6 +557,64 @@ extension PCKClientTests {
 
 // MARK: - Podcast action tests
 extension PCKClientTests {
+    func testGetEpisodesCheckProperties() {
+        let uuid = UUID(uuidString: "9a297c90-4a11-0135-902b-63f4b61a9224")!
+        let url = URL(string: baseURLString + "/web/episodes/find_by_podcast.json")!
+        
+        let data = "page=1&sort=3&uuid=\(uuid.uuidString)"
+            .addingPercentEncoding(withAllowedCharacters: .urlEncoded)!
+            .data(using: .utf8)!
+        
+        api.getEpisodes(for: uuid) { (result) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+
+        XCTAssertEqual(request.httpBody, data)
+        XCTAssertEqual(request.url, url)
+        XCTAssertEqual(request.httpMethod, MethodType.POST.rawValue)
+        
+        wait()
+    }
+    
+    func testGetEpisodesErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuid = UUID(uuidString: "9a297c90-4a11-0135-902b-63f4b61a9224")!
+        
+        buildNewMock(data: TestHelper.TestData.setStarredErrorResponseData, response: response, error: nil)
+        
+        api.getEpisodes(for: uuid) { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetEpisodesSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuid = UUID(uuidString: "9a297c90-4a11-0135-902b-63f4b61a9224")!
+        
+        buildNewMock(data: TestHelper.TestData.getFetchEpisodesSuccessResponseData, response: response, error: nil)
+        
+        api.getEpisodes(for: uuid) { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            case .success(let info):
+                XCTAssertEqual(info.episodes.count, 1)
+                XCTAssertEqual(info.order, SortOrder.descending)
+                XCTAssertEqual(info.nextPage, 2)
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
     func testUnsubscribeCheckProperties() {
         let uuid = UUID(uuidString: "9a297c90-4a11-0135-902b-63f4b61a9224")!
         let url = URL(string: baseURLString + "/web/podcasts/unsubscribe.json")!

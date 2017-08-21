@@ -28,6 +28,7 @@ public enum PCKClientError: Error {
 
 private struct EpisodeContainer: Decodable {
     let episodes: [PCKEpisode]
+    let total: Int?
 }
 
 private struct PodcastContainer: Decodable {
@@ -37,9 +38,14 @@ private struct ResultContainer: Decodable {
     let status: String
 }
 
-private struct GlobalContainer: Decodable {
+private struct GlobalPodcastContainer: Decodable {
     let status: String
     let result: PodcastContainer
+}
+
+private struct GlobalEpisodeContainer: Decodable {
+    let status: String
+    let result: EpisodeContainer
 }
 
 private struct showNotesContainer: Decodable {
@@ -99,7 +105,7 @@ extension PCKClient: PCKClientProtocol {
     public func getTrending(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
         globalClient.get(path: "/discover/json/trending.json") { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
-                if let container = JSONParser.shared.decode(data, type: GlobalContainer.self) {
+                if let container = JSONParser.shared.decode(data, type: GlobalPodcastContainer.self) {
                     if !(container.status == "ok") {
                         completion(Result.error(PCKClientError.invalidResponse(data: data)))
                         return
@@ -116,7 +122,7 @@ extension PCKClient: PCKClientProtocol {
     public func getFeatured(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
         globalClient.get(path: "/discover/json/featured.json") { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
-                if let container = JSONParser.shared.decode(data, type: GlobalContainer.self) {
+                if let container = JSONParser.shared.decode(data, type: GlobalPodcastContainer.self) {
                     if !(container.status == "ok") {
                         completion(Result.error(PCKClientError.invalidResponse(data: data)))
                         return
@@ -132,7 +138,7 @@ extension PCKClient: PCKClientProtocol {
     public func getTop100(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
         globalClient.get(path: "/discover/json/popular_world.json") { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
-                if let container = JSONParser.shared.decode(data, type: GlobalContainer.self) {
+                if let container = JSONParser.shared.decode(data, type: GlobalPodcastContainer.self) {
                     if !(container.status == "ok") {
                         completion(Result.error(PCKClientError.invalidResponse(data: data)))
                         return
@@ -146,6 +152,36 @@ extension PCKClient: PCKClientProtocol {
     }
     
     // MARK: - Podcast Interaction
+    public func getEpisodes(for podcast: UUID,
+                            page: Int = 1,
+                            order: SortOrder = .descending,
+                            completion: @escaping ((Result<(episodes:[PCKEpisode], order: SortOrder, nextPage: Int)>) -> Void)) {
+        guard let data = parseBodyDictionary(dict: [
+            "uuid": podcast.uuidString,
+            "page": "\(page)",
+            "sort": "\(order.rawValue)"
+            ]) else {
+                completion(Result.error(PCKClientError.bodyDataBuildingFailed))
+                return
+        }
+        let option = RequestOption.bodyData(data: data)
+        client.post(path: "/web/episodes/find_by_podcast.json", options: [option]) { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+                if let container = JSONParser.shared.decode(data, type: GlobalEpisodeContainer.self) {
+                    guard let total = container.result.total else {
+                        completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                        return
+                    }
+                    let hasMore = total > container.result.episodes.count
+                    let next = hasMore ? page+1 : page
+                    completion(Result.success((episodes: container.result.episodes, order: order, nextPage: next)))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
     public func unsubscribe(podcast: UUID, completion: @escaping ((Result<Bool>) -> Void)) {
         guard let data = parseBodyDictionary(dict: [
             "uuid": podcast.uuidString

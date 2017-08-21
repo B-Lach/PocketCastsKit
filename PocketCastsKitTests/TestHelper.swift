@@ -50,7 +50,35 @@ extension TestHelper {
             }
             """.data(using: .utf8)!
         }
-        // Get Episode data
+        
+        // Get all episodes of podcast data
+        static var getFetchEpisodesSuccessResponseData: Data {
+            return """
+            {
+                "status": "ok",
+                "result": {
+                    "episodes": [
+                    {
+                        "id": null,
+                        "uuid": "c5af9eb7-b350-44e7-8d30-5c444aaa43c6",
+                        "url": "https://tracking.feedpress.it/link/13440/6400758/cre214-satellitentelefonie.m4a",
+                        "published_at": "2017-08-03 16:51:04",
+                        "duration": "9102",
+                        "file_type": "audio/x-m4a",
+                        "title": "CRE214 Satellitentelefonie",
+                        "size": 57477027,
+                        "playing_status": 2,
+                        "played_up_to": 1676,
+                        "is_deleted": false,
+                        "starred": false,
+                        "is_video": false
+                    }],
+                    "total": 257
+                }
+            }
+            """.data(using: .utf8)!
+        }
+            // Get Episode data
         static var getFetchEpisodeErrorResponseData: Data {
             return """
             {
