@@ -22,6 +22,8 @@
 		ED76DE101F464C9900F8CB70 /* RestClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DE0F1F464C9900F8CB70 /* RestClientTests.swift */; };
 		ED9DD3841F4B3CFA00211328 /* PCKCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9DD3831F4B3CFA00211328 /* PCKCountry.swift */; };
 		ED9DD3861F4B3D5A00211328 /* PCKCountryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9DD3851F4B3D5A00211328 /* PCKCountryTests.swift */; };
+		ED9DD3881F4B402700211328 /* PCKCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9DD3871F4B402700211328 /* PCKCategory.swift */; };
+		ED9DD38A1F4B410000211328 /* PCKCategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9DD3891F4B410000211328 /* PCKCategoryTests.swift */; };
 		EDA6C9C51F467581007617B5 /* PCKClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9C41F467581007617B5 /* PCKClientProtocol.swift */; };
 		EDA6C9C71F4676AF007617B5 /* PCKClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9C61F4676AF007617B5 /* PCKClient.swift */; };
 		EDA6C9C91F46FFED007617B5 /* PCKClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9C81F46FFED007617B5 /* PCKClientTests.swift */; };
@@ -59,6 +61,8 @@
 		ED76DE0F1F464C9900F8CB70 /* RestClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClientTests.swift; sourceTree = "<group>"; };
 		ED9DD3831F4B3CFA00211328 /* PCKCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCountry.swift; sourceTree = "<group>"; };
 		ED9DD3851F4B3D5A00211328 /* PCKCountryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCountryTests.swift; sourceTree = "<group>"; };
+		ED9DD3871F4B402700211328 /* PCKCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCategory.swift; sourceTree = "<group>"; };
+		ED9DD3891F4B410000211328 /* PCKCategoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCategoryTests.swift; sourceTree = "<group>"; };
 		EDA6C9C41F467581007617B5 /* PCKClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKClientProtocol.swift; sourceTree = "<group>"; };
 		EDA6C9C61F4676AF007617B5 /* PCKClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKClient.swift; sourceTree = "<group>"; };
 		EDA6C9C81F46FFED007617B5 /* PCKClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKClientTests.swift; sourceTree = "<group>"; };
@@ -106,6 +110,7 @@
 				ED76DDF21F45CDF800F8CB70 /* PCKPodcast.swift */,
 				ED76DDF41F45CEB900F8CB70 /* PCKEpisode.swift */,
 				ED9DD3831F4B3CFA00211328 /* PCKCountry.swift */,
+				ED9DD3871F4B402700211328 /* PCKCategory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -116,6 +121,7 @@
 				ED76DDF71F45CF5E00F8CB70 /* PCKPodcastTests.swift */,
 				ED76DDFB1F45D8C100F8CB70 /* PCKEpisodeTests.swift */,
 				ED9DD3851F4B3D5A00211328 /* PCKCountryTests.swift */,
+				ED9DD3891F4B410000211328 /* PCKCategoryTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -338,6 +344,7 @@
 				ED76DDF01F45CD5200F8CB70 /* JSONParser.swift in Sources */,
 				EDA6C9C51F467581007617B5 /* PCKClientProtocol.swift in Sources */,
 				EDA6C9CD1F4781F3007617B5 /* URLSessionMock.swift in Sources */,
+				ED9DD3881F4B402700211328 /* PCKCategory.swift in Sources */,
 				ED76DE041F4638B000F8CB70 /* NetworkManagerProtocol.swift in Sources */,
 				ED9DD3841F4B3CFA00211328 /* PCKCountry.swift in Sources */,
 				ED76DE0B1F46481300F8CB70 /* RestProtocol.swift in Sources */,
@@ -350,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED9DD38A1F4B410000211328 /* PCKCategoryTests.swift in Sources */,
 				ED76DDFA1F45D36800F8CB70 /* TestHelper.swift in Sources */,
 				ED76DE101F464C9900F8CB70 /* RestClientTests.swift in Sources */,
 				ED76DDFF1F45E12900F8CB70 /* JSONParserTests.swift in Sources */,

@@ -264,6 +264,15 @@ extension TestHelper {
             """.data(using: .utf8)!
 
         }
+        // Category test data
+        static var categoryData: Data {
+            return """
+            {
+                "id": 15,
+                "name": "Technology"
+            }
+            """.data(using: .utf8)!
+        }
         // Country test data
         static var countryData: Data {
             return """
