@@ -33,4 +33,5 @@ protocol PCKClientProtocol {
     // MARK: - Global Actions
     func getTop100(completion: @escaping completion<[PCKPodcast]>)
     func getFeatured(completion: @escaping completion<[PCKPodcast]>)
+    func getTrending(completion: @escaping completion<[PCKPodcast]>)
 }

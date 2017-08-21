@@ -577,6 +577,53 @@ extension PCKClientTests {
 
 // MARK: Global action tests
 extension PCKClientTests {
+    func testGetTrendingCheckProperties() {
+        let url = URL(string: baseURLString + "/discover/json/trending.json")!
+        api.getTrending { (_) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+        
+        XCTAssertEqual(request.url, url)
+        XCTAssertEqual(request.httpMethod, MethodType.GET.rawValue)
+        
+        wait()
+    }
+    
+    func testGetTrendingErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.globalErrorResponseData, response: response, error: nil)
+        
+        api.getTrending { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetTrendingSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.globalSuccessResponseData, response: response, error: nil)
+        
+        api.getTrending { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
     func testGetFeaturedCheckProperties() {
         let url = URL(string: baseURLString + "/discover/json/featured.json")!
         api.getFeatured { (_) in

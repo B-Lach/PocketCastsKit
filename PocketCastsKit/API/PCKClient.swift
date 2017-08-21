@@ -87,6 +87,23 @@ extension PCKClient {
 
 extension PCKClient: PCKClientProtocol {
     // MARK: - Global Interaction
+    public func getTrending(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
+        globalClient.get(path: "/discover/json/trending.json") { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+                if let container = JSONParser.shared.decode(data, type: GlobalContainer.self) {
+                    if !(container.status == "ok") {
+                        completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                        return
+                    }
+                    completion(Result.success(container.result.podcasts))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
+    
     public func getFeatured(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
         globalClient.get(path: "/discover/json/featured.json") { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
