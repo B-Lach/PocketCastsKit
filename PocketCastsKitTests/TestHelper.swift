@@ -15,6 +15,7 @@ struct TestHelper {
 // MARK: - Model test data
 extension TestHelper {
     struct TestData {
+        
         // Global response data
         static var globalErrorResponseData: Data {
             return """
@@ -263,6 +264,16 @@ extension TestHelper {
             """.data(using: .utf8)!
 
         }
+        // Country test data
+        static var countryData: Data {
+            return """
+            {
+                "code": "de",
+                "name": "Germany"
+            }
+            """.data(using: .utf8)!
+        }
+        
         // Episode test data
         static var episideDataOptionalPresent: Data {
             return """
