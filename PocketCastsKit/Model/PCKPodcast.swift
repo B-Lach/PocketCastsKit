@@ -11,7 +11,7 @@ import Foundation
 public struct PCKPodcast {
     public let id: Int
     public let uuid: UUID
-    public let url: URL
+    public let url: URL?
     public let title: String
     public let category: String
     public let description: String
@@ -39,10 +39,10 @@ extension PCKPodcast: Decodable {
     
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        
+
         id = try values.decodeIfPresent(Int.self, forKey: .id) ?? -1
         uuid = try values.decode(UUID.self, forKey: .uuid)
-        url = try values.decode(URL.self, forKey: .url)
+        url = try? values.decode(URL.self, forKey: .url)
         title = try values.decode(String.self, forKey: .title)
         category = try values.decodeIfPresent(String.self, forKey: .category) ?? "undefined"
         description = try values.decode(String.self, forKey: .description)
