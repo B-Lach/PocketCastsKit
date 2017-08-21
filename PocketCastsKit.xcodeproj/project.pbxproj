@@ -26,6 +26,8 @@
 		ED9DD38A1F4B410000211328 /* PCKCategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9DD3891F4B410000211328 /* PCKCategoryTests.swift */; };
 		ED9DD38D1F4B4AC200211328 /* PCKNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9DD38C1F4B4AC200211328 /* PCKNetwork.swift */; };
 		ED9DD38F1F4B4B5100211328 /* PCKNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9DD38E1F4B4B5100211328 /* PCKNetworkTests.swift */; };
+		ED9DD3911F4B862800211328 /* PCKNetworkGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9DD3901F4B862800211328 /* PCKNetworkGroup.swift */; };
+		ED9DD3931F4B87DE00211328 /* PCKNetworkGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9DD3921F4B87DE00211328 /* PCKNetworkGroupTests.swift */; };
 		EDA6C9C51F467581007617B5 /* PCKClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9C41F467581007617B5 /* PCKClientProtocol.swift */; };
 		EDA6C9C71F4676AF007617B5 /* PCKClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9C61F4676AF007617B5 /* PCKClient.swift */; };
 		EDA6C9C91F46FFED007617B5 /* PCKClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9C81F46FFED007617B5 /* PCKClientTests.swift */; };
@@ -67,6 +69,8 @@
 		ED9DD3891F4B410000211328 /* PCKCategoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCategoryTests.swift; sourceTree = "<group>"; };
 		ED9DD38C1F4B4AC200211328 /* PCKNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKNetwork.swift; sourceTree = "<group>"; };
 		ED9DD38E1F4B4B5100211328 /* PCKNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKNetworkTests.swift; sourceTree = "<group>"; };
+		ED9DD3901F4B862800211328 /* PCKNetworkGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKNetworkGroup.swift; sourceTree = "<group>"; };
+		ED9DD3921F4B87DE00211328 /* PCKNetworkGroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKNetworkGroupTests.swift; sourceTree = "<group>"; };
 		EDA6C9C41F467581007617B5 /* PCKClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKClientProtocol.swift; sourceTree = "<group>"; };
 		EDA6C9C61F4676AF007617B5 /* PCKClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKClient.swift; sourceTree = "<group>"; };
 		EDA6C9C81F46FFED007617B5 /* PCKClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKClientTests.swift; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 				ED9DD3831F4B3CFA00211328 /* PCKCountry.swift */,
 				ED9DD3871F4B402700211328 /* PCKCategory.swift */,
 				ED9DD38C1F4B4AC200211328 /* PCKNetwork.swift */,
+				ED9DD3901F4B862800211328 /* PCKNetworkGroup.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -128,6 +133,7 @@
 				ED9DD3851F4B3D5A00211328 /* PCKCountryTests.swift */,
 				ED9DD3891F4B410000211328 /* PCKCategoryTests.swift */,
 				ED9DD38E1F4B4B5100211328 /* PCKNetworkTests.swift */,
+				ED9DD3921F4B87DE00211328 /* PCKNetworkGroupTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -347,6 +353,7 @@
 				ED76DE081F463B3500F8CB70 /* NetworkManager.swift in Sources */,
 				ED76DDF51F45CEB900F8CB70 /* PCKEpisode.swift in Sources */,
 				ED76DE061F46398500F8CB70 /* Result.swift in Sources */,
+				ED9DD3911F4B862800211328 /* PCKNetworkGroup.swift in Sources */,
 				ED76DDF01F45CD5200F8CB70 /* JSONParser.swift in Sources */,
 				EDA6C9C51F467581007617B5 /* PCKClientProtocol.swift in Sources */,
 				EDA6C9CD1F4781F3007617B5 /* URLSessionMock.swift in Sources */,
@@ -365,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED9DD38A1F4B410000211328 /* PCKCategoryTests.swift in Sources */,
+				ED9DD3931F4B87DE00211328 /* PCKNetworkGroupTests.swift in Sources */,
 				ED76DDFA1F45D36800F8CB70 /* TestHelper.swift in Sources */,
 				ED76DE101F464C9900F8CB70 /* RestClientTests.swift in Sources */,
 				ED76DDFF1F45E12900F8CB70 /* JSONParserTests.swift in Sources */,
