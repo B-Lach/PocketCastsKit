@@ -9,6 +9,7 @@
 import Foundation
 
 private let baseURLString = "https://play.pocketcasts.com"
+private let staticBaseURLString = "https://static.pocketcasts.com"
 
 // Defined CharacterSet matches urlencoded as needed
 extension CharacterSet {
@@ -27,6 +28,7 @@ public enum PCKClientError: Error {
 
 private struct EpisodeContainer: Decodable {
     let episodes: [PCKEpisode]
+    let total: Int?
 }
 
 private struct PodcastContainer: Decodable {
@@ -36,13 +38,38 @@ private struct ResultContainer: Decodable {
     let status: String
 }
 
+private struct GlobalPodcastContainer: Decodable {
+    let status: String
+    let result: PodcastContainer
+}
+
+private struct GlobalEpisodeContainer: Decodable {
+    let status: String
+    let result: EpisodeContainer
+}
+
+private struct showNotesContainer: Decodable {
+    let show_notes: String
+}
+
+private struct SingleEpisodeContainer: Decodable {
+    let episode: PCKEpisode
+}
+
+private struct SinglePodcastContainer: Decodable {
+    let podcast: PCKPodcast
+}
+
 public struct PCKClient {
     public static let shared = PCKClient()
     
     private let client: RestClient
+    private let globalClient: RestClient
     
-    internal init(client: RestClient = try! RestClient(baseURLString: baseURLString)) {
+    internal init(client: RestClient = try! RestClient(baseURLString: baseURLString),
+                  globalClient: RestClient = try! RestClient(baseURLString: staticBaseURLString)) {
         self.client = client
+        self.globalClient = globalClient
     }
 }
 
@@ -77,7 +104,125 @@ extension PCKClient {
 
 
 extension PCKClient: PCKClientProtocol {
+    // MARK: - Global Interaction
+    public func getTrending(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
+        globalClient.get(path: "/discover/json/trending.json") { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+                if let container = JSONParser.shared.decode(data, type: GlobalPodcastContainer.self) {
+                    if !(container.status == "ok") {
+                        completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                        return
+                    }
+                    completion(Result.success(container.result.podcasts))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
+    
+    public func getFeatured(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
+        globalClient.get(path: "/discover/json/featured.json") { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+                if let container = JSONParser.shared.decode(data, type: GlobalPodcastContainer.self) {
+                    if !(container.status == "ok") {
+                        completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                        return
+                    }
+                    completion(Result.success(container.result.podcasts))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
+    public func getTop100(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
+        globalClient.get(path: "/discover/json/popular_world.json") { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+                if let container = JSONParser.shared.decode(data, type: GlobalPodcastContainer.self) {
+                    if !(container.status == "ok") {
+                        completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                        return
+                    }
+                    completion(Result.success(container.result.podcasts))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
     // MARK: - Podcast Interaction
+    public func searchPodcasts(by string: String, completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
+        guard let data = parseBodyDictionary(dict: [
+            "term": string
+            ]) else {
+                completion(Result.error(PCKClientError.bodyDataBuildingFailed))
+                return
+        }
+        let option = RequestOption.bodyData(data: data)
+        client.post(path: "/web/podcasts/search.json", options: [option]) { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+                if let container = JSONParser.shared.decode(data, type: PodcastContainer.self) {
+                    completion(Result.success(container.podcasts))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
+    public func getPodcast(with uuid: UUID, completion: @escaping ((Result<PCKPodcast>) -> Void)) {
+        guard let data = parseBodyDictionary(dict: [
+            "uuid": uuid.uuidString
+            ]) else {
+                completion(Result.error(PCKClientError.bodyDataBuildingFailed))
+                return
+        }
+        let option = RequestOption.bodyData(data: data)
+        client.post(path: "/web/podcasts/podcast.json", options: [option]) { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+                if let container = JSONParser.shared.decode(data, type: SinglePodcastContainer.self) {
+                    completion(Result.success(container.podcast))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
+    public func getEpisodes(for podcast: UUID,
+                            page: Int = 1,
+                            order: SortOrder = .descending,
+                            completion: @escaping ((Result<(episodes:[PCKEpisode], order: SortOrder, nextPage: Int)>) -> Void)) {
+        guard let data = parseBodyDictionary(dict: [
+            "uuid": podcast.uuidString,
+            "page": "\(page)",
+            "sort": "\(order.rawValue)"
+            ]) else {
+                completion(Result.error(PCKClientError.bodyDataBuildingFailed))
+                return
+        }
+        let option = RequestOption.bodyData(data: data)
+        client.post(path: "/web/episodes/find_by_podcast.json", options: [option]) { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+                if let container = JSONParser.shared.decode(data, type: GlobalEpisodeContainer.self) {
+                    guard let total = container.result.total else {
+                        completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                        return
+                    }
+                    let hasMore = total > container.result.episodes.count
+                    let next = hasMore ? page+1 : page
+                    completion(Result.success((episodes: container.result.episodes, order: order, nextPage: next)))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
     public func unsubscribe(podcast: UUID, completion: @escaping ((Result<Bool>) -> Void)) {
         guard let data = parseBodyDictionary(dict: [
             "uuid": podcast.uuidString
@@ -119,6 +264,45 @@ extension PCKClient: PCKClientProtocol {
     }
     
     // MARK: Episode Interaction
+    public func getEpisode(with uuid: UUID, of podcast: UUID, completion: @escaping ((Result<PCKEpisode>) -> Void)) {
+        guard let data = parseBodyDictionary(dict: [
+            "uuid": podcast.uuidString,
+            "episode_uuid": uuid.uuidString
+            ]) else {
+                completion(Result.error(PCKClientError.bodyDataBuildingFailed))
+                return
+        }
+        let option = RequestOption.bodyData(data: data)
+        client.post(path: "/web/podcasts/podcast.json", options: [option]) { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+                if let container = JSONParser.shared.decode(data, type: SingleEpisodeContainer.self) {
+                    completion(Result.success(container.episode))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
+    public func getShowNotes(for episode: UUID, completion: @escaping ((Result<String>) -> Void)) {
+        guard let data = JSONParser.shared.encode(dictionary: [
+            "uuid": episode.uuidString
+            ]) else {
+                completion(Result.error(PCKClientError.bodyDataBuildingFailed))
+                return
+        }
+        let option = RequestOption.bodyData(data: data)
+        client.post(path: "/web/episodes/show_notes.json", options: [option]) { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+                if let container = JSONParser.shared.decode(data, type: showNotesContainer.self) {
+                    completion(Result.success(container.show_notes))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
     public func setPlayingPosition(for episode: UUID, podcast: UUID, position: Int, completion: @escaping ((Result<Bool>) -> Void)) {
         guard let data = JSONParser.shared.encode(dictionary: [
             "uuid": episode.uuidString,

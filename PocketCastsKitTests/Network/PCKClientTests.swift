@@ -20,14 +20,14 @@ class PCKClientTests: PCKTestCase {
     override func setUp() {
         super.setUp()
         rest = try! RestClient(baseURLString: baseURLString, manager: manager)
-        api = PCKClient(client: rest)
+        api = PCKClient(client: rest, globalClient: rest)
     }
     
     private func buildNewMock(data: Data?, response: HTTPURLResponse?, error: Error?) {
         mock = URLSessionMock(data: data, response: response, error: error)
         manager = NetworkManager(session: mock)
         rest = try! RestClient(baseURLString: "http://localhost", manager: manager)
-        api = PCKClient(client: rest)
+        api = PCKClient(client: rest, globalClient: rest)
     }
 }
 
@@ -281,6 +281,99 @@ extension PCKClientTests {
 
 // MARK: - Episode action tests
 extension PCKClientTests {
+    func testGetEpisodeCheckProperties() {
+        let url = URL(string: baseURLString + "/web/podcasts/podcast.json")!
+        let uuidE = UUID(uuidString: "127a8068-a5a1-4b02-87d8-fcc51a26a741")!
+        let uuidP = UUID(uuidString: "c251cdb0-4a81-0135-902b-63f4b61a9224")!
+        let data = "episode_uuid=\(uuidE.uuidString)&uuid=\(uuidP.uuidString)"
+            .addingPercentEncoding(withAllowedCharacters: .urlEncoded)!
+            .data(using: .utf8)!
+        
+        api.getEpisode(with: uuidE, of: uuidP) { (result) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+        
+        XCTAssertEqual(request.httpBody, data)
+        XCTAssertEqual(request.url, url)
+        
+        wait()
+    }
+    
+    func testGetEpisodeSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuidE = UUID(uuidString: "127a8068-a5a1-4b02-87d8-fcc51a26a741")!
+        let uuidP = UUID(uuidString: "c251cdb0-4a81-0135-902b-63f4b61a9224")!
+        
+        buildNewMock(data: TestHelper.TestData.getFetchEpisodeResponseData, response: response, error: nil)
+        
+        api.getEpisode(with: uuidE, of: uuidP) { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetEpisodeErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuidE = UUID(uuidString: "127a8068-a5a1-4b02-87d8-fcc51a26a741")!
+        let uuidP = UUID(uuidString: "c251cdb0-4a81-0135-902b-63f4b61a9224")!
+        
+        buildNewMock(data: TestHelper.TestData.getFetchEpisodeErrorResponseData, response: response, error: nil)
+        
+        api.getEpisode(with: uuidE, of: uuidP) { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetShowNotesCheckProperties() {
+        let url = URL(string: baseURLString + "/web/episodes/show_notes.json")!
+        let uuid = UUID(uuidString: "151a34fa-63cc-4bb7-9476-bcbc3e1dd640")!
+        
+        api.getShowNotes(for: uuid) { (_) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+        
+        let dict = try! JSONSerialization.jsonObject(with: request.httpBody!) as? [String: Any]
+        
+        XCTAssertNotNil(dict)
+        XCTAssertEqual(dict!["uuid"] as? String, uuid.uuidString)
+        XCTAssertEqual(request.url, url)
+        
+        wait()
+    }
+    
+    func testGetShowNotesSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuid = UUID(uuidString: "151a34fa-63cc-4bb7-9476-bcbc3e1dd640")!
+        
+        buildNewMock(data: TestHelper.TestData.getShowNotesResponseData, response: response, error: nil)
+        
+        api.getShowNotes(for: uuid) { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            case .success(let notes):
+                XCTAssertEqual(notes, "This is a test message")
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
     func testUpdatePlayingPositionCheckProperties() {
         let url = URL(string: baseURLString + "/web/episodes/update_episode_position.json")!
         let uuidP = UUID(uuidString: "f803fde0-7b18-0132-e4c4-5f4c86fd3263")!
@@ -464,6 +557,172 @@ extension PCKClientTests {
 
 // MARK: - Podcast action tests
 extension PCKClientTests {
+    func testSearchPodcastCheckProperties() {
+        let url = URL(string: baseURLString + "/web/podcasts/search.json")!
+        let searchString = "tim pritlove"
+        let data = "term=\(searchString)"
+            .addingPercentEncoding(withAllowedCharacters: .urlEncoded)!
+            .data(using: .utf8)!
+        
+        api.searchPodcasts(by: searchString) { (_) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+        
+        XCTAssertEqual(request.httpBody, data)
+        XCTAssertEqual(request.url, url)
+        XCTAssertEqual(request.httpMethod, MethodType.POST.rawValue)
+        
+        wait()
+    }
+    
+    func testSearchPodcastSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.subscriptionsSuccessData, response: response, error: nil)
+        
+        api.searchPodcasts(by: "bar") { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testSearchPodcastErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.globalErrorResponseData, response: response, error: nil)
+        
+        api.searchPodcasts(by: "foo") { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetPodcastCheckProperties() {
+        let url = URL(string: baseURLString + "/web/podcasts/podcast.json")!
+        let uuid = UUID(uuidString: "c251cdb0-4a81-0135-902b-63f4b61a9224")!
+        let data = "uuid=\(uuid.uuidString)"
+            .addingPercentEncoding(withAllowedCharacters: .urlEncoded)!
+            .data(using: .utf8)!
+        
+        api.getPodcast(with: uuid) { (_) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+        
+        XCTAssertEqual(request.httpBody, data)
+        XCTAssertEqual(request.url, url)
+        XCTAssertEqual(request.httpMethod, MethodType.POST.rawValue)
+        
+        wait()
+    }
+    
+    func testGetPodcastSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuid = UUID(uuidString: "c251cdb0-4a81-0135-902b-63f4b61a9224")!
+        
+        buildNewMock(data: TestHelper.TestData.getFetchEpisodeResponseData, response: response, error: nil)
+        
+        api.getPodcast(with: uuid) { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetPodcastErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuid = UUID(uuidString: "c251cdb0-4a81-0135-902b-63f4b61a9224")!
+        
+        buildNewMock(data: TestHelper.TestData.getPodcastErrorResponseData, response: response, error: nil)
+        
+        api.getPodcast(with: uuid) { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetEpisodesCheckProperties() {
+        let uuid = UUID(uuidString: "9a297c90-4a11-0135-902b-63f4b61a9224")!
+        let url = URL(string: baseURLString + "/web/episodes/find_by_podcast.json")!
+        
+        let data = "page=1&sort=3&uuid=\(uuid.uuidString)"
+            .addingPercentEncoding(withAllowedCharacters: .urlEncoded)!
+            .data(using: .utf8)!
+        
+        api.getEpisodes(for: uuid) { (result) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+
+        XCTAssertEqual(request.httpBody, data)
+        XCTAssertEqual(request.url, url)
+        XCTAssertEqual(request.httpMethod, MethodType.POST.rawValue)
+        
+        wait()
+    }
+    
+    func testGetEpisodesErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuid = UUID(uuidString: "9a297c90-4a11-0135-902b-63f4b61a9224")!
+        
+        buildNewMock(data: TestHelper.TestData.setStarredErrorResponseData, response: response, error: nil)
+        
+        api.getEpisodes(for: uuid) { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetEpisodesSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuid = UUID(uuidString: "9a297c90-4a11-0135-902b-63f4b61a9224")!
+        
+        buildNewMock(data: TestHelper.TestData.getFetchEpisodesSuccessResponseData, response: response, error: nil)
+        
+        api.getEpisodes(for: uuid) { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            case .success(let info):
+                XCTAssertEqual(info.episodes.count, 1)
+                XCTAssertEqual(info.order, SortOrder.descending)
+                XCTAssertEqual(info.nextPage, 2)
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
     func testUnsubscribeCheckProperties() {
         let uuid = UUID(uuidString: "9a297c90-4a11-0135-902b-63f4b61a9224")!
         let url = URL(string: baseURLString + "/web/podcasts/unsubscribe.json")!
@@ -563,6 +822,150 @@ extension PCKClientTests {
         buildNewMock(data: TestHelper.TestData.setStarredSuccessResponseData, response: response, error: nil)
         
         api.subscribe(podcast: uuid) { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+}
+
+// MARK: Global action tests
+extension PCKClientTests {
+    func testGetTrendingCheckProperties() {
+        let url = URL(string: baseURLString + "/discover/json/trending.json")!
+        api.getTrending { (_) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+        
+        XCTAssertEqual(request.url, url)
+        XCTAssertEqual(request.httpMethod, MethodType.GET.rawValue)
+        
+        wait()
+    }
+    
+    func testGetTrendingErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.globalErrorResponseData, response: response, error: nil)
+        
+        api.getTrending { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetTrendingSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.globalSuccessResponseData, response: response, error: nil)
+        
+        api.getTrending { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetFeaturedCheckProperties() {
+        let url = URL(string: baseURLString + "/discover/json/featured.json")!
+        api.getFeatured { (_) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+        
+        XCTAssertEqual(request.url, url)
+        XCTAssertEqual(request.httpMethod, MethodType.GET.rawValue)
+        
+        wait()
+    }
+    
+    func testGetFeaturedErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.globalErrorResponseData, response: response, error: nil)
+        
+        api.getFeatured { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetFeaturedSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.globalSuccessResponseData, response: response, error: nil)
+        
+        api.getFeatured { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetTop100CheckProperties() {
+        let url = URL(string: baseURLString + "/discover/json/popular_world.json")!
+        api.getTop100 { (_) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+        
+        XCTAssertEqual(request.url, url)
+        XCTAssertEqual(request.httpMethod, MethodType.GET.rawValue)
+        
+        wait()
+    }
+    
+    func testGetTop100ErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.globalErrorResponseData, response: response, error: nil)
+        
+        api.getTop100 { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetTop100SuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.globalSuccessResponseData, response: response, error: nil)
+        
+        api.getTop100 { (result) in
             switch result {
             case .error(_):
                 XCTFail()

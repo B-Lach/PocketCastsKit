@@ -15,6 +15,143 @@ struct TestHelper {
 // MARK: - Model test data
 extension TestHelper {
     struct TestData {
+        // Global response data
+        static var globalErrorResponseData: Data {
+            return """
+            {
+                "status": "error",
+                "result": {
+                    "podcasts": []
+                }
+            }
+            """.data(using: .utf8)!
+        }
+        
+        static var globalSuccessResponseData: Data {
+            return """
+            {
+                "status": "ok",
+                "result": {
+                    "podcasts": [
+                    {
+                        "uuid": "3782b780-0bc5-012e-fb02-00163e1b201c",
+                        "url": "https://www.thisamericanlife.org",
+                        "title": "This American Life",
+                        "description": "This American Life is a weekly public radio show, heard by 2.2 million people on more than 500 stations. Another 2.5 million people download the weekly podcast. It is hosted by Ira Glass, produced in collaboration with Chicago Public Media, delivered to stations by PRX The Public Radio Exchange, and has won all of the major broadcasting awards.",
+                        "thumbnail_url": "http://www.thisamericanlife.org/sites/all/themes/thislife/images/logo-square-1400.jpg",
+                        "category": "Society",
+                        "media_type": "Audio",
+                        "language": "en",
+                        "author": "This American Life",
+                        "thumbnail_url_130": "http://static.pocketcasts.com/discover/images/130/3782b780-0bc5-012e-fb02-00163e1b201c.jpg",
+                        "thumbnail_url_280": "http://static.pocketcasts.com/discover/images/280/3782b780-0bc5-012e-fb02-00163e1b201c.jpg"
+                    }]
+                }
+            }
+            """.data(using: .utf8)!
+        }
+        
+        // Get all episodes of podcast data
+        static var getFetchEpisodesSuccessResponseData: Data {
+            return """
+            {
+                "status": "ok",
+                "result": {
+                    "episodes": [
+                    {
+                        "id": null,
+                        "uuid": "c5af9eb7-b350-44e7-8d30-5c444aaa43c6",
+                        "url": "https://tracking.feedpress.it/link/13440/6400758/cre214-satellitentelefonie.m4a",
+                        "published_at": "2017-08-03 16:51:04",
+                        "duration": "9102",
+                        "file_type": "audio/x-m4a",
+                        "title": "CRE214 Satellitentelefonie",
+                        "size": 57477027,
+                        "playing_status": 2,
+                        "played_up_to": 1676,
+                        "is_deleted": false,
+                        "starred": false,
+                        "is_video": false
+                    }],
+                    "total": 257
+                }
+            }
+            """.data(using: .utf8)!
+        }
+        // Get Single Podcast data
+        static var getPodcastErrorResponseData: Data {
+            return """
+            {
+                "episode": {
+                    "id": null,
+                    "uuid": "127a8068-a5a1-4b02-87d8-fcc51a26a741",
+                    "url": "https://www.gamespodcast.de/podlove/file/1389/s/feed/c/premium5/Runde_124_Gute_Belohnungen.mp3",
+                    "published_at": "2017-08-19 22:00:25",
+                    "duration": "5893",
+                    "file_type": "audio/mp3",
+                    "title": "Runde #124: Wir wollen anständig belohnt werden",
+                    "size": 82630896,
+                    "played_up_to": 2880
+                }
+            }
+            """.data(using: .utf8)!
+        }
+        // Get Episode data
+        static var getFetchEpisodeErrorResponseData: Data {
+            return """
+            {
+                "podcast": {
+                    "id": 867908,
+                    "uuid": "c251cdb0-4a81-0135-902b-63f4b61a9224",
+                    "url": "https://www.gamespodcast.de",
+                    "title": "Gamespodcast.de Premium",
+                    "description": "Der coole Shit, nur für Backer",
+                    "thumbnail_url": "https://www.gamespodcast.de/wp-content/cache/podlove/d4/2cedb4852b1a98f280739a25d50d69/gamespodcast-de-premium_original.jpg",
+                    "author": "Andre Peschke und Jochen Gebauer",
+                    "episodes_sort_order": 3
+
+                },
+                "episode": null
+            }
+            """.data(using: .utf8)!
+        }
+        
+        static var getFetchEpisodeResponseData: Data {
+            return """
+            {
+                "podcast": {
+                    "id": 867908,
+                    "uuid": "c251cdb0-4a81-0135-902b-63f4b61a9224",
+                    "url": "https://www.gamespodcast.de",
+                    "title": "Gamespodcast.de Premium",
+                    "description": "Der coole Shit, nur für Backer",
+                    "thumbnail_url": "https://www.gamespodcast.de/wp-content/cache/podlove/d4/2cedb4852b1a98f280739a25d50d69/gamespodcast-de-premium_original.jpg",
+                    "author": "Andre Peschke und Jochen Gebauer",
+                    "episodes_sort_order": 3
+
+                },
+                "episode": {
+                    "id": null,
+                    "uuid": "127a8068-a5a1-4b02-87d8-fcc51a26a741",
+                    "url": "https://www.gamespodcast.de/podlove/file/1389/s/feed/c/premium5/Runde_124_Gute_Belohnungen.mp3",
+                    "published_at": "2017-08-19 22:00:25",
+                    "duration": "5893",
+                    "file_type": "audio/mp3",
+                    "title": "Runde #124: Wir wollen anständig belohnt werden",
+                    "size": 82630896,
+                    "played_up_to": 2880
+                }
+            }
+            """.data(using: .utf8)!
+        }
+        // Show Notes data
+        static var getShowNotesResponseData: Data {
+            return """
+            {
+            "show_notes": "This is a test message"
+            }
+            """.data(using: .utf8)!
+        }
         // Updated starred status data
         static var setStarredSuccessResponseData: Data {
             return """
@@ -181,14 +318,17 @@ extension TestHelper {
             """.data(using: .utf8)!
         }
         // Podcast test data
-        static var podcastDataWithAuthor: Data {
+        static var podcastDataOptionalPresent: Data {
             return """
                 {
                     "id": 5810,
                     "uuid": "00414e50-2610-012e-05ba-00163e1b201c",
                     "url": "https://ninjalooter.de",
                     "title": "Ninjalooter.de",
+                    "category": "Technology",
                     "description": "Der Podcast der Ninjalooter befasst sich mit Spielen jeglicher Art. Insbesondere MMOs, Beta-Eindrücke und PC-Rollen- und Strategiespiele stehen auf der Debattierliste.",
+                    "media_type": "Audio",
+                    "language": "de",
                     "thumbnail_url": "http://ninjalooter.de/blog/wp-content/uploads/NinjaCast_Logo.jpg",
                     "author": "Ninjalooter.de",
                     "episodes_sort_order": 3
@@ -196,17 +336,14 @@ extension TestHelper {
             """.data(using: .utf8)!
         }
         
-        static var podcastDataWithoutAuthor: Data {
+        static var podcastDataOptionalMissing: Data {
             return """
                 {
-                    "id": 5810,
                     "uuid": "00414e50-2610-012e-05ba-00163e1b201c",
                     "url": "https://ninjalooter.de",
                     "title": "Ninjalooter.de",
                     "description": "Der Podcast der Ninjalooter befasst sich mit Spielen jeglicher Art. Insbesondere MMOs, Beta-Eindrücke und PC-Rollen- und Strategiespiele stehen auf der Debattierliste.",
                     "thumbnail_url": "http://ninjalooter.de/blog/wp-content/uploads/NinjaCast_Logo.jpg",
-                    "author": null,
-                    "episodes_sort_order": 3
                 }
                 """.data(using: .utf8)!
         }

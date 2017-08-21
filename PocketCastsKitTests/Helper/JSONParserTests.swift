@@ -33,16 +33,16 @@ extension JSONParserTests {
 // MARK: - Object decoding
 extension JSONParserTests {
     func testValidObjectDecoding() {
-        let id = 5810
+        let id = -1
         let uuid = UUID(uuidString: "00414e50-2610-012e-05ba-00163e1b201c")!
         let url = URL(string: "https://ninjalooter.de")!
         let title = "Ninjalooter.de"
         let desc =  "Der Podcast der Ninjalooter befasst sich mit Spielen jeglicher Art. Insbesondere MMOs, Beta-Eindrücke und PC-Rollen- und Strategiespiele stehen auf der Debattierliste."
         let thumbnail = URL(string: "http://ninjalooter.de/blog/wp-content/uploads/NinjaCast_Logo.jpg")!
-        let author = "Ninjalooter.de"
-        let sortOrder = 3
+        let author = "undefined"
+        let sortOrder = -1
         
-        guard let podcast = JSONParser.shared.decode(TestHelper.TestData.podcastDataWithAuthor, type: PCKPodcast.self) else {
+        guard let podcast = JSONParser.shared.decode(TestHelper.TestData.podcastDataOptionalMissing, type: PCKPodcast.self) else {
             XCTFail()
             return
         }
@@ -58,7 +58,7 @@ extension JSONParserTests {
     }
     
     func testInvalidObjectDecoding() {
-        let episode = JSONParser.shared.decode(TestHelper.TestData.podcastDataWithAuthor, type: PCKEpisode.self)
+        let episode = JSONParser.shared.decode(TestHelper.TestData.podcastDataOptionalPresent, type: PCKEpisode.self)
         
         XCTAssertNil(episode)
     }
