@@ -19,8 +19,10 @@ public enum PCKClientError: Error {
     case bodyDataBuildingFailed
     case invalidResponse(data: Data?)
     case invalidCredentials
-    case updateStarredFailed
-    case updatePositionFailed
+    case updateStarredDidFail
+    case updatePlayingStatusDidFail
+    case updatePositionDidFail
+    case subscribeDidFail
 }
 
 private struct EpisodeContainer: Decodable {
@@ -75,6 +77,28 @@ extension PCKClient {
 
 
 extension PCKClient: PCKClientProtocol {
+    // MARK: - Podcast Interaction
+    public func subscribe(podcast: UUID, completion: @escaping ((Result<Bool>) -> Void)) {
+        guard let data = parseBodyDictionary(dict: [
+            "uuid": podcast.uuidString
+            ]) else {
+                completion(Result.error(PCKClientError.bodyDataBuildingFailed))
+                return
+        }
+        let option = RequestOption.bodyData(data: data)
+        client.post(path: "/web/podcasts/subscribe.json", options: [option]) { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+                if let container = JSONParser.shared.decode(data, type: ResultContainer.self) {
+                    let result: Result = container.status == "ok" ? .success(true) : .error(PCKClientError.subscribeDidFail)
+                    completion(result)
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
+    // MARK: Episode Interaction
     public func setPlayingPosition(for episode: UUID, podcast: UUID, position: Int, completion: @escaping ((Result<Bool>) -> Void)) {
         guard let data = JSONParser.shared.encode(dictionary: [
             "uuid": episode.uuidString,
@@ -90,7 +114,7 @@ extension PCKClient: PCKClientProtocol {
         client.post(path: "/web/episodes/update_episode_position.json", options: [body, header]) { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: ResultContainer.self) {
-                    let result: Result = container.status == "ok" ? .success(true) : .error(PCKClientError.updatePositionFailed)
+                    let result: Result = container.status == "ok" ? .success(true) : .error(PCKClientError.updatePositionDidFail)
                     completion(result)
                 } else {
                     completion(Result.error(PCKClientError.invalidResponse(data: data)))
@@ -112,7 +136,7 @@ extension PCKClient: PCKClientProtocol {
         client.post(path: "/web/episodes/update_episode_position.json", options: [option]) { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: ResultContainer.self) {
-                    let result: Result = container.status == "ok" ? .success(true) : .error(PCKClientError.updateStarredFailed)
+                    let result: Result = container.status == "ok" ? .success(true) : .error(PCKClientError.updatePlayingStatusDidFail)
                     completion(result)
                 } else {
                     completion(Result.error(PCKClientError.invalidResponse(data: data)))
@@ -134,7 +158,7 @@ extension PCKClient: PCKClientProtocol {
         client.post(path: "/web/episodes/update_episode_star.json", options: [option]) { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: ResultContainer.self) {
-                    let result: Result = container.status == "ok" ? .success(true) : .error(PCKClientError.updateStarredFailed)
+                    let result: Result = container.status == "ok" ? .success(true) : .error(PCKClientError.updateStarredDidFail)
                     completion(result)
                 } else {
                     completion(Result.error(PCKClientError.invalidResponse(data: data)))
