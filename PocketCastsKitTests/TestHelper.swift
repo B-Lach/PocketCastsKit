@@ -284,6 +284,24 @@ extension TestHelper {
 
         }
         // Network test data
+        static var networkSuccessData: Data {
+            return """
+            {
+                "status": "ok",
+                "result": {
+                    "networks": [
+                    {
+                        "id": 24,
+                        "title": "Radiotopia",
+                        "description": "Radiotopia from PRX is a collective of the best story-driven shows on the planet",
+                        "image_url": "http://static.pocketcasts.com/discover/images/networks/thumbnails/24/original/radiotopia.png",
+                        "color": "#131F30"
+                    }]
+                }
+            }
+            """.data(using: .utf8)!
+        }
+        
         static var networkData: Data {
             return """
             {

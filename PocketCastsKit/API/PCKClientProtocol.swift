@@ -47,4 +47,5 @@ protocol PCKClientProtocol {
     func getFeatured(completion: @escaping completion<[PCKPodcast]>)
     func getTrending(completion: @escaping completion<[PCKPodcast]>)
     func getCategoriesAndCountries(completion: @escaping completion<(categories: [PCKCategory], countries: [PCKCountry])>)
+    func getNetworks(completion: @escaping completion<[PCKNetwork]>)
 }

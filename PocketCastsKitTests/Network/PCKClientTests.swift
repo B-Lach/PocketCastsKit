@@ -836,6 +836,53 @@ extension PCKClientTests {
 
 // MARK: Global action tests
 extension PCKClientTests {
+    func testGetNetworksCheckProperties() {
+        let url = URL(string: baseURLString + "/discover/json/network_list.json")!
+        
+        api.getNetworks { (_) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+        
+        XCTAssertEqual(request.url, url)
+        XCTAssertEqual(request.httpMethod, MethodType.GET.rawValue)
+        
+        wait()
+    }
+    
+    func testGetNetworksErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.globalErrorResponseData, response: response, error: nil)
+        
+        api.getNetworks { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetNetworksSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.networkSuccessData, response: response, error: nil)
+        
+        api.getNetworks { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
     
     func testGetCategoriesAndCountriesCheckProperties() {
         let url = URL(string: baseURLString + "/discover/json/categories.json")!
