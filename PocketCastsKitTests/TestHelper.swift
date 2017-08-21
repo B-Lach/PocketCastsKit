@@ -283,6 +283,18 @@ extension TestHelper {
             """.data(using: .utf8)!
 
         }
+        // Network test data
+        static var networkData: Data {
+            return """
+            {
+                "id": 12,
+                "title": "CNET",
+                "description": "Reviews & first looks",
+                "image_url": "http://static.pocketcasts.com/discover/images/networks/thumbnails/12/original/cnet.png",
+                "color": "#222224"
+            }
+            """.data(using: .utf8)!
+        }
         // Category test data
         static var categoryData: Data {
             return """
