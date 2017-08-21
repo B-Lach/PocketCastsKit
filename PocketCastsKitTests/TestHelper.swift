@@ -350,6 +350,19 @@ extension TestHelper {
         }
         
         // Category test data
+        static var categoryContentData: Data {
+            return """
+            {
+                "author": "Financial Times",
+                "title": "FT Tech Tonic",
+                "collection_id": 1169101860,
+                "description": "A weekly conversation that looks at the way technology is changing our economies, societies and daily lives. Hosted by John Thornhill, innovation editor at the Financial Times.",
+                "thumbnail_url": "http://is5.mzstatic.com/image/thumb/Podcasts127/v4/87/1f/1f/871f1f2a-e5a1-b21d-3c6f-383f5a7be63a/mza_2575122218375622535.png/170x170bb-85.jpg",
+                "uuid": "7726e530-7d76-0134-9030-3327a14bcdba"
+            }
+            """.data(using: .utf8)!
+        }
+        
         static var categoryData: Data {
             return """
             {

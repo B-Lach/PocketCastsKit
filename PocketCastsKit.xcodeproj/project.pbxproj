@@ -35,6 +35,8 @@
 		EDA6C9CD1F4781F3007617B5 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9CC1F4781F3007617B5 /* URLSessionMock.swift */; };
 		EDA6C9CF1F47968D007617B5 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9CE1F47968D007617B5 /* NetworkManagerTests.swift */; };
 		EDA6C9D11F47A626007617B5 /* PCKTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9D01F47A626007617B5 /* PCKTestCase.swift */; };
+		EDBB3A201F4B9BC9004A2B5C /* PCKCategoryContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBB3A1F1F4B9BC9004A2B5C /* PCKCategoryContent.swift */; };
+		EDBB3A221F4B9CEF004A2B5C /* PCKCategoryContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBB3A211F4B9CEF004A2B5C /* PCKCategoryContentTests.swift */; };
 		EDC7EA8C1F44A0520048E8EF /* PocketCastsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */; };
 		EDC7EA931F44A0520048E8EF /* PocketCastsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -78,6 +80,8 @@
 		EDA6C9CC1F4781F3007617B5 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
 		EDA6C9CE1F47968D007617B5 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		EDA6C9D01F47A626007617B5 /* PCKTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKTestCase.swift; sourceTree = "<group>"; };
+		EDBB3A1F1F4B9BC9004A2B5C /* PCKCategoryContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCategoryContent.swift; sourceTree = "<group>"; };
+		EDBB3A211F4B9CEF004A2B5C /* PCKCategoryContentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCategoryContentTests.swift; sourceTree = "<group>"; };
 		EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PocketCastsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PocketCastsKit.h; sourceTree = "<group>"; };
 		EDC7EA861F44A0520048E8EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 				ED9DD3871F4B402700211328 /* PCKCategory.swift */,
 				ED9DD38C1F4B4AC200211328 /* PCKNetwork.swift */,
 				ED9DD3901F4B862800211328 /* PCKNetworkGroup.swift */,
+				EDBB3A1F1F4B9BC9004A2B5C /* PCKCategoryContent.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -134,6 +139,7 @@
 				ED9DD3891F4B410000211328 /* PCKCategoryTests.swift */,
 				ED9DD38E1F4B4B5100211328 /* PCKNetworkTests.swift */,
 				ED9DD3921F4B87DE00211328 /* PCKNetworkGroupTests.swift */,
+				EDBB3A211F4B9CEF004A2B5C /* PCKCategoryContentTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -359,6 +365,7 @@
 				EDA6C9CD1F4781F3007617B5 /* URLSessionMock.swift in Sources */,
 				ED9DD3881F4B402700211328 /* PCKCategory.swift in Sources */,
 				ED76DE041F4638B000F8CB70 /* NetworkManagerProtocol.swift in Sources */,
+				EDBB3A201F4B9BC9004A2B5C /* PCKCategoryContent.swift in Sources */,
 				ED9DD3841F4B3CFA00211328 /* PCKCountry.swift in Sources */,
 				ED76DE0B1F46481300F8CB70 /* RestProtocol.swift in Sources */,
 				ED76DDF31F45CDF800F8CB70 /* PCKPodcast.swift in Sources */,
@@ -374,6 +381,7 @@
 				ED9DD38A1F4B410000211328 /* PCKCategoryTests.swift in Sources */,
 				ED9DD3931F4B87DE00211328 /* PCKNetworkGroupTests.swift in Sources */,
 				ED76DDFA1F45D36800F8CB70 /* TestHelper.swift in Sources */,
+				EDBB3A221F4B9CEF004A2B5C /* PCKCategoryContentTests.swift in Sources */,
 				ED76DE101F464C9900F8CB70 /* RestClientTests.swift in Sources */,
 				ED76DDFF1F45E12900F8CB70 /* JSONParserTests.swift in Sources */,
 				EDA6C9C91F46FFED007617B5 /* PCKClientTests.swift in Sources */,
