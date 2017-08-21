@@ -557,6 +557,59 @@ extension PCKClientTests {
 
 // MARK: - Podcast action tests
 extension PCKClientTests {
+    func testSearchPodcastCheckProperties() {
+        let url = URL(string: baseURLString + "/web/podcasts/search.json")!
+        let searchString = "tim pritlove"
+        let data = "term=\(searchString)"
+            .addingPercentEncoding(withAllowedCharacters: .urlEncoded)!
+            .data(using: .utf8)!
+        
+        api.searchPodcasts(by: searchString) { (_) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+        
+        XCTAssertEqual(request.httpBody, data)
+        XCTAssertEqual(request.url, url)
+        XCTAssertEqual(request.httpMethod, MethodType.POST.rawValue)
+        
+        wait()
+    }
+    
+    func testSearchPodcastSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.subscriptionsSuccessData, response: response, error: nil)
+        
+        api.searchPodcasts(by: "bar") { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testSearchPodcastErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.globalErrorResponseData, response: response, error: nil)
+        
+        api.searchPodcasts(by: "foo") { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
     func testGetPodcastCheckProperties() {
         let url = URL(string: baseURLString + "/web/podcasts/podcast.json")!
         let uuid = UUID(uuidString: "c251cdb0-4a81-0135-902b-63f4b61a9224")!

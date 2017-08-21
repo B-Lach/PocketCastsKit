@@ -155,6 +155,25 @@ extension PCKClient: PCKClientProtocol {
     }
     
     // MARK: - Podcast Interaction
+    public func searchPodcasts(by string: String, completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
+        guard let data = parseBodyDictionary(dict: [
+            "term": string
+            ]) else {
+                completion(Result.error(PCKClientError.bodyDataBuildingFailed))
+                return
+        }
+        let option = RequestOption.bodyData(data: data)
+        client.post(path: "/web/podcasts/search.json", options: [option]) { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+                if let container = JSONParser.shared.decode(data, type: PodcastContainer.self) {
+                    completion(Result.success(container.podcasts))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
     public func getPodcast(with uuid: UUID, completion: @escaping ((Result<PCKPodcast>) -> Void)) {
         guard let data = parseBodyDictionary(dict: [
             "uuid": uuid.uuidString

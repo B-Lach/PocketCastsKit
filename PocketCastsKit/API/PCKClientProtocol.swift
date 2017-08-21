@@ -41,6 +41,7 @@ protocol PCKClientProtocol {
                      page: Int, order: SortOrder,
                      completion: @escaping completion<(episodes:[PCKEpisode], order: SortOrder, nextPage: Int)>)
     func getPodcast(with uuid: UUID, completion: @escaping completion<PCKPodcast>)
+    func searchPodcasts(by string: String, completion: @escaping completion<[PCKPodcast]>)
     // MARK: - Global Actions
     func getTop100(completion: @escaping completion<[PCKPodcast]>)
     func getFeatured(completion: @escaping completion<[PCKPodcast]>)
