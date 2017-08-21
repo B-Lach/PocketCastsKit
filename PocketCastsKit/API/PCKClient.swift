@@ -9,6 +9,7 @@
 import Foundation
 
 private let baseURLString = "https://play.pocketcasts.com"
+private let staticBaseURLString = "https://static.pocketcasts.com"
 
 // Defined CharacterSet matches urlencoded as needed
 extension CharacterSet {
@@ -36,13 +37,21 @@ private struct ResultContainer: Decodable {
     let status: String
 }
 
+private struct GlobalContainer: Decodable {
+    let status: String
+    let result: PodcastContainer
+}
+
 public struct PCKClient {
     public static let shared = PCKClient()
     
     private let client: RestClient
+    private let globalClient: RestClient
     
-    internal init(client: RestClient = try! RestClient(baseURLString: baseURLString)) {
+    internal init(client: RestClient = try! RestClient(baseURLString: baseURLString),
+                  globalClient: RestClient = try! RestClient(baseURLString: staticBaseURLString)) {
         self.client = client
+        self.globalClient = globalClient
     }
 }
 
@@ -77,6 +86,23 @@ extension PCKClient {
 
 
 extension PCKClient: PCKClientProtocol {
+    // MARK: - Global Interaction
+    public func getTop100(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
+        globalClient.get(path: "/discover/json/popular_world.json") { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+                if let container = JSONParser.shared.decode(data, type: GlobalContainer.self) {
+                    if !(container.status == "ok") {
+                        completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                        return
+                    }
+                    completion(Result.success(container.result.podcasts))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
     // MARK: - Podcast Interaction
     public func unsubscribe(podcast: UUID, completion: @escaping ((Result<Bool>) -> Void)) {
         guard let data = parseBodyDictionary(dict: [

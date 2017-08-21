@@ -20,14 +20,14 @@ class PCKClientTests: PCKTestCase {
     override func setUp() {
         super.setUp()
         rest = try! RestClient(baseURLString: baseURLString, manager: manager)
-        api = PCKClient(client: rest)
+        api = PCKClient(client: rest, globalClient: rest)
     }
     
     private func buildNewMock(data: Data?, response: HTTPURLResponse?, error: Error?) {
         mock = URLSessionMock(data: data, response: response, error: error)
         manager = NetworkManager(session: mock)
         rest = try! RestClient(baseURLString: "http://localhost", manager: manager)
-        api = PCKClient(client: rest)
+        api = PCKClient(client: rest, globalClient: rest)
     }
 }
 
@@ -563,6 +563,57 @@ extension PCKClientTests {
         buildNewMock(data: TestHelper.TestData.setStarredSuccessResponseData, response: response, error: nil)
         
         api.subscribe(podcast: uuid) { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+}
+
+// MARK: Global action tests
+
+extension PCKClientTests {
+    func testGetTop100CheckProperties() {
+        let url = URL(string: baseURLString + "/discover/json/popular_world.json")!
+        api.getTop100 { (_) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+        
+        XCTAssertEqual(request.url, url)
+        XCTAssertEqual(request.httpMethod, MethodType.GET.rawValue)
+        
+        wait()
+    }
+    
+    func testGetTop100ErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.globalErrorResponseData, response: response, error: nil)
+        
+        api.getTop100 { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetTop100SuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.globalSuccessResponseData, response: response, error: nil)
+        
+        api.getTop100 { (result) in
             switch result {
             case .error(_):
                 XCTFail()

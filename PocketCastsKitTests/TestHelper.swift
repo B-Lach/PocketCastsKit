@@ -15,6 +15,41 @@ struct TestHelper {
 // MARK: - Model test data
 extension TestHelper {
     struct TestData {
+        // Global response data
+        static var globalErrorResponseData: Data {
+            return """
+            {
+                "status": "error",
+                "result": {
+                    "podcasts": []
+                }
+            }
+            """.data(using: .utf8)!
+        }
+        
+        static var globalSuccessResponseData: Data {
+            return """
+            {
+                "status": "ok",
+                "result": {
+                    "podcasts": [
+                    {
+                        "uuid": "3782b780-0bc5-012e-fb02-00163e1b201c",
+                        "url": "https://www.thisamericanlife.org",
+                        "title": "This American Life",
+                        "description": "This American Life is a weekly public radio show, heard by 2.2 million people on more than 500 stations. Another 2.5 million people download the weekly podcast. It is hosted by Ira Glass, produced in collaboration with Chicago Public Media, delivered to stations by PRX The Public Radio Exchange, and has won all of the major broadcasting awards.",
+                        "thumbnail_url": "http://www.thisamericanlife.org/sites/all/themes/thislife/images/logo-square-1400.jpg",
+                        "category": "Society",
+                        "media_type": "Audio",
+                        "language": "en",
+                        "author": "This American Life",
+                        "thumbnail_url_130": "http://static.pocketcasts.com/discover/images/130/3782b780-0bc5-012e-fb02-00163e1b201c.jpg",
+                        "thumbnail_url_280": "http://static.pocketcasts.com/discover/images/280/3782b780-0bc5-012e-fb02-00163e1b201c.jpg"
+                    }]
+                }
+            }
+            """.data(using: .utf8)!
+        }
         // Updated starred status data
         static var setStarredSuccessResponseData: Data {
             return """

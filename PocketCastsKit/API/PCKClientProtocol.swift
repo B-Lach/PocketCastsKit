@@ -30,4 +30,6 @@ protocol PCKClientProtocol {
     // MARK: - Podcast Actions
     func subscribe(podcast: UUID, completion: @escaping completion<Bool>)
     func unsubscribe(podcast: UUID, completion: @escaping completion<Bool>)
+    // MARK: - Global Actions
+    func getTop100(completion: @escaping completion<[PCKPodcast]>)
 }
