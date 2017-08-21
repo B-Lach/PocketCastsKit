@@ -54,6 +54,9 @@ private struct showNotesContainer: Decodable {
 
 private struct SingleEpisodeContainer: Decodable {
     let episode: PCKEpisode
+}
+
+private struct SinglePodcastContainer: Decodable {
     let podcast: PCKPodcast
 }
 
@@ -152,6 +155,25 @@ extension PCKClient: PCKClientProtocol {
     }
     
     // MARK: - Podcast Interaction
+    public func getPodcast(with uuid: UUID, completion: @escaping ((Result<PCKPodcast>) -> Void)) {
+        guard let data = parseBodyDictionary(dict: [
+            "uuid": uuid.uuidString
+            ]) else {
+                completion(Result.error(PCKClientError.bodyDataBuildingFailed))
+                return
+        }
+        let option = RequestOption.bodyData(data: data)
+        client.post(path: "/web/podcasts/podcast.json", options: [option]) { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+                if let container = JSONParser.shared.decode(data, type: SinglePodcastContainer.self) {
+                    completion(Result.success(container.podcast))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
     public func getEpisodes(for podcast: UUID,
                             page: Int = 1,
                             order: SortOrder = .descending,

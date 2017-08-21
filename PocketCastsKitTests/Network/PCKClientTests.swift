@@ -557,6 +557,61 @@ extension PCKClientTests {
 
 // MARK: - Podcast action tests
 extension PCKClientTests {
+    func testGetPodcastCheckProperties() {
+        let url = URL(string: baseURLString + "/web/podcasts/podcast.json")!
+        let uuid = UUID(uuidString: "c251cdb0-4a81-0135-902b-63f4b61a9224")!
+        let data = "uuid=\(uuid.uuidString)"
+            .addingPercentEncoding(withAllowedCharacters: .urlEncoded)!
+            .data(using: .utf8)!
+        
+        api.getPodcast(with: uuid) { (_) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+        
+        XCTAssertEqual(request.httpBody, data)
+        XCTAssertEqual(request.url, url)
+        XCTAssertEqual(request.httpMethod, MethodType.POST.rawValue)
+        
+        wait()
+    }
+    
+    func testGetPodcastSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuid = UUID(uuidString: "c251cdb0-4a81-0135-902b-63f4b61a9224")!
+        
+        buildNewMock(data: TestHelper.TestData.getFetchEpisodeResponseData, response: response, error: nil)
+        
+        api.getPodcast(with: uuid) { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetPodcastErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuid = UUID(uuidString: "c251cdb0-4a81-0135-902b-63f4b61a9224")!
+        
+        buildNewMock(data: TestHelper.TestData.getPodcastErrorResponseData, response: response, error: nil)
+        
+        api.getPodcast(with: uuid) { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
     func testGetEpisodesCheckProperties() {
         let uuid = UUID(uuidString: "9a297c90-4a11-0135-902b-63f4b61a9224")!
         let url = URL(string: baseURLString + "/web/episodes/find_by_podcast.json")!

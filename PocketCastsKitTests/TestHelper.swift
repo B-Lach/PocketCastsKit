@@ -78,7 +78,25 @@ extension TestHelper {
             }
             """.data(using: .utf8)!
         }
-            // Get Episode data
+        // Get Single Podcast data
+        static var getPodcastErrorResponseData: Data {
+            return """
+            {
+                "episode": {
+                    "id": null,
+                    "uuid": "127a8068-a5a1-4b02-87d8-fcc51a26a741",
+                    "url": "https://www.gamespodcast.de/podlove/file/1389/s/feed/c/premium5/Runde_124_Gute_Belohnungen.mp3",
+                    "published_at": "2017-08-19 22:00:25",
+                    "duration": "5893",
+                    "file_type": "audio/mp3",
+                    "title": "Runde #124: Wir wollen anständig belohnt werden",
+                    "size": 82630896,
+                    "played_up_to": 2880
+                }
+            }
+            """.data(using: .utf8)!
+        }
+        // Get Episode data
         static var getFetchEpisodeErrorResponseData: Data {
             return """
             {
