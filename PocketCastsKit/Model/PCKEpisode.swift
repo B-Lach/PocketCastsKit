@@ -18,7 +18,7 @@ public struct PCKEpisode {
     public let title: String
     public let size: Int
     public let podcastId: Int
-    public let podcastUUID: UUID
+    public let podcastUUID: UUID?
     public var playingStatus: Int
     public var playedUpTo: Int
     public var isDeleted: Bool?
@@ -61,7 +61,7 @@ extension PCKEpisode: Decodable {
         title = try values.decode(String.self, forKey: .title)
         size = try values.decode(Int.self, forKey: .size)
         podcastId = try values.decodeIfPresent(Int.self, forKey: .podcastId) ?? -1
-        podcastUUID = try values.decode(UUID.self, forKey: .podcastUUID)
+        podcastUUID = try values.decodeIfPresent(UUID.self, forKey: .podcastUUID)
         playingStatus = try values.decodeIfPresent(Int.self, forKey: .playingStatus) ?? -1
         playedUpTo = try values.decodeIfPresent(Int.self, forKey: .playedUpTo) ?? -1
         isDeleted = try values.decodeIfPresent(Bool.self, forKey: .isDeleted)
