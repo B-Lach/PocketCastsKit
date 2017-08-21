@@ -28,6 +28,7 @@ protocol PCKClientProtocol {
     func setPlayingStatus(for episode: UUID, podcast: UUID, status: PlayingStatus, completion: @escaping completion<Bool>)
     func setPlayingPosition(for episode: UUID, podcast: UUID, position: Int, completion: @escaping completion<Bool>)
     func getShowNotes(for episode: UUID, completion: @escaping completion<String>)
+    func getEpisode(with uuid: UUID, of podcast: UUID, completion: @escaping completion<PCKEpisode>)
     // MARK: - Podcast Actions
     func subscribe(podcast: UUID, completion: @escaping completion<Bool>)
     func unsubscribe(podcast: UUID, completion: @escaping completion<Bool>)

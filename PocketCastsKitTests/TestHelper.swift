@@ -50,6 +50,54 @@ extension TestHelper {
             }
             """.data(using: .utf8)!
         }
+        // Get Episode data
+        static var getFetchEpisodeErrorResponseData: Data {
+            return """
+            {
+                "podcast": {
+                    "id": 867908,
+                    "uuid": "c251cdb0-4a81-0135-902b-63f4b61a9224",
+                    "url": "https://www.gamespodcast.de",
+                    "title": "Gamespodcast.de Premium",
+                    "description": "Der coole Shit, nur für Backer",
+                    "thumbnail_url": "https://www.gamespodcast.de/wp-content/cache/podlove/d4/2cedb4852b1a98f280739a25d50d69/gamespodcast-de-premium_original.jpg",
+                    "author": "Andre Peschke und Jochen Gebauer",
+                    "episodes_sort_order": 3
+
+                },
+                "episode": null
+            }
+            """.data(using: .utf8)!
+        }
+        
+        static var getFetchEpisodeResponseData: Data {
+            return """
+            {
+                "podcast": {
+                    "id": 867908,
+                    "uuid": "c251cdb0-4a81-0135-902b-63f4b61a9224",
+                    "url": "https://www.gamespodcast.de",
+                    "title": "Gamespodcast.de Premium",
+                    "description": "Der coole Shit, nur für Backer",
+                    "thumbnail_url": "https://www.gamespodcast.de/wp-content/cache/podlove/d4/2cedb4852b1a98f280739a25d50d69/gamespodcast-de-premium_original.jpg",
+                    "author": "Andre Peschke und Jochen Gebauer",
+                    "episodes_sort_order": 3
+
+                },
+                "episode": {
+                    "id": null,
+                    "uuid": "127a8068-a5a1-4b02-87d8-fcc51a26a741",
+                    "url": "https://www.gamespodcast.de/podlove/file/1389/s/feed/c/premium5/Runde_124_Gute_Belohnungen.mp3",
+                    "published_at": "2017-08-19 22:00:25",
+                    "duration": "5893",
+                    "file_type": "audio/mp3",
+                    "title": "Runde #124: Wir wollen anständig belohnt werden",
+                    "size": 82630896,
+                    "played_up_to": 2880
+                }
+            }
+            """.data(using: .utf8)!
+        }
         // Show Notes data
         static var getShowNotesResponseData: Data {
             return """

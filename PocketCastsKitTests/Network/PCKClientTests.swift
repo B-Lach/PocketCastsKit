@@ -281,6 +281,63 @@ extension PCKClientTests {
 
 // MARK: - Episode action tests
 extension PCKClientTests {
+    func testGetEpisodeCheckProperties() {
+        let url = URL(string: baseURLString + "/web/podcasts/podcast.json")!
+        let uuidE = UUID(uuidString: "127a8068-a5a1-4b02-87d8-fcc51a26a741")!
+        let uuidP = UUID(uuidString: "c251cdb0-4a81-0135-902b-63f4b61a9224")!
+        let data = "episode_uuid=\(uuidE.uuidString)&uuid=\(uuidP.uuidString)"
+            .addingPercentEncoding(withAllowedCharacters: .urlEncoded)!
+            .data(using: .utf8)!
+        
+        api.getEpisode(with: uuidE, of: uuidP) { (result) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+        
+        XCTAssertEqual(request.httpBody, data)
+        XCTAssertEqual(request.url, url)
+        
+        wait()
+    }
+    
+    func testGetEpisodeSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuidE = UUID(uuidString: "127a8068-a5a1-4b02-87d8-fcc51a26a741")!
+        let uuidP = UUID(uuidString: "c251cdb0-4a81-0135-902b-63f4b61a9224")!
+        
+        buildNewMock(data: TestHelper.TestData.getFetchEpisodeResponseData, response: response, error: nil)
+        
+        api.getEpisode(with: uuidE, of: uuidP) { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetEpisodeErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let uuidE = UUID(uuidString: "127a8068-a5a1-4b02-87d8-fcc51a26a741")!
+        let uuidP = UUID(uuidString: "c251cdb0-4a81-0135-902b-63f4b61a9224")!
+        
+        buildNewMock(data: TestHelper.TestData.getFetchEpisodeErrorResponseData, response: response, error: nil)
+        
+        api.getEpisode(with: uuidE, of: uuidP) { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
     func testGetShowNotesCheckProperties() {
         let url = URL(string: baseURLString + "/web/episodes/show_notes.json")!
         let uuid = UUID(uuidString: "151a34fa-63cc-4bb7-9476-bcbc3e1dd640")!
