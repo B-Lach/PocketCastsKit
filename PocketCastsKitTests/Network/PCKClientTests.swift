@@ -836,6 +836,55 @@ extension PCKClientTests {
 
 // MARK: Global action tests
 extension PCKClientTests {
+    func testGetNetworkGroupsCheckProperties() {
+        let networkId = 12
+        let url = URL(string: baseURLString + "/discover/json/network_\(networkId).json")!
+        
+        api.getNetworkGroups(networkId: networkId) { (_) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+        
+        XCTAssertEqual(request.url, url)
+        XCTAssertEqual(request.httpMethod, MethodType.GET.rawValue)
+        
+        wait()
+    }
+    
+    func testGetNetworkGroupsErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.globalErrorResponseData, response: response, error: nil)
+        
+        api.getNetworkGroups(networkId: 12) { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetNetworkGroupsSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.networkGroupsSuccessData, response: response, error: nil)
+        
+        api.getNetworkGroups(networkId: 12) { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
     func testGetNetworksCheckProperties() {
         let url = URL(string: baseURLString + "/discover/json/network_list.json")!
         

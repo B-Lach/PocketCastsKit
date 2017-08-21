@@ -283,6 +283,26 @@ extension TestHelper {
             """.data(using: .utf8)!
 
         }
+        
+        static var networkGroupsSuccessData: Data {
+            return """
+            {
+                "status": "ok",
+                "result": {
+                    "groups": [{
+                        "title": "\\"Movie Date\\" from The Takeaway",
+                        "description": "Each week, Newsday film critic Rafer Guzman and Takeaway producer Kristen Meinzer get in a heated, but friendly debate about the movies.",
+                        "image_url": "http://static.pocketcasts.com/discover/images/200/d48bf4e0-2ce1-012e-09dd-00163e1b201c.jpg",
+                        "ppu": "d48bf4e0-2ce1-012e-09dd-00163e1b201c",
+                        "podcasts": [{
+                            "uuid": "d48bf4e0-2ce1-012e-09dd-00163e1b201c",
+                            "file_type": null
+                        }]
+                    }]
+                }
+            }
+            """.data(using: .utf8)!
+        }
         // Network test data
         static var networkSuccessData: Data {
             return """

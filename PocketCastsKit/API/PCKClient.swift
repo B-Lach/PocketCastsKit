@@ -43,6 +43,10 @@ private struct NetworkContainer: Decodable {
     let networks: [PCKNetwork]
 }
 
+private struct NetworkGroupContainer: Decodable {
+    let groups: [PCKNetworkGroup]
+}
+
 private struct GlobalPodcastContainer: Decodable {
     let status: String
     let result: PodcastContainer
@@ -56,6 +60,11 @@ private struct GlobalEpisodeContainer: Decodable {
 private struct GlobalNetworkContainer: Decodable {
     let status: String
     let result: NetworkContainer
+}
+
+private struct GlobalNetworkGroupContainer: Decodable {
+    let status: String
+    let result: NetworkGroupContainer
 }
 
 private struct showNotesContainer: Decodable {
@@ -124,9 +133,19 @@ extension PCKClient {
 
 
 extension PCKClient: PCKClientProtocol {
-    
-    
     // MARK: - Global Interaction
+    public func getNetworkGroups(networkId: Int, completion: @escaping ((Result<[PCKNetworkGroup]>) -> Void)) {
+        globalClient.get(path: "/discover/json/network_\(networkId).json") { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+                if let container = JSONParser.shared.decode(data, type: GlobalNetworkGroupContainer.self) {
+                    completion(Result.success(container.result.groups))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
     public func getNetworks(completion: @escaping ((Result<[PCKNetwork]>) -> Void)) {
         globalClient.get(path: "/discover/json/network_list.json") { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
