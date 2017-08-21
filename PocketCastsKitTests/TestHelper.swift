@@ -28,6 +28,25 @@ extension TestHelper {
             """.data(using: .utf8)!
         }
         
+        static var categoryAndCountrySuccessData: Data {
+            return """
+            {
+                "status": "ok",
+                "result": {
+                    "categories": [{
+                        "id": 1,
+                        "itunes_id": 1301,
+                        "name": "Arts"
+                    }],
+                    "countries": [{
+                        "code": "au",
+                        "name": "Australia"
+                    }]
+                }
+            }
+            """.data(using: .utf8)!
+        }
+        
         static var globalSuccessResponseData: Data {
             return """
             {

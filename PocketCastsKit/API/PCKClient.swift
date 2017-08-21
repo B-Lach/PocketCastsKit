@@ -60,6 +60,16 @@ private struct SinglePodcastContainer: Decodable {
     let podcast: PCKPodcast
 }
 
+private struct GlobalCatAndCountryResultContainer: Decodable {
+    let categories: [PCKCategory]
+    let countries: [PCKCountry]
+}
+
+private struct GlobalCatAndCountryContainer: Decodable {
+    let status: String
+    let result: GlobalCatAndCountryResultContainer
+}
+
 public struct PCKClient {
     public static let shared = PCKClient()
     
@@ -105,6 +115,18 @@ extension PCKClient {
 
 extension PCKClient: PCKClientProtocol {
     // MARK: - Global Interaction
+    public func getCategoriesAndCountries(completion: @escaping ((Result<(categories: [PCKCategory], countries: [PCKCountry])>) -> Void)) {
+        globalClient.get(path: "/discover/json/categories.json") { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+                if let container = JSONParser.shared.decode(data, type: GlobalCatAndCountryContainer.self) {
+                    completion(Result.success((categories: container.result.categories, countries: container.result.countries)))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
     public func getTrending(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
         globalClient.get(path: "/discover/json/trending.json") { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in

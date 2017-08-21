@@ -836,6 +836,55 @@ extension PCKClientTests {
 
 // MARK: Global action tests
 extension PCKClientTests {
+    
+    func testGetCategoriesAndCountriesCheckProperties() {
+        let url = URL(string: baseURLString + "/discover/json/categories.json")!
+        
+        api.getCategoriesAndCountries { (_) in
+            self.expec.fulfill()
+        }
+        let request = getRequest()!
+        
+        XCTAssertEqual(request.url, url)
+        XCTAssertEqual(request.httpMethod, MethodType.GET.rawValue)
+        
+        wait()
+    }
+    
+    func testGetCategoriesAndCountriesErrorResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.globalErrorResponseData, response: response, error: nil)
+        
+        api.getCategoriesAndCountries { (result) in
+            switch result {
+            case .success(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
+    func testGetCategoriesAndCountriesSuccessResponse() {
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        buildNewMock(data: TestHelper.TestData.categoryAndCountrySuccessData, response: response, error: nil)
+        
+        api.getCategoriesAndCountries { (result) in
+            switch result {
+            case .error(_):
+                XCTFail()
+            default:
+                break
+            }
+            self.expec.fulfill()
+        }
+        wait()
+    }
+    
     func testGetTrendingCheckProperties() {
         let url = URL(string: baseURLString + "/discover/json/trending.json")!
         api.getTrending { (_) in
