@@ -78,6 +78,26 @@ extension PCKClient {
 
 extension PCKClient: PCKClientProtocol {
     // MARK: - Podcast Interaction
+    public func unsubscribe(podcast: UUID, completion: @escaping ((Result<Bool>) -> Void)) {
+        guard let data = parseBodyDictionary(dict: [
+            "uuid": podcast.uuidString
+            ]) else {
+                completion(Result.error(PCKClientError.bodyDataBuildingFailed))
+                return
+        }
+        let option = RequestOption.bodyData(data: data)
+        client.post(path: "/web/podcasts/unsubscribe.json", options: [option]) { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+                if let container = JSONParser.shared.decode(data, type: ResultContainer.self) {
+                    let result: Result = container.status == "ok" ? .success(true) : .error(PCKClientError.subscribeDidFail)
+                    completion(result)
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
     public func subscribe(podcast: UUID, completion: @escaping ((Result<Bool>) -> Void)) {
         guard let data = parseBodyDictionary(dict: [
             "uuid": podcast.uuidString
