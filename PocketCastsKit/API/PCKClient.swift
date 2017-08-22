@@ -34,8 +34,17 @@ private struct EpisodeContainer: Decodable {
 private struct PodcastContainer: Decodable {
     let podcasts: [PCKPodcast]
 }
+
 private struct ResultContainer: Decodable {
     let status: String
+}
+
+private struct NetworkContainer: Decodable {
+    let networks: [PCKNetwork]
+}
+
+private struct NetworkGroupContainer: Decodable {
+    let groups: [PCKNetworkGroup]
 }
 
 private struct GlobalPodcastContainer: Decodable {
@@ -43,9 +52,24 @@ private struct GlobalPodcastContainer: Decodable {
     let result: PodcastContainer
 }
 
+private struct GlobalCategoryContentContainer: Decodable {
+    let status: String
+    let result: [PCKCategoryContent]
+}
+
 private struct GlobalEpisodeContainer: Decodable {
     let status: String
     let result: EpisodeContainer
+}
+
+private struct GlobalNetworkContainer: Decodable {
+    let status: String
+    let result: NetworkContainer
+}
+
+private struct GlobalNetworkGroupContainer: Decodable {
+    let status: String
+    let result: NetworkGroupContainer
 }
 
 private struct showNotesContainer: Decodable {
@@ -58,6 +82,16 @@ private struct SingleEpisodeContainer: Decodable {
 
 private struct SinglePodcastContainer: Decodable {
     let podcast: PCKPodcast
+}
+
+private struct GlobalCatAndCountryResultContainer: Decodable {
+    let categories: [PCKCategory]
+    let countries: [PCKCountry]
+}
+
+private struct GlobalCatAndCountryContainer: Decodable {
+    let status: String
+    let result: GlobalCatAndCountryResultContainer
 }
 
 public struct PCKClient {
@@ -105,6 +139,54 @@ extension PCKClient {
 
 extension PCKClient: PCKClientProtocol {
     // MARK: - Global Interaction
+    public func getCategoryContent(categoryId: Int, countryCode: String, completion: @escaping ((Result<[PCKCategoryContent]>) -> Void)) {
+        globalClient.get(path: "/discover/json/category_\(countryCode)_\(categoryId).json") { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+                if let container = JSONParser.shared.decode(data, type: GlobalCategoryContentContainer.self) {
+                    completion(Result.success(container.result))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
+    public func getNetworkGroups(networkId: Int, completion: @escaping ((Result<[PCKNetworkGroup]>) -> Void)) {
+        globalClient.get(path: "/discover/json/network_\(networkId).json") { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+                if let container = JSONParser.shared.decode(data, type: GlobalNetworkGroupContainer.self) {
+                    completion(Result.success(container.result.groups))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
+    public func getNetworks(completion: @escaping ((Result<[PCKNetwork]>) -> Void)) {
+        globalClient.get(path: "/discover/json/network_list.json") { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+                if let container = JSONParser.shared.decode(data, type: GlobalNetworkContainer.self) {
+                    completion(Result.success(container.result.networks))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
+    public func getCategoriesAndCountries(completion: @escaping ((Result<(categories: [PCKCategory], countries: [PCKCountry])>) -> Void)) {
+        globalClient.get(path: "/discover/json/categories.json") { (result) in
+            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+                if let container = JSONParser.shared.decode(data, type: GlobalCatAndCountryContainer.self) {
+                    completion(Result.success((categories: container.result.categories, countries: container.result.countries)))
+                } else {
+                    completion(Result.error(PCKClientError.invalidResponse(data: data)))
+                }
+            })
+        }
+    }
+    
     public func getTrending(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
         globalClient.get(path: "/discover/json/trending.json") { (result) in
             self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in

@@ -15,6 +15,7 @@ struct TestHelper {
 // MARK: - Model test data
 extension TestHelper {
     struct TestData {
+        
         // Global response data
         static var globalErrorResponseData: Data {
             return """
@@ -22,6 +23,25 @@ extension TestHelper {
                 "status": "error",
                 "result": {
                     "podcasts": []
+                }
+            }
+            """.data(using: .utf8)!
+        }
+        
+        static var categoryAndCountrySuccessData: Data {
+            return """
+            {
+                "status": "ok",
+                "result": {
+                    "categories": [{
+                        "id": 1,
+                        "itunes_id": 1301,
+                        "name": "Arts"
+                    }],
+                    "countries": [{
+                        "code": "au",
+                        "name": "Australia"
+                    }]
                 }
             }
             """.data(using: .utf8)!
@@ -263,6 +283,121 @@ extension TestHelper {
             """.data(using: .utf8)!
 
         }
+        
+        static var categoryContentSuccessData: Data {
+            return """
+            {
+                "status": "ok",
+                "result": [
+                {
+                    "author": "Deutschlandfunk Nova",
+                    "title": "Eine Stunde History  - Deutschlandfunk Nova",
+                    "collection_id": 1111594074,
+                    "description": "Karl der Große, die Nürnberger Prozesse, Boat People und Flüchtlinge: Was hat Gestern mit Heute zu tun? Wie Vergangenheit und Zukunft miteinander zusammenhängen, erfahrt ihr in Eine Stunde History.",
+                    "thumbnail_url": "http://is2.mzstatic.com/image/thumb/Podcasts111/v4/fe/90/f3/fe90f38f-7da6-5378-d267-f8fd542dca67/mza_3728404983197295416.jpg/170x170bb-85.jpg",
+                    "uuid": "0e0d6bf0-f610-0133-9c6b-59d98c6b72b8"
+                }]
+            }
+            """.data(using: .utf8)!
+        }
+        
+        static var networkGroupsSuccessData: Data {
+            return """
+            {
+                "status": "ok",
+                "result": {
+                    "groups": [{
+                        "title": "\\"Movie Date\\" from The Takeaway",
+                        "description": "Each week, Newsday film critic Rafer Guzman and Takeaway producer Kristen Meinzer get in a heated, but friendly debate about the movies.",
+                        "image_url": "http://static.pocketcasts.com/discover/images/200/d48bf4e0-2ce1-012e-09dd-00163e1b201c.jpg",
+                        "ppu": "d48bf4e0-2ce1-012e-09dd-00163e1b201c",
+                        "podcasts": [{
+                            "uuid": "d48bf4e0-2ce1-012e-09dd-00163e1b201c",
+                            "file_type": null
+                        }]
+                    }]
+                }
+            }
+            """.data(using: .utf8)!
+        }
+        // Network test data
+        static var networkSuccessData: Data {
+            return """
+            {
+                "status": "ok",
+                "result": {
+                    "networks": [
+                    {
+                        "id": 24,
+                        "title": "Radiotopia",
+                        "description": "Radiotopia from PRX is a collective of the best story-driven shows on the planet",
+                        "image_url": "http://static.pocketcasts.com/discover/images/networks/thumbnails/24/original/radiotopia.png",
+                        "color": "#131F30"
+                    }]
+                }
+            }
+            """.data(using: .utf8)!
+        }
+        
+        static var networkData: Data {
+            return """
+            {
+                "id": 12,
+                "title": "CNET",
+                "description": "Reviews & first looks",
+                "image_url": "http://static.pocketcasts.com/discover/images/networks/thumbnails/12/original/cnet.png",
+                "color": "#222224"
+            }
+            """.data(using: .utf8)!
+        }
+        // Group test data
+        static var groupData: Data {
+            return """
+            {
+                "title": "\\"Movie Date\\" from The Takeaway",
+                "description": "Each week, Newsday film critic Rafer Guzman and Takeaway producer Kristen Meinzer get in a heated, but friendly debate about the movies.",
+                "image_url": "http://static.pocketcasts.com/discover/images/200/d48bf4e0-2ce1-012e-09dd-00163e1b201c.jpg",
+                "ppu": "d48bf4e0-2ce1-012e-09dd-00163e1b201c",
+                "podcasts": [{
+                    "uuid": "d48bf4e0-2ce1-012e-09dd-00163e1b201c",
+                    "file_type": null
+                }]
+            }
+            """.data(using: .utf8)!
+        }
+        
+        // Category test data
+        static var categoryContentData: Data {
+            return """
+            {
+                "author": "Financial Times",
+                "title": "FT Tech Tonic",
+                "collection_id": 1169101860,
+                "description": "A weekly conversation that looks at the way technology is changing our economies, societies and daily lives. Hosted by John Thornhill, innovation editor at the Financial Times.",
+                "thumbnail_url": "http://is5.mzstatic.com/image/thumb/Podcasts127/v4/87/1f/1f/871f1f2a-e5a1-b21d-3c6f-383f5a7be63a/mza_2575122218375622535.png/170x170bb-85.jpg",
+                "uuid": "7726e530-7d76-0134-9030-3327a14bcdba"
+            }
+            """.data(using: .utf8)!
+        }
+        
+        static var categoryData: Data {
+            return """
+            {
+                "id": 15,
+                "name": "Technology"
+            }
+            """.data(using: .utf8)!
+        }
+        // Country test data
+        static var countryData: Data {
+            return """
+            {
+                "code": "de",
+                "name": "Germany"
+            }
+            """.data(using: .utf8)!
+        }
+        
         // Episode test data
         static var episideDataOptionalPresent: Data {
             return """
