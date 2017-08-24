@@ -8,6 +8,8 @@
 
 import Foundation
 
+/// Represents the Content (i.e. Podcast) of PCKCategory
+/// It's just a simplified version of a PCKPodcast object
 public struct PCKCategoryContent: Decodable {
     private enum CodingKeys: String, CodingKey {
         case author

@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+/// Represents an Episode of a Podcast in PocketCasts
 public struct PCKEpisode {
     public let id: Int
     public let uuid: UUID
