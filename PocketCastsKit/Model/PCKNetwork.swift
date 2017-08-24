@@ -8,6 +8,8 @@
 
 import Foundation
 
+/// Represents a Network in PocketCasts
+/// Used only to discover new Podcasts
 public struct PCKNetwork: Decodable {
     private enum CodingKeys: String, CodingKey {
         case id

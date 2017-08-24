@@ -8,6 +8,8 @@
 
 import Foundation
 
+/// Represents a Podcast Category in PocketCasts,
+/// Used to filter Podcasts
 public struct PCKCategory: Decodable {
     let id: Int
     let name: String

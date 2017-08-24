@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+/// Represents a Group of a PCKNetwork
 public struct PCKNetworkGroup: Decodable {
     private enum CodingKeys: String, CodingKey {
         case title
