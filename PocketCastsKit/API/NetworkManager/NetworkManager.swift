@@ -30,6 +30,13 @@ struct NetworkManager: NetworkManagerProtocol {
         }.resume()
     }
     
+    /// Method to handle the response of a request
+    ///
+    /// - Parameters:
+    ///   - data: (optional) Thre returned data
+    ///   - response: (optional) The response
+    ///   - error: (optional) The error
+    ///   - completion: The CompletionHandler to call
     private func handleResponse(data: Data?, response: URLResponse?, error: Error?, completion: @escaping ((Result<(Data, HTTPURLResponse)>) -> Void)) {
         if let error = error {
             completion(Result.error(error))
@@ -49,6 +56,13 @@ struct NetworkManager: NetworkManagerProtocol {
 
     }
     
+    /// Build a URLRequest based on the given parameters
+    ///
+    /// - Parameters:
+    ///   - url: THe URL to use
+    ///   - options: The options to set
+    ///   - method: The method to use
+    /// - Returns: Instance of URLRequest if possibles
     private func getRequest(for url: URL, options: [RequestOption], method: MethodType ) -> URLRequest? {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
