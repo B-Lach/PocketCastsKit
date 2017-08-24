@@ -16,6 +16,16 @@ extension CharacterSet {
     static let urlEncoded = CharacterSet(charactersIn: "!*'();:@+$,/?%#[] ").inverted
 }
 
+
+/// An Error enum used to represent all possible Errors
+///
+/// - bodyDataBuildingFailed: It was not possible to build the body for a specific request
+/// - invalidResponse: The Request did not end with a success Response or the response data was not valid
+/// - invalidCredentials: The given username and password are not valid
+/// - updateStarredDidFail: It was not possible to update the starred option
+/// - updatePlayingStatusDidFail: It was not possible to update the Playing Status
+/// - updatePositionDidFail: It was not possible to update the Playing Position
+/// - subscribeDidFail: It was not possible to subscribe the Podcast
 public enum PCKClientError: Error {
     case bodyDataBuildingFailed
     case invalidResponse(data: Data?)
@@ -26,6 +36,8 @@ public enum PCKClientError: Error {
     case subscribeDidFail
 }
 
+// The following structs are only defined to extract the needed
+// information for decoding
 private struct EpisodeContainer: Decodable {
     let episodes: [PCKEpisode]
     let total: Int?
@@ -94,6 +106,7 @@ private struct GlobalCatAndCountryContainer: Decodable {
     let result: GlobalCatAndCountryResultContainer
 }
 
+/// The Pocket Casts API Client
 public struct PCKClient {
     public static let shared = PCKClient()
     
@@ -202,7 +215,6 @@ extension PCKClient: PCKClientProtocol {
             })
         }
     }
-    
     
     public func getFeatured(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
         globalClient.get(path: "/discover/json/featured.json") { (result) in
