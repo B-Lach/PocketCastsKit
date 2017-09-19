@@ -107,13 +107,13 @@ private struct GlobalCatAndCountryContainer: Decodable {
 }
 
 /// The Pocket Casts API Client
-public struct PCKClient {
+public class PCKClient {
     public static let shared = PCKClient()
     
     private let client: RestClient
     private let globalClient: RestClient
     
-    internal init(client: RestClient = try! RestClient(baseURLString: baseURLString),
+    init(client: RestClient = try! RestClient(baseURLString: baseURLString),
                   globalClient: RestClient = try! RestClient(baseURLString: staticBaseURLString)) {
         self.client = client
         self.globalClient = globalClient
@@ -153,8 +153,8 @@ extension PCKClient {
 extension PCKClient: PCKClientProtocol {
     // MARK: - Global Interaction
     public func getCategoryContent(categoryId: Int, countryCode: String, completion: @escaping ((Result<[PCKCategoryContent]>) -> Void)) {
-        globalClient.get(path: "/discover/json/category_\(countryCode)_\(categoryId).json") { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+        globalClient.get(path: "/discover/json/category_\(countryCode)_\(categoryId).json") { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
                 if let container = JSONParser.shared.decode(data, type: GlobalCategoryContentContainer.self) {
                     completion(Result.success(container.result))
                 } else {
@@ -165,8 +165,8 @@ extension PCKClient: PCKClientProtocol {
     }
     
     public func getNetworkGroups(networkId: Int, completion: @escaping ((Result<[PCKNetworkGroup]>) -> Void)) {
-        globalClient.get(path: "/discover/json/network_\(networkId).json") { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+        globalClient.get(path: "/discover/json/network_\(networkId).json") { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
                 if let container = JSONParser.shared.decode(data, type: GlobalNetworkGroupContainer.self) {
                     completion(Result.success(container.result.groups))
                 } else {
@@ -177,8 +177,8 @@ extension PCKClient: PCKClientProtocol {
     }
     
     public func getNetworks(completion: @escaping ((Result<[PCKNetwork]>) -> Void)) {
-        globalClient.get(path: "/discover/json/network_list.json") { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+        globalClient.get(path: "/discover/json/network_list.json") {[weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
                 if let container = JSONParser.shared.decode(data, type: GlobalNetworkContainer.self) {
                     completion(Result.success(container.result.networks))
                 } else {
@@ -189,8 +189,8 @@ extension PCKClient: PCKClientProtocol {
     }
     
     public func getCategoriesAndCountries(completion: @escaping ((Result<(categories: [PCKCategory], countries: [PCKCountry])>) -> Void)) {
-        globalClient.get(path: "/discover/json/categories.json") { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+        globalClient.get(path: "/discover/json/categories.json") { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
                 if let container = JSONParser.shared.decode(data, type: GlobalCatAndCountryContainer.self) {
                     completion(Result.success((categories: container.result.categories, countries: container.result.countries)))
                 } else {
@@ -201,8 +201,8 @@ extension PCKClient: PCKClientProtocol {
     }
     
     public func getTrending(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
-        globalClient.get(path: "/discover/json/trending.json") { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+        globalClient.get(path: "/discover/json/trending.json") { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: GlobalPodcastContainer.self) {
                     if !(container.status == "ok") {
                         completion(Result.error(PCKClientError.invalidResponse(data: data)))
@@ -217,8 +217,8 @@ extension PCKClient: PCKClientProtocol {
     }
     
     public func getFeatured(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
-        globalClient.get(path: "/discover/json/featured.json") { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+        globalClient.get(path: "/discover/json/featured.json") { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: GlobalPodcastContainer.self) {
                     if !(container.status == "ok") {
                         completion(Result.error(PCKClientError.invalidResponse(data: data)))
@@ -233,8 +233,8 @@ extension PCKClient: PCKClientProtocol {
     }
     
     public func getTop100(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
-        globalClient.get(path: "/discover/json/popular_world.json") { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+        globalClient.get(path: "/discover/json/popular_world.json") { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: GlobalPodcastContainer.self) {
                     if !(container.status == "ok") {
                         completion(Result.error(PCKClientError.invalidResponse(data: data)))
@@ -257,8 +257,8 @@ extension PCKClient: PCKClientProtocol {
                 return
         }
         let option = RequestOption.bodyData(data: data)
-        client.post(path: "/web/podcasts/search.json", options: [option]) { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+        client.post(path: "/web/podcasts/search.json", options: [option]) { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
                 if let container = JSONParser.shared.decode(data, type: PodcastContainer.self) {
                     completion(Result.success(container.podcasts))
                 } else {
@@ -276,8 +276,8 @@ extension PCKClient: PCKClientProtocol {
                 return
         }
         let option = RequestOption.bodyData(data: data)
-        client.post(path: "/web/podcasts/podcast.json", options: [option]) { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+        client.post(path: "/web/podcasts/podcast.json", options: [option]) { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
                 if let container = JSONParser.shared.decode(data, type: SinglePodcastContainer.self) {
                     completion(Result.success(container.podcast))
                 } else {
@@ -300,8 +300,8 @@ extension PCKClient: PCKClientProtocol {
                 return
         }
         let option = RequestOption.bodyData(data: data)
-        client.post(path: "/web/episodes/find_by_podcast.json", options: [option]) { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+        client.post(path: "/web/episodes/find_by_podcast.json", options: [option]) { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
                 if let container = JSONParser.shared.decode(data, type: GlobalEpisodeContainer.self) {
                     guard let total = container.result.total else {
                         completion(Result.error(PCKClientError.invalidResponse(data: data)))
@@ -325,8 +325,8 @@ extension PCKClient: PCKClientProtocol {
                 return
         }
         let option = RequestOption.bodyData(data: data)
-        client.post(path: "/web/podcasts/unsubscribe.json", options: [option]) { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+        client.post(path: "/web/podcasts/unsubscribe.json", options: [option]) { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: ResultContainer.self) {
                     let result: Result = container.status == "ok" ? .success(true) : .error(PCKClientError.subscribeDidFail)
                     completion(result)
@@ -345,8 +345,8 @@ extension PCKClient: PCKClientProtocol {
                 return
         }
         let option = RequestOption.bodyData(data: data)
-        client.post(path: "/web/podcasts/subscribe.json", options: [option]) { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+        client.post(path: "/web/podcasts/subscribe.json", options: [option]) { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: ResultContainer.self) {
                     let result: Result = container.status == "ok" ? .success(true) : .error(PCKClientError.subscribeDidFail)
                     completion(result)
@@ -367,8 +367,8 @@ extension PCKClient: PCKClientProtocol {
                 return
         }
         let option = RequestOption.bodyData(data: data)
-        client.post(path: "/web/podcasts/podcast.json", options: [option]) { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+        client.post(path: "/web/podcasts/podcast.json", options: [option]) { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
                 if let container = JSONParser.shared.decode(data, type: SingleEpisodeContainer.self) {
                     completion(Result.success(container.episode))
                 } else {
@@ -386,8 +386,8 @@ extension PCKClient: PCKClientProtocol {
                 return
         }
         let option = RequestOption.bodyData(data: data)
-        client.post(path: "/web/episodes/show_notes.json", options: [option]) { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
+        client.post(path: "/web/episodes/show_notes.json", options: [option]) { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, _) in
                 if let container = JSONParser.shared.decode(data, type: showNotesContainer.self) {
                     completion(Result.success(container.show_notes))
                 } else {
@@ -409,8 +409,8 @@ extension PCKClient: PCKClientProtocol {
         }
         let body = RequestOption.bodyData(data: data)
         let header = RequestOption.headerField([("Content-Type", "application/json")])
-        client.post(path: "/web/episodes/update_episode_position.json", options: [body, header]) { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+        client.post(path: "/web/episodes/update_episode_position.json", options: [body, header]) { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: ResultContainer.self) {
                     let result: Result = container.status == "ok" ? .success(true) : .error(PCKClientError.updatePositionDidFail)
                     completion(result)
@@ -431,8 +431,8 @@ extension PCKClient: PCKClientProtocol {
                 return
         }
         let option = RequestOption.bodyData(data: data)
-        client.post(path: "/web/episodes/update_episode_position.json", options: [option]) { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+        client.post(path: "/web/episodes/update_episode_position.json", options: [option]) { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: ResultContainer.self) {
                     let result: Result = container.status == "ok" ? .success(true) : .error(PCKClientError.updatePlayingStatusDidFail)
                     completion(result)
@@ -453,8 +453,8 @@ extension PCKClient: PCKClientProtocol {
         }
         let option = RequestOption.bodyData(data: data)
         
-        client.post(path: "/web/episodes/update_episode_star.json", options: [option]) { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+        client.post(path: "/web/episodes/update_episode_star.json", options: [option]) { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: ResultContainer.self) {
                     let result: Result = container.status == "ok" ? .success(true) : .error(PCKClientError.updateStarredDidFail)
                     completion(result)
@@ -473,8 +473,8 @@ extension PCKClient: PCKClientProtocol {
         }
         let option = RequestOption.bodyData(data: data)
         
-        client.post(path: "/users/sign_in", options: [option]) { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+        client.post(path: "/users/sign_in", options: [option]) { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 
                 if response.url == URL(string: "https://play.pocketcasts.com/web/podcasts/index") {
                     completion(Result.success(true))
@@ -486,8 +486,8 @@ extension PCKClient: PCKClientProtocol {
     }
     
     public func isAuthenticated(completion: @escaping ((Result<Bool>) -> Void)) {
-        client.get(path: "/", options: []) { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+        client.get(path: "/", options: []) { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if response.url == URL(string: "https://play.pocketcasts.com/web/podcasts/index") {
                     completion(Result.success(true))
                 } else {
@@ -499,8 +499,8 @@ extension PCKClient: PCKClientProtocol {
     
     // MARK: - User Podcast feeds
     public func getStarredEpisodes(completion: @escaping ((Result<[PCKEpisode]>) -> Void)) {
-        client.post(path: "/web/episodes/starred_episodes.json") { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+        client.post(path: "/web/episodes/starred_episodes.json") { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: EpisodeContainer.self) {
                     completion(Result.success(container.episodes))
                 } else {
@@ -511,8 +511,8 @@ extension PCKClient: PCKClientProtocol {
     }
     
     public func getNewEpisodes(completion: @escaping ((Result<[PCKEpisode]>) -> Void)) {
-        client.post(path: "/web/episodes/new_releases_episodes.json") { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+        client.post(path: "/web/episodes/new_releases_episodes.json") { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: EpisodeContainer.self) {
                     completion(Result.success(container.episodes))
                 } else {
@@ -523,8 +523,8 @@ extension PCKClient: PCKClientProtocol {
     }
     
     public func getEpisodesInProgress(completion: @escaping ((Result<[PCKEpisode]>) -> Void)) {
-        client.post(path: "/web/episodes/in_progress_episodes.json") { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+        client.post(path: "/web/episodes/in_progress_episodes.json") { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: EpisodeContainer.self) {
                     completion(Result.success(container.episodes))
                 } else {
@@ -535,8 +535,8 @@ extension PCKClient: PCKClientProtocol {
     }
     
     public func getSubscriptions(completion: @escaping ((Result<[PCKPodcast]>) -> Void)) {
-        client.post(path: "/web/podcasts/all.json") { (result) in
-            self.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
+        client.post(path: "/web/podcasts/all.json") { [weak self] (result) in
+            self?.handleResponse(response: result, completion: completion, successHandler: { (data, response) in
                 if let container = JSONParser.shared.decode(data, type: PodcastContainer.self) {
                     completion(Result.success(container.podcasts))
                 } else {

@@ -13,7 +13,8 @@ enum NetworkManagerErrors: Error {
     case invalidResponse
     case noSuccessResponse(statusCode: Int, data: Data)
 }
-struct NetworkManager: NetworkManagerProtocol {
+
+class NetworkManager: NetworkManagerProtocol {
     private let session: URLSessionProtocol
     
     init(session: URLSessionProtocol = URLSession.shared) {
@@ -25,8 +26,8 @@ struct NetworkManager: NetworkManagerProtocol {
             completion(Result.error(NetworkManagerErrors.canNotBuildRequest))
             return
         }
-        session.dataTask(with: request) { (data, response, error) in
-            self.handleResponse(data: data, response: response, error: error, completion: completion)
+        session.dataTask(with: request) { [weak self] (data, response, error) in
+            self?.handleResponse(data: data, response: response, error: error, completion: completion)
         }.resume()
     }
     
@@ -59,7 +60,7 @@ struct NetworkManager: NetworkManagerProtocol {
     /// Build a URLRequest based on the given parameters
     ///
     /// - Parameters:
-    ///   - url: THe URL to use
+    ///   - url: The URL to use
     ///   - options: The options to set
     ///   - method: The method to use
     /// - Returns: Instance of URLRequest if possibles

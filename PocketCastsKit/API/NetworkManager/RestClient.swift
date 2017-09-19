@@ -14,7 +14,7 @@ enum RestClientErrors: Error {
 }
 
 /// RestClient (atm only GET and POST) to make Network Requests
-struct RestClient: RestProtocol {
+class RestClient: RestProtocol {
     private let manager: NetworkManager
     private(set) var baseURL: URL
     
