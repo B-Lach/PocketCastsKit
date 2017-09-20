@@ -33,5 +33,10 @@ xcuserdata/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 
-# End of https://www.gitignore.io/api/xcode
+## Carthage
+Carthage/
+
+## Misc
 .DS_Store
+
+# End of https://www.gitignore.io/api/xcode
