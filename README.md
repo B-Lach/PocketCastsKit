@@ -1,5 +1,5 @@
 # PocketCastsKit
-[![Build Status](https://www.bitrise.io/app/ac447dc3df4fce21/status.svg?token=9C4nUqdXM90icLSPXp6-7A&branch=develop)](https://www.bitrise.io/app/ac447dc3df4fce21)
+[![Build Status](https://www.bitrise.io/app/b1a7baab2672d1b7/status.svg?token=puVh6MgHEoHK74nXk0LS9g&branch=develop)](https://www.bitrise.io/app/b1a7baab2672d1b7)
 
 Unofficial Pocket Casts API Client written in Swift
 
