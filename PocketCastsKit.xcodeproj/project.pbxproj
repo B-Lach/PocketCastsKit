@@ -7,342 +7,596 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ED76DDF01F45CD5200F8CB70 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DDEF1F45CD5200F8CB70 /* JSONParser.swift */; };
-		ED76DDF31F45CDF800F8CB70 /* PCKPodcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DDF21F45CDF800F8CB70 /* PCKPodcast.swift */; };
-		ED76DDF51F45CEB900F8CB70 /* PCKEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DDF41F45CEB900F8CB70 /* PCKEpisode.swift */; };
-		ED76DDF81F45CF5E00F8CB70 /* PCKPodcastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DDF71F45CF5E00F8CB70 /* PCKPodcastTests.swift */; };
-		ED76DDFA1F45D36800F8CB70 /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DDF91F45D36800F8CB70 /* TestHelper.swift */; };
-		ED76DDFC1F45D8C100F8CB70 /* PCKEpisodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DDFB1F45D8C100F8CB70 /* PCKEpisodeTests.swift */; };
-		ED76DDFF1F45E12900F8CB70 /* JSONParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DDFE1F45E12900F8CB70 /* JSONParserTests.swift */; };
-		ED76DE041F4638B000F8CB70 /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DE031F4638B000F8CB70 /* NetworkManagerProtocol.swift */; };
-		ED76DE061F46398500F8CB70 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DE051F46398500F8CB70 /* Result.swift */; };
-		ED76DE081F463B3500F8CB70 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DE071F463B3500F8CB70 /* NetworkManager.swift */; };
-		ED76DE0B1F46481300F8CB70 /* RestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DE0A1F46481300F8CB70 /* RestProtocol.swift */; };
-		ED76DE0D1F46494000F8CB70 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DE0C1F46494000F8CB70 /* RestClient.swift */; };
-		ED76DE101F464C9900F8CB70 /* RestClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED76DE0F1F464C9900F8CB70 /* RestClientTests.swift */; };
-		ED9DD3841F4B3CFA00211328 /* PCKCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9DD3831F4B3CFA00211328 /* PCKCountry.swift */; };
-		ED9DD3861F4B3D5A00211328 /* PCKCountryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9DD3851F4B3D5A00211328 /* PCKCountryTests.swift */; };
-		ED9DD3881F4B402700211328 /* PCKCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9DD3871F4B402700211328 /* PCKCategory.swift */; };
-		ED9DD38A1F4B410000211328 /* PCKCategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9DD3891F4B410000211328 /* PCKCategoryTests.swift */; };
-		ED9DD38D1F4B4AC200211328 /* PCKNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9DD38C1F4B4AC200211328 /* PCKNetwork.swift */; };
-		ED9DD38F1F4B4B5100211328 /* PCKNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9DD38E1F4B4B5100211328 /* PCKNetworkTests.swift */; };
-		ED9DD3911F4B862800211328 /* PCKNetworkGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9DD3901F4B862800211328 /* PCKNetworkGroup.swift */; };
-		ED9DD3931F4B87DE00211328 /* PCKNetworkGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9DD3921F4B87DE00211328 /* PCKNetworkGroupTests.swift */; };
-		EDA6C9C51F467581007617B5 /* PCKClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9C41F467581007617B5 /* PCKClientProtocol.swift */; };
-		EDA6C9C71F4676AF007617B5 /* PCKClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9C61F4676AF007617B5 /* PCKClient.swift */; };
-		EDA6C9C91F46FFED007617B5 /* PCKClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9C81F46FFED007617B5 /* PCKClientTests.swift */; };
-		EDA6C9CB1F47265B007617B5 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9CA1F47265B007617B5 /* URLSessionProtocol.swift */; };
-		EDA6C9CD1F4781F3007617B5 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9CC1F4781F3007617B5 /* URLSessionMock.swift */; };
-		EDA6C9CF1F47968D007617B5 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9CE1F47968D007617B5 /* NetworkManagerTests.swift */; };
-		EDA6C9D11F47A626007617B5 /* PCKTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA6C9D01F47A626007617B5 /* PCKTestCase.swift */; };
-		EDBB3A201F4B9BC9004A2B5C /* PCKCategoryContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBB3A1F1F4B9BC9004A2B5C /* PCKCategoryContent.swift */; };
-		EDBB3A221F4B9CEF004A2B5C /* PCKCategoryContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBB3A211F4B9CEF004A2B5C /* PCKCategoryContentTests.swift */; };
-		EDC7EA8C1F44A0520048E8EF /* PocketCastsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */; };
-		EDC7EA931F44A0520048E8EF /* PocketCastsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2B6E06F1F72979000959503 /* PocketCastsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B2EA9E471F7296E3007A410A /* PocketCastsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2B6E0701F72979200959503 /* PocketCastsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B2EA9E471F7296E3007A410A /* PocketCastsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2B6E0711F72979300959503 /* PocketCastsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B2EA9E471F7296E3007A410A /* PocketCastsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2B6E09C1F7299BA00959503 /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0901F7299B900959503 /* TestHelper.swift */; };
+		B2B6E09D1F7299BA00959503 /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0901F7299B900959503 /* TestHelper.swift */; };
+		B2B6E09E1F7299BA00959503 /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0901F7299B900959503 /* TestHelper.swift */; };
+		B2B6E09F1F7299BA00959503 /* PCKTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E09B1F7299BA00959503 /* PCKTestCase.swift */; };
+		B2B6E0A01F7299BA00959503 /* PCKTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E09B1F7299BA00959503 /* PCKTestCase.swift */; };
+		B2B6E0A11F7299BA00959503 /* PCKTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E09B1F7299BA00959503 /* PCKTestCase.swift */; };
+		B2B6E0A21F729A0B00959503 /* PCKClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E08D1F7299B900959503 /* PCKClientTests.swift */; };
+		B2B6E0A31F729A0B00959503 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E08E1F7299B900959503 /* NetworkManagerTests.swift */; };
+		B2B6E0A41F729A0B00959503 /* RestClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E08F1F7299B900959503 /* RestClientTests.swift */; };
+		B2B6E0A51F729A0C00959503 /* PCKClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E08D1F7299B900959503 /* PCKClientTests.swift */; };
+		B2B6E0A61F729A0C00959503 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E08E1F7299B900959503 /* NetworkManagerTests.swift */; };
+		B2B6E0A71F729A0C00959503 /* RestClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E08F1F7299B900959503 /* RestClientTests.swift */; };
+		B2B6E0A81F729A0C00959503 /* PCKClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E08D1F7299B900959503 /* PCKClientTests.swift */; };
+		B2B6E0A91F729A0C00959503 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E08E1F7299B900959503 /* NetworkManagerTests.swift */; };
+		B2B6E0AA1F729A0C00959503 /* RestClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E08F1F7299B900959503 /* RestClientTests.swift */; };
+		B2B6E0AB1F729A1700959503 /* PCKEpisodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0921F7299B900959503 /* PCKEpisodeTests.swift */; };
+		B2B6E0AC1F729A1700959503 /* PCKNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0931F7299B900959503 /* PCKNetworkTests.swift */; };
+		B2B6E0AD1F729A1700959503 /* PCKPodcastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0941F7299B900959503 /* PCKPodcastTests.swift */; };
+		B2B6E0AE1F729A1700959503 /* PCKCountryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0951F7299B900959503 /* PCKCountryTests.swift */; };
+		B2B6E0AF1F729A1700959503 /* PCKNetworkGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0961F7299B900959503 /* PCKNetworkGroupTests.swift */; };
+		B2B6E0B01F729A1700959503 /* PCKCategoryContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0971F7299B900959503 /* PCKCategoryContentTests.swift */; };
+		B2B6E0B11F729A1700959503 /* PCKCategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0981F7299B900959503 /* PCKCategoryTests.swift */; };
+		B2B6E0B21F729A1800959503 /* PCKEpisodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0921F7299B900959503 /* PCKEpisodeTests.swift */; };
+		B2B6E0B31F729A1800959503 /* PCKNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0931F7299B900959503 /* PCKNetworkTests.swift */; };
+		B2B6E0B41F729A1800959503 /* PCKPodcastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0941F7299B900959503 /* PCKPodcastTests.swift */; };
+		B2B6E0B51F729A1800959503 /* PCKCountryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0951F7299B900959503 /* PCKCountryTests.swift */; };
+		B2B6E0B61F729A1800959503 /* PCKNetworkGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0961F7299B900959503 /* PCKNetworkGroupTests.swift */; };
+		B2B6E0B71F729A1800959503 /* PCKCategoryContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0971F7299B900959503 /* PCKCategoryContentTests.swift */; };
+		B2B6E0B81F729A1800959503 /* PCKCategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0981F7299B900959503 /* PCKCategoryTests.swift */; };
+		B2B6E0B91F729A1800959503 /* PCKEpisodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0921F7299B900959503 /* PCKEpisodeTests.swift */; };
+		B2B6E0BA1F729A1800959503 /* PCKNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0931F7299B900959503 /* PCKNetworkTests.swift */; };
+		B2B6E0BB1F729A1800959503 /* PCKPodcastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0941F7299B900959503 /* PCKPodcastTests.swift */; };
+		B2B6E0BC1F729A1800959503 /* PCKCountryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0951F7299B900959503 /* PCKCountryTests.swift */; };
+		B2B6E0BD1F729A1800959503 /* PCKNetworkGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0961F7299B900959503 /* PCKNetworkGroupTests.swift */; };
+		B2B6E0BE1F729A1800959503 /* PCKCategoryContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0971F7299B900959503 /* PCKCategoryContentTests.swift */; };
+		B2B6E0BF1F729A1800959503 /* PCKCategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0981F7299B900959503 /* PCKCategoryTests.swift */; };
+		B2B6E0C01F729A1D00959503 /* JSONParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E09A1F7299B900959503 /* JSONParserTests.swift */; };
+		B2B6E0C11F729A1E00959503 /* JSONParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E09A1F7299B900959503 /* JSONParserTests.swift */; };
+		B2B6E0C21F729A1E00959503 /* JSONParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E09A1F7299B900959503 /* JSONParserTests.swift */; };
+		B2B6E0C31F729B2A00959503 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0831F72996B00959503 /* URLSessionMock.swift */; };
+		B2B6E0C41F729B2A00959503 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0841F72996B00959503 /* Result.swift */; };
+		B2B6E0C51F729B2A00959503 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0851F72996B00959503 /* NetworkManager.swift */; };
+		B2B6E0C61F729B2A00959503 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E08A1F72996B00959503 /* RestClient.swift */; };
+		B2B6E0C71F729B2A00959503 /* PCKClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E08B1F72996B00959503 /* PCKClient.swift */; };
+		B2B6E0C81F729B2A00959503 /* PCKClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0801F72996A00959503 /* PCKClientProtocol.swift */; };
+		B2B6E0C91F729B2B00959503 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0831F72996B00959503 /* URLSessionMock.swift */; };
+		B2B6E0CA1F729B2B00959503 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0841F72996B00959503 /* Result.swift */; };
+		B2B6E0CB1F729B2B00959503 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0851F72996B00959503 /* NetworkManager.swift */; };
+		B2B6E0CC1F729B2B00959503 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E08A1F72996B00959503 /* RestClient.swift */; };
+		B2B6E0CD1F729B2B00959503 /* PCKClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E08B1F72996B00959503 /* PCKClient.swift */; };
+		B2B6E0CE1F729B2B00959503 /* PCKClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0801F72996A00959503 /* PCKClientProtocol.swift */; };
+		B2B6E0CF1F729B2C00959503 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0831F72996B00959503 /* URLSessionMock.swift */; };
+		B2B6E0D01F729B2C00959503 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0841F72996B00959503 /* Result.swift */; };
+		B2B6E0D11F729B2C00959503 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0851F72996B00959503 /* NetworkManager.swift */; };
+		B2B6E0D21F729B2C00959503 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E08A1F72996B00959503 /* RestClient.swift */; };
+		B2B6E0D31F729B2C00959503 /* PCKClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E08B1F72996B00959503 /* PCKClient.swift */; };
+		B2B6E0D41F729B2C00959503 /* PCKClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0801F72996A00959503 /* PCKClientProtocol.swift */; };
+		B2B6E0D51F729B3000959503 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E07E1F72994C00959503 /* JSONParser.swift */; };
+		B2B6E0D61F729B3100959503 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E07E1F72994C00959503 /* JSONParser.swift */; };
+		B2B6E0D71F729B3100959503 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E07E1F72994C00959503 /* JSONParser.swift */; };
+		B2B6E0D81F729B3B00959503 /* PCKCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E07A1F72991C00959503 /* PCKCategory.swift */; };
+		B2B6E0D91F729B3B00959503 /* PCKCategoryContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0761F72991B00959503 /* PCKCategoryContent.swift */; };
+		B2B6E0DA1F729B3B00959503 /* PCKCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E07B1F72991C00959503 /* PCKCountry.swift */; };
+		B2B6E0DB1F729B3B00959503 /* PCKEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E07C1F72991C00959503 /* PCKEpisode.swift */; };
+		B2B6E0DC1F729B3B00959503 /* PCKNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0771F72991B00959503 /* PCKNetwork.swift */; };
+		B2B6E0DD1F729B3B00959503 /* PCKNetworkGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0781F72991B00959503 /* PCKNetworkGroup.swift */; };
+		B2B6E0DE1F729B3B00959503 /* PCKPodcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0791F72991C00959503 /* PCKPodcast.swift */; };
+		B2B6E0DF1F729B3B00959503 /* PCKCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E07A1F72991C00959503 /* PCKCategory.swift */; };
+		B2B6E0E01F729B3B00959503 /* PCKCategoryContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0761F72991B00959503 /* PCKCategoryContent.swift */; };
+		B2B6E0E11F729B3B00959503 /* PCKCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E07B1F72991C00959503 /* PCKCountry.swift */; };
+		B2B6E0E21F729B3B00959503 /* PCKEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E07C1F72991C00959503 /* PCKEpisode.swift */; };
+		B2B6E0E31F729B3B00959503 /* PCKNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0771F72991B00959503 /* PCKNetwork.swift */; };
+		B2B6E0E41F729B3B00959503 /* PCKNetworkGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0781F72991B00959503 /* PCKNetworkGroup.swift */; };
+		B2B6E0E51F729B3B00959503 /* PCKPodcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0791F72991C00959503 /* PCKPodcast.swift */; };
+		B2B6E0E61F729B3C00959503 /* PCKCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E07A1F72991C00959503 /* PCKCategory.swift */; };
+		B2B6E0E71F729B3C00959503 /* PCKCategoryContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0761F72991B00959503 /* PCKCategoryContent.swift */; };
+		B2B6E0E81F729B3C00959503 /* PCKCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E07B1F72991C00959503 /* PCKCountry.swift */; };
+		B2B6E0E91F729B3C00959503 /* PCKEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E07C1F72991C00959503 /* PCKEpisode.swift */; };
+		B2B6E0EA1F729B3C00959503 /* PCKNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0771F72991B00959503 /* PCKNetwork.swift */; };
+		B2B6E0EB1F729B3C00959503 /* PCKNetworkGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0781F72991B00959503 /* PCKNetworkGroup.swift */; };
+		B2B6E0EC1F729B3C00959503 /* PCKPodcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0791F72991C00959503 /* PCKPodcast.swift */; };
+		B2B6E0ED1F729B9000959503 /* RestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0871F72996B00959503 /* RestProtocol.swift */; };
+		B2B6E0EE1F729B9000959503 /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0881F72996B00959503 /* NetworkManagerProtocol.swift */; };
+		B2B6E0EF1F729B9000959503 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0891F72996B00959503 /* URLSessionProtocol.swift */; };
+		B2B6E0F01F729B9000959503 /* RestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0871F72996B00959503 /* RestProtocol.swift */; };
+		B2B6E0F11F729B9000959503 /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0881F72996B00959503 /* NetworkManagerProtocol.swift */; };
+		B2B6E0F21F729B9000959503 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0891F72996B00959503 /* URLSessionProtocol.swift */; };
+		B2B6E0F31F729B9100959503 /* RestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0871F72996B00959503 /* RestProtocol.swift */; };
+		B2B6E0F41F729B9100959503 /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0881F72996B00959503 /* NetworkManagerProtocol.swift */; };
+		B2B6E0F51F729B9100959503 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6E0891F72996B00959503 /* URLSessionProtocol.swift */; };
+		B2EA9DFB1F729572007A410A /* PocketCastsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2EA9DF11F729572007A410A /* PocketCastsKit.framework */; };
+		B2EA9E191F7295FE007A410A /* PocketCastsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2EA9E101F7295FE007A410A /* PocketCastsKit.framework */; };
+		B2EA9E351F729630007A410A /* PocketCastsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2EA9E2C1F729630007A410A /* PocketCastsKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		EDC7EA8D1F44A0520048E8EF /* PBXContainerItemProxy */ = {
+		B2EA9DFC1F729572007A410A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = EDC7EA791F44A0520048E8EF /* Project object */;
+			containerPortal = B2EA9DE81F729572007A410A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = EDC7EA811F44A0520048E8EF;
-			remoteInfo = PocketCastsKit;
+			remoteGlobalIDString = B2EA9DF01F729572007A410A;
+			remoteInfo = PocketCastsKit_iOS;
+		};
+		B2EA9E1A1F7295FE007A410A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2EA9DE81F729572007A410A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B2EA9E0F1F7295FE007A410A;
+			remoteInfo = PocketCastsKit_macOS;
+		};
+		B2EA9E361F729630007A410A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2EA9DE81F729572007A410A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B2EA9E2B1F729630007A410A;
+			remoteInfo = PocketCastsKit_tvOS;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		ED76DDEF1F45CD5200F8CB70 /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
-		ED76DDF21F45CDF800F8CB70 /* PCKPodcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKPodcast.swift; sourceTree = "<group>"; };
-		ED76DDF41F45CEB900F8CB70 /* PCKEpisode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKEpisode.swift; sourceTree = "<group>"; };
-		ED76DDF71F45CF5E00F8CB70 /* PCKPodcastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKPodcastTests.swift; sourceTree = "<group>"; };
-		ED76DDF91F45D36800F8CB70 /* TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
-		ED76DDFB1F45D8C100F8CB70 /* PCKEpisodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKEpisodeTests.swift; sourceTree = "<group>"; };
-		ED76DDFE1F45E12900F8CB70 /* JSONParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParserTests.swift; sourceTree = "<group>"; };
-		ED76DE031F4638B000F8CB70 /* NetworkManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocol.swift; sourceTree = "<group>"; };
-		ED76DE051F46398500F8CB70 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		ED76DE071F463B3500F8CB70 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		ED76DE0A1F46481300F8CB70 /* RestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestProtocol.swift; sourceTree = "<group>"; };
-		ED76DE0C1F46494000F8CB70 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
-		ED76DE0F1F464C9900F8CB70 /* RestClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClientTests.swift; sourceTree = "<group>"; };
-		ED9DD3831F4B3CFA00211328 /* PCKCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCountry.swift; sourceTree = "<group>"; };
-		ED9DD3851F4B3D5A00211328 /* PCKCountryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCountryTests.swift; sourceTree = "<group>"; };
-		ED9DD3871F4B402700211328 /* PCKCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCategory.swift; sourceTree = "<group>"; };
-		ED9DD3891F4B410000211328 /* PCKCategoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCategoryTests.swift; sourceTree = "<group>"; };
-		ED9DD38C1F4B4AC200211328 /* PCKNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKNetwork.swift; sourceTree = "<group>"; };
-		ED9DD38E1F4B4B5100211328 /* PCKNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKNetworkTests.swift; sourceTree = "<group>"; };
-		ED9DD3901F4B862800211328 /* PCKNetworkGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKNetworkGroup.swift; sourceTree = "<group>"; };
-		ED9DD3921F4B87DE00211328 /* PCKNetworkGroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKNetworkGroupTests.swift; sourceTree = "<group>"; };
-		EDA6C9C41F467581007617B5 /* PCKClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKClientProtocol.swift; sourceTree = "<group>"; };
-		EDA6C9C61F4676AF007617B5 /* PCKClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKClient.swift; sourceTree = "<group>"; };
-		EDA6C9C81F46FFED007617B5 /* PCKClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKClientTests.swift; sourceTree = "<group>"; };
-		EDA6C9CA1F47265B007617B5 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
-		EDA6C9CC1F4781F3007617B5 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
-		EDA6C9CE1F47968D007617B5 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
-		EDA6C9D01F47A626007617B5 /* PCKTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKTestCase.swift; sourceTree = "<group>"; };
-		EDBB3A1F1F4B9BC9004A2B5C /* PCKCategoryContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCategoryContent.swift; sourceTree = "<group>"; };
-		EDBB3A211F4B9CEF004A2B5C /* PCKCategoryContentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCategoryContentTests.swift; sourceTree = "<group>"; };
-		EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PocketCastsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PocketCastsKit.h; sourceTree = "<group>"; };
-		EDC7EA861F44A0520048E8EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EDC7EA8B1F44A0520048E8EF /* PocketCastsKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketCastsKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EDC7EA921F44A0520048E8EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2B6E0761F72991B00959503 /* PCKCategoryContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCategoryContent.swift; sourceTree = "<group>"; };
+		B2B6E0771F72991B00959503 /* PCKNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKNetwork.swift; sourceTree = "<group>"; };
+		B2B6E0781F72991B00959503 /* PCKNetworkGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKNetworkGroup.swift; sourceTree = "<group>"; };
+		B2B6E0791F72991C00959503 /* PCKPodcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKPodcast.swift; sourceTree = "<group>"; };
+		B2B6E07A1F72991C00959503 /* PCKCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCategory.swift; sourceTree = "<group>"; };
+		B2B6E07B1F72991C00959503 /* PCKCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCountry.swift; sourceTree = "<group>"; };
+		B2B6E07C1F72991C00959503 /* PCKEpisode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKEpisode.swift; sourceTree = "<group>"; };
+		B2B6E07E1F72994C00959503 /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
+		B2B6E0801F72996A00959503 /* PCKClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKClientProtocol.swift; sourceTree = "<group>"; };
+		B2B6E0831F72996B00959503 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
+		B2B6E0841F72996B00959503 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		B2B6E0851F72996B00959503 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		B2B6E0871F72996B00959503 /* RestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestProtocol.swift; sourceTree = "<group>"; };
+		B2B6E0881F72996B00959503 /* NetworkManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocol.swift; sourceTree = "<group>"; };
+		B2B6E0891F72996B00959503 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		B2B6E08A1F72996B00959503 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
+		B2B6E08B1F72996B00959503 /* PCKClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKClient.swift; sourceTree = "<group>"; };
+		B2B6E08D1F7299B900959503 /* PCKClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKClientTests.swift; sourceTree = "<group>"; };
+		B2B6E08E1F7299B900959503 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
+		B2B6E08F1F7299B900959503 /* RestClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClientTests.swift; sourceTree = "<group>"; };
+		B2B6E0901F7299B900959503 /* TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
+		B2B6E0921F7299B900959503 /* PCKEpisodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKEpisodeTests.swift; sourceTree = "<group>"; };
+		B2B6E0931F7299B900959503 /* PCKNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKNetworkTests.swift; sourceTree = "<group>"; };
+		B2B6E0941F7299B900959503 /* PCKPodcastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKPodcastTests.swift; sourceTree = "<group>"; };
+		B2B6E0951F7299B900959503 /* PCKCountryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCountryTests.swift; sourceTree = "<group>"; };
+		B2B6E0961F7299B900959503 /* PCKNetworkGroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKNetworkGroupTests.swift; sourceTree = "<group>"; };
+		B2B6E0971F7299B900959503 /* PCKCategoryContentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCategoryContentTests.swift; sourceTree = "<group>"; };
+		B2B6E0981F7299B900959503 /* PCKCategoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKCategoryTests.swift; sourceTree = "<group>"; };
+		B2B6E09A1F7299B900959503 /* JSONParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParserTests.swift; sourceTree = "<group>"; };
+		B2B6E09B1F7299BA00959503 /* PCKTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCKTestCase.swift; sourceTree = "<group>"; };
+		B2EA9DF11F729572007A410A /* PocketCastsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PocketCastsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2EA9DFA1F729572007A410A /* PocketCastsKit_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketCastsKit_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2EA9E101F7295FE007A410A /* PocketCastsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PocketCastsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2EA9E181F7295FE007A410A /* PocketCastsKit_macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketCastsKit_macOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2EA9E2C1F729630007A410A /* PocketCastsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PocketCastsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2EA9E341F729630007A410A /* PocketCastsKit_tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketCastsKit_tvOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2EA9E451F7296E3007A410A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2EA9E471F7296E3007A410A /* PocketCastsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PocketCastsKit.h; sourceTree = "<group>"; };
+		B2EA9E481F7296E3007A410A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		EDC7EA7E1F44A0520048E8EF /* Frameworks */ = {
+		B2EA9DED1F729572007A410A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EDC7EA881F44A0520048E8EF /* Frameworks */ = {
+		B2EA9DF71F729572007A410A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDC7EA8C1F44A0520048E8EF /* PocketCastsKit.framework in Frameworks */,
+				B2EA9DFB1F729572007A410A /* PocketCastsKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2EA9E0C1F7295FE007A410A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2EA9E151F7295FE007A410A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2EA9E191F7295FE007A410A /* PocketCastsKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2EA9E281F729630007A410A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2EA9E311F729630007A410A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2EA9E351F729630007A410A /* PocketCastsKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		ED76DDEE1F45CD4500F8CB70 /* Helper */ = {
+		B2B6E0751F72990000959503 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				ED76DDEF1F45CD5200F8CB70 /* JSONParser.swift */,
-			);
-			path = Helper;
-			sourceTree = "<group>";
-		};
-		ED76DDF11F45CDE400F8CB70 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				ED76DDF21F45CDF800F8CB70 /* PCKPodcast.swift */,
-				ED76DDF41F45CEB900F8CB70 /* PCKEpisode.swift */,
-				ED9DD3831F4B3CFA00211328 /* PCKCountry.swift */,
-				ED9DD3871F4B402700211328 /* PCKCategory.swift */,
-				ED9DD38C1F4B4AC200211328 /* PCKNetwork.swift */,
-				ED9DD3901F4B862800211328 /* PCKNetworkGroup.swift */,
-				EDBB3A1F1F4B9BC9004A2B5C /* PCKCategoryContent.swift */,
+				B2B6E07A1F72991C00959503 /* PCKCategory.swift */,
+				B2B6E0761F72991B00959503 /* PCKCategoryContent.swift */,
+				B2B6E07B1F72991C00959503 /* PCKCountry.swift */,
+				B2B6E07C1F72991C00959503 /* PCKEpisode.swift */,
+				B2B6E0771F72991B00959503 /* PCKNetwork.swift */,
+				B2B6E0781F72991B00959503 /* PCKNetworkGroup.swift */,
+				B2B6E0791F72991C00959503 /* PCKPodcast.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		ED76DDF61F45CF3900F8CB70 /* Model */ = {
+		B2B6E07D1F72993E00959503 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				ED76DDF71F45CF5E00F8CB70 /* PCKPodcastTests.swift */,
-				ED76DDFB1F45D8C100F8CB70 /* PCKEpisodeTests.swift */,
-				ED9DD3851F4B3D5A00211328 /* PCKCountryTests.swift */,
-				ED9DD3891F4B410000211328 /* PCKCategoryTests.swift */,
-				ED9DD38E1F4B4B5100211328 /* PCKNetworkTests.swift */,
-				ED9DD3921F4B87DE00211328 /* PCKNetworkGroupTests.swift */,
-				EDBB3A211F4B9CEF004A2B5C /* PCKCategoryContentTests.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		ED76DDFD1F45E0B600F8CB70 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				ED76DDFE1F45E12900F8CB70 /* JSONParserTests.swift */,
+				B2B6E07E1F72994C00959503 /* JSONParser.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
 		};
-		ED76DE011F46389500F8CB70 /* API */ = {
+		B2B6E07F1F72996000959503 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				ED76DE021F46389A00F8CB70 /* NetworkManager */,
-				EDA6C9C41F467581007617B5 /* PCKClientProtocol.swift */,
-				EDA6C9C61F4676AF007617B5 /* PCKClient.swift */,
+				B2B6E0811F72996B00959503 /* NetworkManager */,
+				B2B6E08B1F72996B00959503 /* PCKClient.swift */,
+				B2B6E0801F72996A00959503 /* PCKClientProtocol.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
 		};
-		ED76DE021F46389A00F8CB70 /* NetworkManager */ = {
+		B2B6E0811F72996B00959503 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
-				EDA6C9BE1F467178007617B5 /* Mocking */,
-				ED76DE091F46477300F8CB70 /* Protocol */,
-				ED76DE051F46398500F8CB70 /* Result.swift */,
-				ED76DE0C1F46494000F8CB70 /* RestClient.swift */,
-				ED76DE071F463B3500F8CB70 /* NetworkManager.swift */,
+				B2B6E0821F72996B00959503 /* Mocking */,
+				B2B6E0841F72996B00959503 /* Result.swift */,
+				B2B6E0851F72996B00959503 /* NetworkManager.swift */,
+				B2B6E0861F72996B00959503 /* Protocol */,
+				B2B6E08A1F72996B00959503 /* RestClient.swift */,
 			);
 			path = NetworkManager;
 			sourceTree = "<group>";
 		};
-		ED76DE091F46477300F8CB70 /* Protocol */ = {
+		B2B6E0821F72996B00959503 /* Mocking */ = {
 			isa = PBXGroup;
 			children = (
-				ED76DE031F4638B000F8CB70 /* NetworkManagerProtocol.swift */,
-				ED76DE0A1F46481300F8CB70 /* RestProtocol.swift */,
-				EDA6C9CA1F47265B007617B5 /* URLSessionProtocol.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
-		EDA6C9BE1F467178007617B5 /* Mocking */ = {
-			isa = PBXGroup;
-			children = (
-				EDA6C9CC1F4781F3007617B5 /* URLSessionMock.swift */,
+				B2B6E0831F72996B00959503 /* URLSessionMock.swift */,
 			);
 			path = Mocking;
 			sourceTree = "<group>";
 		};
-		EDA6C9C21F46731D007617B5 /* Network */ = {
+		B2B6E0861F72996B00959503 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				ED76DE0F1F464C9900F8CB70 /* RestClientTests.swift */,
-				EDA6C9C81F46FFED007617B5 /* PCKClientTests.swift */,
-				EDA6C9CE1F47968D007617B5 /* NetworkManagerTests.swift */,
+				B2B6E0871F72996B00959503 /* RestProtocol.swift */,
+				B2B6E0881F72996B00959503 /* NetworkManagerProtocol.swift */,
+				B2B6E0891F72996B00959503 /* URLSessionProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		B2B6E08C1F7299B900959503 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B2B6E08D1F7299B900959503 /* PCKClientTests.swift */,
+				B2B6E08E1F7299B900959503 /* NetworkManagerTests.swift */,
+				B2B6E08F1F7299B900959503 /* RestClientTests.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
 		};
-		EDC7EA781F44A0520048E8EF = {
+		B2B6E0911F7299B900959503 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EDC7EA841F44A0520048E8EF /* PocketCastsKit */,
-				EDC7EA8F1F44A0520048E8EF /* PocketCastsKitTests */,
-				EDC7EA831F44A0520048E8EF /* Products */,
+				B2B6E0921F7299B900959503 /* PCKEpisodeTests.swift */,
+				B2B6E0931F7299B900959503 /* PCKNetworkTests.swift */,
+				B2B6E0941F7299B900959503 /* PCKPodcastTests.swift */,
+				B2B6E0951F7299B900959503 /* PCKCountryTests.swift */,
+				B2B6E0961F7299B900959503 /* PCKNetworkGroupTests.swift */,
+				B2B6E0971F7299B900959503 /* PCKCategoryContentTests.swift */,
+				B2B6E0981F7299B900959503 /* PCKCategoryTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B2B6E0991F7299B900959503 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				B2B6E09A1F7299B900959503 /* JSONParserTests.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		B2EA9DE71F729572007A410A = {
+			isa = PBXGroup;
+			children = (
+				B2EA9E461F7296E3007A410A /* SharedSource */,
+				B2EA9E431F7296E3007A410A /* SharedTests */,
+				B2EA9DF21F729572007A410A /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		EDC7EA831F44A0520048E8EF /* Products */ = {
+		B2EA9DF21F729572007A410A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */,
-				EDC7EA8B1F44A0520048E8EF /* PocketCastsKitTests.xctest */,
+				B2EA9DF11F729572007A410A /* PocketCastsKit.framework */,
+				B2EA9DFA1F729572007A410A /* PocketCastsKit_iOSTests.xctest */,
+				B2EA9E101F7295FE007A410A /* PocketCastsKit.framework */,
+				B2EA9E181F7295FE007A410A /* PocketCastsKit_macOSTests.xctest */,
+				B2EA9E2C1F729630007A410A /* PocketCastsKit.framework */,
+				B2EA9E341F729630007A410A /* PocketCastsKit_tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EDC7EA841F44A0520048E8EF /* PocketCastsKit */ = {
+		B2EA9E431F7296E3007A410A /* SharedTests */ = {
 			isa = PBXGroup;
 			children = (
-				ED76DE011F46389500F8CB70 /* API */,
-				ED76DDF11F45CDE400F8CB70 /* Model */,
-				ED76DDEE1F45CD4500F8CB70 /* Helper */,
-				EDC7EA851F44A0520048E8EF /* PocketCastsKit.h */,
-				EDC7EA861F44A0520048E8EF /* Info.plist */,
+				B2B6E0991F7299B900959503 /* Helper */,
+				B2B6E0911F7299B900959503 /* Model */,
+				B2B6E08C1F7299B900959503 /* Network */,
+				B2B6E09B1F7299BA00959503 /* PCKTestCase.swift */,
+				B2B6E0901F7299B900959503 /* TestHelper.swift */,
+				B2EA9E451F7296E3007A410A /* Info.plist */,
 			);
-			path = PocketCastsKit;
+			path = SharedTests;
 			sourceTree = "<group>";
 		};
-		EDC7EA8F1F44A0520048E8EF /* PocketCastsKitTests */ = {
+		B2EA9E461F7296E3007A410A /* SharedSource */ = {
 			isa = PBXGroup;
 			children = (
-				EDA6C9C21F46731D007617B5 /* Network */,
-				ED76DDFD1F45E0B600F8CB70 /* Helper */,
-				ED76DDF61F45CF3900F8CB70 /* Model */,
-				EDC7EA921F44A0520048E8EF /* Info.plist */,
-				ED76DDF91F45D36800F8CB70 /* TestHelper.swift */,
-				EDA6C9D01F47A626007617B5 /* PCKTestCase.swift */,
+				B2B6E07F1F72996000959503 /* API */,
+				B2B6E07D1F72993E00959503 /* Helper */,
+				B2B6E0751F72990000959503 /* Model */,
+				B2EA9E471F7296E3007A410A /* PocketCastsKit.h */,
+				B2EA9E481F7296E3007A410A /* Info.plist */,
 			);
-			path = PocketCastsKitTests;
+			path = SharedSource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		EDC7EA7F1F44A0520048E8EF /* Headers */ = {
+		B2EA9DEE1F729572007A410A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDC7EA931F44A0520048E8EF /* PocketCastsKit.h in Headers */,
+				B2B6E06F1F72979000959503 /* PocketCastsKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2EA9E0D1F7295FE007A410A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2B6E0701F72979200959503 /* PocketCastsKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2EA9E291F729630007A410A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2B6E0711F72979300959503 /* PocketCastsKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		EDC7EA811F44A0520048E8EF /* PocketCastsKit */ = {
+		B2EA9DF01F729572007A410A /* PocketCastsKit_iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EDC7EA961F44A0520048E8EF /* Build configuration list for PBXNativeTarget "PocketCastsKit" */;
+			buildConfigurationList = B2EA9E051F729572007A410A /* Build configuration list for PBXNativeTarget "PocketCastsKit_iOS" */;
 			buildPhases = (
-				EDC7EA7D1F44A0520048E8EF /* Sources */,
-				EDC7EA7E1F44A0520048E8EF /* Frameworks */,
-				EDC7EA7F1F44A0520048E8EF /* Headers */,
-				EDC7EA801F44A0520048E8EF /* Resources */,
+				B2EA9DEC1F729572007A410A /* Sources */,
+				B2EA9DED1F729572007A410A /* Frameworks */,
+				B2EA9DEE1F729572007A410A /* Headers */,
+				B2EA9DEF1F729572007A410A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = PocketCastsKit;
-			productName = PocketCastsKit;
-			productReference = EDC7EA821F44A0520048E8EF /* PocketCastsKit.framework */;
+			name = PocketCastsKit_iOS;
+			productName = PocketCastsKit_iOS;
+			productReference = B2EA9DF11F729572007A410A /* PocketCastsKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EDC7EA8A1F44A0520048E8EF /* PocketCastsKitTests */ = {
+		B2EA9DF91F729572007A410A /* PocketCastsKit_iOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EDC7EA991F44A0520048E8EF /* Build configuration list for PBXNativeTarget "PocketCastsKitTests" */;
+			buildConfigurationList = B2EA9E081F729572007A410A /* Build configuration list for PBXNativeTarget "PocketCastsKit_iOSTests" */;
 			buildPhases = (
-				EDC7EA871F44A0520048E8EF /* Sources */,
-				EDC7EA881F44A0520048E8EF /* Frameworks */,
-				EDC7EA891F44A0520048E8EF /* Resources */,
+				B2EA9DF61F729572007A410A /* Sources */,
+				B2EA9DF71F729572007A410A /* Frameworks */,
+				B2EA9DF81F729572007A410A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				EDC7EA8E1F44A0520048E8EF /* PBXTargetDependency */,
+				B2EA9DFD1F729572007A410A /* PBXTargetDependency */,
 			);
-			name = PocketCastsKitTests;
-			productName = PocketCastsKitTests;
-			productReference = EDC7EA8B1F44A0520048E8EF /* PocketCastsKitTests.xctest */;
+			name = PocketCastsKit_iOSTests;
+			productName = PocketCastsKit_iOSTests;
+			productReference = B2EA9DFA1F729572007A410A /* PocketCastsKit_iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B2EA9E0F1F7295FE007A410A /* PocketCastsKit_macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B2EA9E251F7295FE007A410A /* Build configuration list for PBXNativeTarget "PocketCastsKit_macOS" */;
+			buildPhases = (
+				B2EA9E0B1F7295FE007A410A /* Sources */,
+				B2EA9E0C1F7295FE007A410A /* Frameworks */,
+				B2EA9E0D1F7295FE007A410A /* Headers */,
+				B2EA9E0E1F7295FE007A410A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PocketCastsKit_macOS;
+			productName = PocketCastsKit_macOS;
+			productReference = B2EA9E101F7295FE007A410A /* PocketCastsKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B2EA9E171F7295FE007A410A /* PocketCastsKit_macOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B2EA9E261F7295FE007A410A /* Build configuration list for PBXNativeTarget "PocketCastsKit_macOSTests" */;
+			buildPhases = (
+				B2EA9E141F7295FE007A410A /* Sources */,
+				B2EA9E151F7295FE007A410A /* Frameworks */,
+				B2EA9E161F7295FE007A410A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B2EA9E1B1F7295FE007A410A /* PBXTargetDependency */,
+			);
+			name = PocketCastsKit_macOSTests;
+			productName = PocketCastsKit_macOSTests;
+			productReference = B2EA9E181F7295FE007A410A /* PocketCastsKit_macOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B2EA9E2B1F729630007A410A /* PocketCastsKit_tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B2EA9E3D1F729630007A410A /* Build configuration list for PBXNativeTarget "PocketCastsKit_tvOS" */;
+			buildPhases = (
+				B2EA9E271F729630007A410A /* Sources */,
+				B2EA9E281F729630007A410A /* Frameworks */,
+				B2EA9E291F729630007A410A /* Headers */,
+				B2EA9E2A1F729630007A410A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PocketCastsKit_tvOS;
+			productName = PocketCastsKit_tvOS;
+			productReference = B2EA9E2C1F729630007A410A /* PocketCastsKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B2EA9E331F729630007A410A /* PocketCastsKit_tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B2EA9E401F729630007A410A /* Build configuration list for PBXNativeTarget "PocketCastsKit_tvOSTests" */;
+			buildPhases = (
+				B2EA9E301F729630007A410A /* Sources */,
+				B2EA9E311F729630007A410A /* Frameworks */,
+				B2EA9E321F729630007A410A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B2EA9E371F729630007A410A /* PBXTargetDependency */,
+			);
+			name = PocketCastsKit_tvOSTests;
+			productName = PocketCastsKit_tvOSTests;
+			productReference = B2EA9E341F729630007A410A /* PocketCastsKit_tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		EDC7EA791F44A0520048E8EF /* Project object */ = {
+		B2EA9DE81F729572007A410A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Benny Lach";
 				TargetAttributes = {
-					EDC7EA811F44A0520048E8EF = {
+					B2EA9DF01F729572007A410A = {
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
-					EDC7EA8A1F44A0520048E8EF = {
+					B2EA9DF91F729572007A410A = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
+					};
+					B2EA9E0F1F7295FE007A410A = {
+						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+					};
+					B2EA9E171F7295FE007A410A = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					B2EA9E2B1F729630007A410A = {
+						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+					};
+					B2EA9E331F729630007A410A = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = EDC7EA7C1F44A0520048E8EF /* Build configuration list for PBXProject "PocketCastsKit" */;
+			buildConfigurationList = B2EA9DEB1F729572007A410A /* Build configuration list for PBXProject "PocketCastsKit" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = EDC7EA781F44A0520048E8EF;
-			productRefGroup = EDC7EA831F44A0520048E8EF /* Products */;
+			mainGroup = B2EA9DE71F729572007A410A;
+			productRefGroup = B2EA9DF21F729572007A410A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EDC7EA811F44A0520048E8EF /* PocketCastsKit */,
-				EDC7EA8A1F44A0520048E8EF /* PocketCastsKitTests */,
+				B2EA9DF01F729572007A410A /* PocketCastsKit_iOS */,
+				B2EA9DF91F729572007A410A /* PocketCastsKit_iOSTests */,
+				B2EA9E0F1F7295FE007A410A /* PocketCastsKit_macOS */,
+				B2EA9E171F7295FE007A410A /* PocketCastsKit_macOSTests */,
+				B2EA9E2B1F729630007A410A /* PocketCastsKit_tvOS */,
+				B2EA9E331F729630007A410A /* PocketCastsKit_tvOSTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		EDC7EA801F44A0520048E8EF /* Resources */ = {
+		B2EA9DEF1F729572007A410A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EDC7EA891F44A0520048E8EF /* Resources */ = {
+		B2EA9DF81F729572007A410A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2EA9E0E1F7295FE007A410A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2EA9E161F7295FE007A410A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2EA9E2A1F729630007A410A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2EA9E321F729630007A410A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -352,62 +606,160 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		EDC7EA7D1F44A0520048E8EF /* Sources */ = {
+		B2EA9DEC1F729572007A410A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDA6C9CB1F47265B007617B5 /* URLSessionProtocol.swift in Sources */,
-				ED76DE0D1F46494000F8CB70 /* RestClient.swift in Sources */,
-				ED76DE081F463B3500F8CB70 /* NetworkManager.swift in Sources */,
-				ED76DDF51F45CEB900F8CB70 /* PCKEpisode.swift in Sources */,
-				ED76DE061F46398500F8CB70 /* Result.swift in Sources */,
-				ED9DD3911F4B862800211328 /* PCKNetworkGroup.swift in Sources */,
-				ED76DDF01F45CD5200F8CB70 /* JSONParser.swift in Sources */,
-				EDA6C9C51F467581007617B5 /* PCKClientProtocol.swift in Sources */,
-				EDA6C9CD1F4781F3007617B5 /* URLSessionMock.swift in Sources */,
-				ED9DD3881F4B402700211328 /* PCKCategory.swift in Sources */,
-				ED76DE041F4638B000F8CB70 /* NetworkManagerProtocol.swift in Sources */,
-				EDBB3A201F4B9BC9004A2B5C /* PCKCategoryContent.swift in Sources */,
-				ED9DD3841F4B3CFA00211328 /* PCKCountry.swift in Sources */,
-				ED76DE0B1F46481300F8CB70 /* RestProtocol.swift in Sources */,
-				ED76DDF31F45CDF800F8CB70 /* PCKPodcast.swift in Sources */,
-				EDA6C9C71F4676AF007617B5 /* PCKClient.swift in Sources */,
-				ED9DD38D1F4B4AC200211328 /* PCKNetwork.swift in Sources */,
+				B2B6E0D81F729B3B00959503 /* PCKCategory.swift in Sources */,
+				B2B6E0C61F729B2A00959503 /* RestClient.swift in Sources */,
+				B2B6E0C81F729B2A00959503 /* PCKClientProtocol.swift in Sources */,
+				B2B6E0D51F729B3000959503 /* JSONParser.swift in Sources */,
+				B2B6E0C51F729B2A00959503 /* NetworkManager.swift in Sources */,
+				B2B6E0DA1F729B3B00959503 /* PCKCountry.swift in Sources */,
+				B2B6E0DB1F729B3B00959503 /* PCKEpisode.swift in Sources */,
+				B2B6E0DE1F729B3B00959503 /* PCKPodcast.swift in Sources */,
+				B2B6E0EF1F729B9000959503 /* URLSessionProtocol.swift in Sources */,
+				B2B6E0C71F729B2A00959503 /* PCKClient.swift in Sources */,
+				B2B6E0C41F729B2A00959503 /* Result.swift in Sources */,
+				B2B6E0C31F729B2A00959503 /* URLSessionMock.swift in Sources */,
+				B2B6E0D91F729B3B00959503 /* PCKCategoryContent.swift in Sources */,
+				B2B6E0ED1F729B9000959503 /* RestProtocol.swift in Sources */,
+				B2B6E0DD1F729B3B00959503 /* PCKNetworkGroup.swift in Sources */,
+				B2B6E0EE1F729B9000959503 /* NetworkManagerProtocol.swift in Sources */,
+				B2B6E0DC1F729B3B00959503 /* PCKNetwork.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EDC7EA871F44A0520048E8EF /* Sources */ = {
+		B2EA9DF61F729572007A410A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED9DD38A1F4B410000211328 /* PCKCategoryTests.swift in Sources */,
-				ED9DD3931F4B87DE00211328 /* PCKNetworkGroupTests.swift in Sources */,
-				ED76DDFA1F45D36800F8CB70 /* TestHelper.swift in Sources */,
-				EDBB3A221F4B9CEF004A2B5C /* PCKCategoryContentTests.swift in Sources */,
-				ED76DE101F464C9900F8CB70 /* RestClientTests.swift in Sources */,
-				ED76DDFF1F45E12900F8CB70 /* JSONParserTests.swift in Sources */,
-				EDA6C9C91F46FFED007617B5 /* PCKClientTests.swift in Sources */,
-				ED9DD38F1F4B4B5100211328 /* PCKNetworkTests.swift in Sources */,
-				EDA6C9CF1F47968D007617B5 /* NetworkManagerTests.swift in Sources */,
-				ED9DD3861F4B3D5A00211328 /* PCKCountryTests.swift in Sources */,
-				ED76DDFC1F45D8C100F8CB70 /* PCKEpisodeTests.swift in Sources */,
-				EDA6C9D11F47A626007617B5 /* PCKTestCase.swift in Sources */,
-				ED76DDF81F45CF5E00F8CB70 /* PCKPodcastTests.swift in Sources */,
+				B2B6E0C01F729A1D00959503 /* JSONParserTests.swift in Sources */,
+				B2B6E0B11F729A1700959503 /* PCKCategoryTests.swift in Sources */,
+				B2B6E0B01F729A1700959503 /* PCKCategoryContentTests.swift in Sources */,
+				B2B6E0A41F729A0B00959503 /* RestClientTests.swift in Sources */,
+				B2B6E0AF1F729A1700959503 /* PCKNetworkGroupTests.swift in Sources */,
+				B2B6E0A31F729A0B00959503 /* NetworkManagerTests.swift in Sources */,
+				B2B6E0AB1F729A1700959503 /* PCKEpisodeTests.swift in Sources */,
+				B2B6E0A21F729A0B00959503 /* PCKClientTests.swift in Sources */,
+				B2B6E0AC1F729A1700959503 /* PCKNetworkTests.swift in Sources */,
+				B2B6E0AE1F729A1700959503 /* PCKCountryTests.swift in Sources */,
+				B2B6E0A01F7299BA00959503 /* PCKTestCase.swift in Sources */,
+				B2B6E09D1F7299BA00959503 /* TestHelper.swift in Sources */,
+				B2B6E0AD1F729A1700959503 /* PCKPodcastTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2EA9E0B1F7295FE007A410A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2B6E0DF1F729B3B00959503 /* PCKCategory.swift in Sources */,
+				B2B6E0CC1F729B2B00959503 /* RestClient.swift in Sources */,
+				B2B6E0CE1F729B2B00959503 /* PCKClientProtocol.swift in Sources */,
+				B2B6E0D61F729B3100959503 /* JSONParser.swift in Sources */,
+				B2B6E0CB1F729B2B00959503 /* NetworkManager.swift in Sources */,
+				B2B6E0E11F729B3B00959503 /* PCKCountry.swift in Sources */,
+				B2B6E0E21F729B3B00959503 /* PCKEpisode.swift in Sources */,
+				B2B6E0E51F729B3B00959503 /* PCKPodcast.swift in Sources */,
+				B2B6E0F21F729B9000959503 /* URLSessionProtocol.swift in Sources */,
+				B2B6E0CD1F729B2B00959503 /* PCKClient.swift in Sources */,
+				B2B6E0CA1F729B2B00959503 /* Result.swift in Sources */,
+				B2B6E0C91F729B2B00959503 /* URLSessionMock.swift in Sources */,
+				B2B6E0E01F729B3B00959503 /* PCKCategoryContent.swift in Sources */,
+				B2B6E0F01F729B9000959503 /* RestProtocol.swift in Sources */,
+				B2B6E0E41F729B3B00959503 /* PCKNetworkGroup.swift in Sources */,
+				B2B6E0F11F729B9000959503 /* NetworkManagerProtocol.swift in Sources */,
+				B2B6E0E31F729B3B00959503 /* PCKNetwork.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2EA9E141F7295FE007A410A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2B6E0C11F729A1E00959503 /* JSONParserTests.swift in Sources */,
+				B2B6E0B81F729A1800959503 /* PCKCategoryTests.swift in Sources */,
+				B2B6E0B71F729A1800959503 /* PCKCategoryContentTests.swift in Sources */,
+				B2B6E0A71F729A0C00959503 /* RestClientTests.swift in Sources */,
+				B2B6E0B61F729A1800959503 /* PCKNetworkGroupTests.swift in Sources */,
+				B2B6E0A61F729A0C00959503 /* NetworkManagerTests.swift in Sources */,
+				B2B6E0B21F729A1800959503 /* PCKEpisodeTests.swift in Sources */,
+				B2B6E0A51F729A0C00959503 /* PCKClientTests.swift in Sources */,
+				B2B6E0B31F729A1800959503 /* PCKNetworkTests.swift in Sources */,
+				B2B6E0B51F729A1800959503 /* PCKCountryTests.swift in Sources */,
+				B2B6E09F1F7299BA00959503 /* PCKTestCase.swift in Sources */,
+				B2B6E09C1F7299BA00959503 /* TestHelper.swift in Sources */,
+				B2B6E0B41F729A1800959503 /* PCKPodcastTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2EA9E271F729630007A410A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2B6E0E61F729B3C00959503 /* PCKCategory.swift in Sources */,
+				B2B6E0D21F729B2C00959503 /* RestClient.swift in Sources */,
+				B2B6E0D41F729B2C00959503 /* PCKClientProtocol.swift in Sources */,
+				B2B6E0D71F729B3100959503 /* JSONParser.swift in Sources */,
+				B2B6E0D11F729B2C00959503 /* NetworkManager.swift in Sources */,
+				B2B6E0E81F729B3C00959503 /* PCKCountry.swift in Sources */,
+				B2B6E0E91F729B3C00959503 /* PCKEpisode.swift in Sources */,
+				B2B6E0EC1F729B3C00959503 /* PCKPodcast.swift in Sources */,
+				B2B6E0F51F729B9100959503 /* URLSessionProtocol.swift in Sources */,
+				B2B6E0D31F729B2C00959503 /* PCKClient.swift in Sources */,
+				B2B6E0D01F729B2C00959503 /* Result.swift in Sources */,
+				B2B6E0CF1F729B2C00959503 /* URLSessionMock.swift in Sources */,
+				B2B6E0E71F729B3C00959503 /* PCKCategoryContent.swift in Sources */,
+				B2B6E0F31F729B9100959503 /* RestProtocol.swift in Sources */,
+				B2B6E0EB1F729B3C00959503 /* PCKNetworkGroup.swift in Sources */,
+				B2B6E0F41F729B9100959503 /* NetworkManagerProtocol.swift in Sources */,
+				B2B6E0EA1F729B3C00959503 /* PCKNetwork.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2EA9E301F729630007A410A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2B6E0C21F729A1E00959503 /* JSONParserTests.swift in Sources */,
+				B2B6E0BF1F729A1800959503 /* PCKCategoryTests.swift in Sources */,
+				B2B6E0BE1F729A1800959503 /* PCKCategoryContentTests.swift in Sources */,
+				B2B6E0AA1F729A0C00959503 /* RestClientTests.swift in Sources */,
+				B2B6E0BD1F729A1800959503 /* PCKNetworkGroupTests.swift in Sources */,
+				B2B6E0A91F729A0C00959503 /* NetworkManagerTests.swift in Sources */,
+				B2B6E0B91F729A1800959503 /* PCKEpisodeTests.swift in Sources */,
+				B2B6E0A81F729A0C00959503 /* PCKClientTests.swift in Sources */,
+				B2B6E0BA1F729A1800959503 /* PCKNetworkTests.swift in Sources */,
+				B2B6E0BC1F729A1800959503 /* PCKCountryTests.swift in Sources */,
+				B2B6E0A11F7299BA00959503 /* PCKTestCase.swift in Sources */,
+				B2B6E09E1F7299BA00959503 /* TestHelper.swift in Sources */,
+				B2B6E0BB1F729A1800959503 /* PCKPodcastTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		EDC7EA8E1F44A0520048E8EF /* PBXTargetDependency */ = {
+		B2EA9DFD1F729572007A410A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EDC7EA811F44A0520048E8EF /* PocketCastsKit */;
-			targetProxy = EDC7EA8D1F44A0520048E8EF /* PBXContainerItemProxy */;
+			target = B2EA9DF01F729572007A410A /* PocketCastsKit_iOS */;
+			targetProxy = B2EA9DFC1F729572007A410A /* PBXContainerItemProxy */;
+		};
+		B2EA9E1B1F7295FE007A410A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B2EA9E0F1F7295FE007A410A /* PocketCastsKit_macOS */;
+			targetProxy = B2EA9E1A1F7295FE007A410A /* PBXContainerItemProxy */;
+		};
+		B2EA9E371F729630007A410A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B2EA9E2B1F729630007A410A /* PocketCastsKit_tvOS */;
+			targetProxy = B2EA9E361F729630007A410A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		EDC7EA941F44A0520048E8EF /* Debug */ = {
+		B2EA9E031F729572007A410A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -457,20 +809,17 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		EDC7EA951F44A0520048E8EF /* Release */ = {
+		B2EA9E041F729572007A410A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -514,35 +863,31 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		EDC7EA971F44A0520048E8EF /* Debug */ = {
+		B2EA9E061F729572007A410A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4ZHCQJ2SCM;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = PocketCastsKit/Info.plist;
+				INFOPLIST_FILE = SharedSource/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.dev-kiste.PocketCastsKit";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.dev-kiste.PocketCastsKit-iOS";
+				PRODUCT_NAME = PocketCastsKit;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -550,92 +895,295 @@
 			};
 			name = Debug;
 		};
-		EDC7EA981F44A0520048E8EF /* Release */ = {
+		B2EA9E071F729572007A410A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4ZHCQJ2SCM;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = PocketCastsKit/Info.plist;
+				INFOPLIST_FILE = SharedSource/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.dev-kiste.PocketCastsKit";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.dev-kiste.PocketCastsKit-iOS";
+				PRODUCT_NAME = PocketCastsKit;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		EDC7EA9A1F44A0520048E8EF /* Debug */ = {
+		B2EA9E091F729572007A410A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4ZHCQJ2SCM;
-				INFOPLIST_FILE = PocketCastsKitTests/Info.plist;
+				INFOPLIST_FILE = SharedTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.dev-kiste.PocketCastsKitTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.dev-kiste.PocketCastsKit-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		EDC7EA9B1F44A0520048E8EF /* Release */ = {
+		B2EA9E0A1F729572007A410A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4ZHCQJ2SCM;
-				INFOPLIST_FILE = PocketCastsKitTests/Info.plist;
+				INFOPLIST_FILE = SharedTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "de.dev-kiste.PocketCastsKitTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.dev-kiste.PocketCastsKit-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
+		B2EA9E211F7295FE007A410A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4ZHCQJ2SCM;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SharedSource/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.dev-kiste.PocketCastsKit-macOS";
+				PRODUCT_NAME = PocketCastsKit;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		B2EA9E221F7295FE007A410A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4ZHCQJ2SCM;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SharedSource/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.dev-kiste.PocketCastsKit-macOS";
+				PRODUCT_NAME = PocketCastsKit;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		B2EA9E231F7295FE007A410A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 4ZHCQJ2SCM;
+				INFOPLIST_FILE = SharedTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.dev-kiste.PocketCastsKit-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		B2EA9E241F7295FE007A410A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 4ZHCQJ2SCM;
+				INFOPLIST_FILE = SharedTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.dev-kiste.PocketCastsKit-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		B2EA9E3E1F729630007A410A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4ZHCQJ2SCM;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SharedSource/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.dev-kiste.PocketCastsKit-tvOS";
+				PRODUCT_NAME = PocketCastsKit;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		B2EA9E3F1F729630007A410A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4ZHCQJ2SCM;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SharedSource/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.dev-kiste.PocketCastsKit-tvOS";
+				PRODUCT_NAME = PocketCastsKit;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		B2EA9E411F729630007A410A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4ZHCQJ2SCM;
+				INFOPLIST_FILE = SharedTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.dev-kiste.PocketCastsKit-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		B2EA9E421F729630007A410A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4ZHCQJ2SCM;
+				INFOPLIST_FILE = SharedTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.dev-kiste.PocketCastsKit-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EDC7EA7C1F44A0520048E8EF /* Build configuration list for PBXProject "PocketCastsKit" */ = {
+		B2EA9DEB1F729572007A410A /* Build configuration list for PBXProject "PocketCastsKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EDC7EA941F44A0520048E8EF /* Debug */,
-				EDC7EA951F44A0520048E8EF /* Release */,
+				B2EA9E031F729572007A410A /* Debug */,
+				B2EA9E041F729572007A410A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EDC7EA961F44A0520048E8EF /* Build configuration list for PBXNativeTarget "PocketCastsKit" */ = {
+		B2EA9E051F729572007A410A /* Build configuration list for PBXNativeTarget "PocketCastsKit_iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EDC7EA971F44A0520048E8EF /* Debug */,
-				EDC7EA981F44A0520048E8EF /* Release */,
+				B2EA9E061F729572007A410A /* Debug */,
+				B2EA9E071F729572007A410A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EDC7EA991F44A0520048E8EF /* Build configuration list for PBXNativeTarget "PocketCastsKitTests" */ = {
+		B2EA9E081F729572007A410A /* Build configuration list for PBXNativeTarget "PocketCastsKit_iOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EDC7EA9A1F44A0520048E8EF /* Debug */,
-				EDC7EA9B1F44A0520048E8EF /* Release */,
+				B2EA9E091F729572007A410A /* Debug */,
+				B2EA9E0A1F729572007A410A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B2EA9E251F7295FE007A410A /* Build configuration list for PBXNativeTarget "PocketCastsKit_macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2EA9E211F7295FE007A410A /* Debug */,
+				B2EA9E221F7295FE007A410A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B2EA9E261F7295FE007A410A /* Build configuration list for PBXNativeTarget "PocketCastsKit_macOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2EA9E231F7295FE007A410A /* Debug */,
+				B2EA9E241F7295FE007A410A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B2EA9E3D1F729630007A410A /* Build configuration list for PBXNativeTarget "PocketCastsKit_tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2EA9E3E1F729630007A410A /* Debug */,
+				B2EA9E3F1F729630007A410A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B2EA9E401F729630007A410A /* Build configuration list for PBXNativeTarget "PocketCastsKit_tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2EA9E411F729630007A410A /* Debug */,
+				B2EA9E421F729630007A410A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = EDC7EA791F44A0520048E8EF /* Project object */;
+	rootObject = B2EA9DE81F729572007A410A /* Project object */;
 }
