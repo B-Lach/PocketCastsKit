@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:PocketCastsKit.xcodeproj">
+      location = "self:/Coding/Swift/PocketCastsKit/PocketCastsKit.xcodeproj">
    </FileRef>
 </Workspace>
