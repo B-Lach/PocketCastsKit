@@ -19,9 +19,9 @@ public struct PCKNetwork: Decodable {
         case color
     }
     
-    let id: Int
-    let title: String
-    let description: String
-    let imgURL: URL
-    let color: String
+    public let id: Int
+    public let title: String
+    public let description: String
+    public let imgURL: URL
+    public let color: String
 }

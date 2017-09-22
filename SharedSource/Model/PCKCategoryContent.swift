@@ -20,10 +20,10 @@ public struct PCKCategoryContent: Decodable {
         case uuid
     }
     
-    let author: String
-    let title: String
-    let collectionId: Int
-    let description: String
-    let thumbnail: URL
-    let uuid: UUID
+    public let author: String
+    public let title: String
+    public let collectionId: Int
+    public let description: String
+    public let thumbnail: URL
+    public let uuid: UUID
 }

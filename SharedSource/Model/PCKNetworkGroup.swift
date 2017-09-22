@@ -19,12 +19,12 @@ public struct PCKNetworkGroup: Decodable {
         case podcasts
     }
     
-    let title: String
-    let description: String
-    let imgURL: URL
-    // No idea so far - private podcast uuid ?
-    let ppu: UUID
-    let podcasts: [PCKNetworkPodcast]
+    public let title: String
+    public let description: String
+    public let imgURL: URL
+    // TODO: - No idea so far - private podcast uuid ?
+    public let ppu: UUID
+    public let podcasts: [PCKNetworkPodcast]
  }
 
 public struct PCKNetworkPodcast: Decodable {
@@ -32,6 +32,6 @@ public struct PCKNetworkPodcast: Decodable {
         case uuid
         case fileType = "file_type"
     }
-    let uuid: UUID
-    let fileType: String?
+    public let uuid: UUID
+    public let fileType: String?
 }

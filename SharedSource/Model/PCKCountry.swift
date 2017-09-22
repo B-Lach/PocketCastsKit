@@ -10,6 +10,6 @@ import Foundation
 
 /// Represents a Country used in PocketCasts to filter search results
 public struct PCKCountry: Decodable {
-    let code: String
-    let name: String
+    public let code: String
+    public let name: String
 }

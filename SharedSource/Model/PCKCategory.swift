@@ -11,6 +11,6 @@ import Foundation
 /// Represents a Podcast Category in PocketCasts,
 /// Used to filter Podcasts
 public struct PCKCategory: Decodable {
-    let id: Int
-    let name: String
+    public let id: Int
+    public let name: String
 }
