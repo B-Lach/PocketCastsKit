@@ -169,6 +169,7 @@
 		B2EA9E451F7296E3007A410A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2EA9E471F7296E3007A410A /* PocketCastsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PocketCastsKit.h; sourceTree = "<group>"; };
 		B2EA9E481F7296E3007A410A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED7605731F750B5A00293CB8 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +318,7 @@
 		B2EA9DE71F729572007A410A = {
 			isa = PBXGroup;
 			children = (
+				ED7605731F750B5A00293CB8 /* LICENSE */,
 				B2EA9E461F7296E3007A410A /* SharedSource */,
 				B2EA9E431F7296E3007A410A /* SharedTests */,
 				B2EA9DF21F729572007A410A /* Products */,
