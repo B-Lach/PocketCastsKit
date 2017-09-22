@@ -516,3 +516,6 @@ client.setStarred(for: episode_uuid, podcast: podcast_uuid, starred: true/false)
 ## Contributing
 
 > If you found a bug or have a feature request, feel free to create a pull request.
+
+##
+PocketCastsKit is released under the MIT license. [See LICENSE](https://github.com/B-Lach/PocketCastsKit/blob/develop/LICENSE) for details.
