@@ -2,7 +2,7 @@
 [![Build Status](https://www.bitrise.io/app/b1a7baab2672d1b7/status.svg?token=puVh6MgHEoHK74nXk0LS9g&branch=develop)](https://www.bitrise.io/app/b1a7baab2672d1b7)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-> PocketCastsKit is an unofficial [Pocket Casts] (https://www.shiftyjelly.com/pocketcasts/) API Wrapper written in Swift 4.0 and available for iOS, macOS and tvOS 
+> PocketCastsKit is an unofficial [Pocket Casts](https://www.shiftyjelly.com/pocketcasts/) API Wrapper written in Swift 4.0 and available for iOS, macOS and tvOS 
 
 ## Requirements
 
